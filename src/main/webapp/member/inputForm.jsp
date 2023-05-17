@@ -6,6 +6,7 @@
 <h2> 회원가입 </h2>
 
 <form method="post" action="memberinputpro.do" name="inputform" onsubmit="return inputcheck()">
+	<input type="hidden" name="check" value=0>
 	<table>
 		<tr>	
 			<th colspan=2> 회원정보를 입력해주세요 </th>

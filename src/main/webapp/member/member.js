@@ -6,12 +6,14 @@ var nameerror = "이름을 입력하세요";
 var nickerror = "닉네임을 입력하세요";
 var telerror = "전화번호를 입력하세요";
 var emailerror = "이메일주소를 확인하세요";
-var confirmerror = "중복확인이 필요합니다";
+var confirmiderror = "아이디 중복확인이 필요합니다";
+var confirmnickerror = "닉네임 중복확인이 필요합니다";
 
 var inputerror = "회원가입에 실패했습니다 \n 잠시 후 다시 시도하세요";
 var idxerror = "입력하신 아이디가 없습니다 \n 다시 확인하세요";
 var passerror = "입력하신 비밀번호가 다릅니다 \n 다시 확인하세요";
 var deleteerror = "회원탈퇴에 실패했습니다 \n 잠시 후 다시 시도하세요";
+var modifyerror = "회원정보수정에 실패했습니다 \n 잠시 후 다시 시도하세요";
 
 
 
@@ -25,13 +27,17 @@ function erroralert(msg) {
 
 // 회원가입
 function inputcheck() {
-	/*
 	if(inputform.check.value == "0") {
-		alert(confirmerror);
+		alert(confirmiderror);
 		inputform.user_id.focus();
 		return false;
 	}
-	*/
+	if(inputform.check.value == "1") {
+		alert(confirmnickerror);
+		inputform.user_nick.focus();
+		return false;
+	}
+	
 	if(! inputform.user_id.value) {
 		alert(iderror);
 		inputform.user_id.focus();
@@ -118,7 +124,7 @@ function confirmidcheck() {
 
 function setid(user_id) {
 	opener.document.inputform.user_id.value = user_id;
-	// opener.document.inputform.check.value="1";
+	opener.document.inputform.check.value="1";
 	window.close();
 }
 
@@ -143,7 +149,7 @@ function confirmnickcheck() {
 }
 function setnick(user_nick) {
 	opener.document.inputform.user_nick.value = user_nick;
-	// opener.document.inputform.check.value="1";
+	opener.document.inputform.check.value="2";
 	window.close();
 }
 
@@ -164,13 +170,24 @@ function logincheck() {
 
 
 // 정보수정 (본인확인용 비번 일치, 수정한 비번 = 2차비번 일치여부)
+function modifycheck() {
+	if(! modifyform.user_passwd.value) {
+		alert(passwderror);
+		modifyform.user_passwd.focus();
+		return false;
+	} else if(modifyform.user_passwd.value != modifyform.user_repasswd.value) {
+		alert(repasswderror);
+		modifyform.user_passwd.focus();
+		return false;
+	}
+}
 
 
 
 // 회원탈퇴 (본인확인용 비번 일치)
 function passwdcheck() {
 	if (! passwdform.user_passwd.value) {
-		alert(passerror);
+		alert(passwderror);
 		passwdform.user_passwd.focus();
 		return false;
 	}

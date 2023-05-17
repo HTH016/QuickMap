@@ -11,10 +11,16 @@
 
 <h2>회원정보수정</h2>
 
-<form method="post" action="membermodifypro.do" name="modifyform">
+<c:if test="${result eq 0}">
+	<script type="text/javascript">
+		erroralert(passerror);
+	</script>
+</c:if>
+<c:if test="${result eq 1}">
+	<form method="post" action="membermodifypro.do" name="modifyform" onsubmit="modifycheck()">
 	<table>
 		<tr>
-			<th colspan=2> ${msg_modify} </th>
+				<th colspan=2> 회원정보수정 </th>
 		</tr>
 		<tr>
 			<th> ID </th>
@@ -101,3 +107,4 @@
 		</tr>
 	</table>
 </form>
+</c:if>

@@ -24,5 +24,9 @@
 	<delete id="deleteMember" parameterType="String">
 		delete from qm where user_id=#{user_id}
 	</delete>
+	<update id="modifyMember" parameterType="member.MemberDataBean">
+		update qm set user_passwd=#{user_passwd}, user_tel=#{user_tel, jdbcType=VARCHAR},
+		user_email=#{user_email, jdbcType=VARCHAR} where user_id=#{user_id}
+	</update>
 </mapper>
 

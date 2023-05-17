@@ -44,9 +44,9 @@ public class MemberDBBean implements MemberDao {
 		return session.delete("Member.deleteMember", user_id);
 	}
 	
-	
-	
-	
+	public int modifyMember(MemberDataBean dto) {
+		return session.update("Member.modifyMember", dto);
+	}
 	
 	
 	

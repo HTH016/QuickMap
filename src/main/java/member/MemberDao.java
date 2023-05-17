@@ -7,4 +7,5 @@ public interface MemberDao {
 	public int insertMember(MemberDataBean dto);
 	public int deleteMember(String user_id);
 	public MemberDataBean getMember(String user_id);
+	public int modifyMember(MemberDataBean dto);
 }
