@@ -6,6 +6,9 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import member.MemberDBBean;
+import member.MemberDao;
+
 //import board.BoardDBBean;
 //import board.BoardDao;
 //import logon.LogonDBBean;
@@ -15,16 +18,16 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 public class JavaBeans {
 /*
 	@Bean
-	public LogonDao logonDao() {
-		return new LogonDBBean();
-	}
-	
-	@Bean
 	public BoardDao boardDao() {
 		return new BoardDBBean();
 	}
 */
 
+	@Bean
+	public MemberDao memberDao() {
+		return new MemberDBBean();
+	}
+	
 	@Bean
 	public ViewResolver	getViewResolver() {
 		UrlBasedViewResolver	viewResolver	= new UrlBasedViewResolver();

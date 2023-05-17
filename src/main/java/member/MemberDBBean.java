@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import mybatis.SqlMapClient;
 
-public class MemberDBBean {
+public class MemberDBBean implements MemberDao {
 	
 	public static SqlSession session = SqlMapClient.getSession();
 	
