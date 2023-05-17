@@ -1,4 +1,4 @@
-package handler.main;
+package handler.board;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import handler.CommandHandler;
 
 @Controller
-public class Temp implements CommandHandler {
-	@RequestMapping("/main_temp")
+public class TempBoard implements CommandHandler {
+	@RequestMapping("/board_temp")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
