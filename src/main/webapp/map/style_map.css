@@ -1,0 +1,18 @@
+*{
+	margin	: 0;
+	padding	: 0;
+}
+
+body {
+	overflow: hidden;
+}
+
+.areaSearch {
+	border	: 1px solid green;
+	float	: left;
+}
+
+.areaMap {
+	border	: 1px solid red;
+	float	: right;
+}
