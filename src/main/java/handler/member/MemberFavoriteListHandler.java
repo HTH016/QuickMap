@@ -11,11 +11,11 @@ import handler.CommandHandler;
 
 @Controller
 public class MemberFavoriteListHandler implements CommandHandler {
-	@RequestMapping("/member_temp")
+	@RequestMapping("/memberfavoritelist")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		return new ModelAndView("main/default");
+		return new ModelAndView("member/favoriteList");
 	}
 
 }

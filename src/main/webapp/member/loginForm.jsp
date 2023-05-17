@@ -4,7 +4,7 @@
 
 <h2> 로그인 </h2>
 
-<form method="post">
+<form method="post" action="memberloginpro.do" name=>
 	<table>
 		<tr>
 			<th>ID</th>
