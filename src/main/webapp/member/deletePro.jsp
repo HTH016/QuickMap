@@ -1,23 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script src="${project}member.js"></script>
 
 <h2>회원탈퇴</h2>
 
-<form method="post" action="memberdeletepro.do">
-	<table>
-		<tr>
-			<th colspan=2> 비밀번호 입력 </th>
-		</tr>
-		<tr>
-			<th> 비밀번호 </th>
-			<td><input type="password" name="user_passwd" maxlength=30 autofocus></td>
-		</tr>
-		<tr>
-			<th colspan=2>
-				<input type="submit" value="탈퇴">
-				<input type="button" value="탈퇴취소"
-					onclick="location='logonmain.do'">
-			</th>
-		</tr>
-	</table>
-</form>
+<c:if test="${resultCheck eq 0}">
+	<script type="text/javascript">
+		erroralert(passerror);
+	</script>
+</c:if>
+<c:if test="${resultCheck eq 1}">
+	<c:if test="${result eq 0}">
+		<script type="text/javascript">
+			alert(deleteerror);
+		</script>
+		<meta http-equiv="refresh" content="0; url=지도">
+	</c:if>
+	<c:if test="${result eq 1}">
+		${sessionScope.memId = null}
+		<c:redirect url="지도"/>
+	</c:if>
+</c:if>

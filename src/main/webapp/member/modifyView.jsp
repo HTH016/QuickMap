@@ -6,6 +6,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    
+<script src="${project}member.js"></script>
 
 <h2>회원정보수정</h2>
 
@@ -72,6 +74,7 @@
 		</tr>
 		<tr>
 			<th> 가입일자 </th>
+			
 			<td>
 				&nbsp; <fmt:formatDate value="${dto.user_reg_date}" type="both" pattern="yyyy-MM-dd HH:mm:ss"/>
 			</td>

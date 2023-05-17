@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<script src="${project}member.js"></script>
 
 <h2> 회원가입 </h2>
 
-<form method="post" action="memberinputpro.do" name="inputform">
+<form method="post" action="memberinputpro.do" name="inputform" onsubmit="return inputcheck()">
 	<table>
+		<tr>	
+			<th colspan=2> 회원정보를 입력해주세요 </th>
+		</tr>
 		<tr>
 			<th> ID </th>
 			<td>
@@ -29,9 +34,6 @@
 				<input type="text" name="user_nick" maxlength=50>
 				<input type="button" value="중복확인" onclick="confirmnick()">	
 			</td>
-		</tr>
-		<tr>
-			
 		</tr>
 		<tr>
 			<th> 전화번호 </th>
