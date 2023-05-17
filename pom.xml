@@ -73,6 +73,13 @@
 			<systemPath>${project.lib.path}/ojdbc8.jar</systemPath>
 		</dependency>
 		<dependency>
+			<groupId>servlet-api</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.lib.path}/servlet-api.jar</systemPath>
+		</dependency>
+		<dependency>
 			<groupId>spring-aop-4.3.30.RELEASE</groupId>
 			<artifactId>spring-aop-4.3.30.RELEASE</artifactId>
 			<version>4.3.30</version>
