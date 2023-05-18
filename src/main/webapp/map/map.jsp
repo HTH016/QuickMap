@@ -18,20 +18,20 @@ $(document).ready(
 	function() {
 		setLayoutSize();
 		
-		var container = document.getElementById('kakaomap');			// Áöµµ¸¦ ´ãÀ» ¿µ¿ªÀÇ DOM ·¹ÆÛ·±½º
-		var options = {													// Áöµµ¸¦ »ı¼ºÇÒ ¶§ ÇÊ¿äÇÑ ±âº» ¿É¼Ç
-			center: new kakao.maps.LatLng(37.49455001, 127.02747878),	// ÁöµµÀÇ Áß½ÉÁÂÇ¥
-			level: 3													// ÁöµµÀÇ ·¹º§(È®´ë, Ãà¼Ò Á¤µµ)
+		var container = document.getElementById('kakaomap');			// ì§€ë„ë¥¼ ë‹´ì„ ì˜ì—­ì˜ DOM ë ˆí¼ëŸ°ìŠ¤
+		var options = {													// ì§€ë„ë¥¼ ìƒì„±í•  ë•Œ í•„ìš”í•œ ê¸°ë³¸ ì˜µì…˜
+			center: new kakao.maps.LatLng(37.49455001, 127.02747878),	// ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+			level: 3													// ì§€ë„ì˜ ë ˆë²¨(í™•ëŒ€, ì¶•ì†Œ ì •ë„)
 		};
 		
-		kakaomap = new kakao.maps.Map(container, options);				// Áöµµ »ı¼º ¹× °´Ã¼ ¸®ÅÏ
+		kakaomap = new kakao.maps.Map(container, options);				// ì§€ë„ ìƒì„± ë° ê°ì²´ ë¦¬í„´
 
 		
-		// ÁÜ ÄÁÆ®·Ñ »ı¼º
+		// ì¤Œ ì»¨íŠ¸ë¡¤ ìƒì„±
 		var zoomControl = new kakao.maps.ZoomControl();
 		kakaomap.addControl(zoomControl, kakao.maps.ControlPosition.BOTTOMRIGHT);
 		
-		// ÁöµµÅ¸ÀÔ ÄÁÆ®·Ñ »ı¼º (ÀÏ¹İ Áöµµ / ½ºÄ«ÀÌºä)
+		// ì§€ë„íƒ€ì… ì»¨íŠ¸ë¡¤ ìƒì„± (ì¼ë°˜ ì§€ë„ / ìŠ¤ì¹´ì´ë·°)
 		// var mapTypeControl = new kakao.maps.MapTypeControl();
 		// kakaomap.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
@@ -48,7 +48,7 @@ $(window).resize(
 function setLayoutSize() {
 	var	windowWidth		= $(window).width();
 	var	searchAreaWidth	= 350;
-	var	mapWidth		= windowWidth - searchAreaWidth - 4; 
+	var	mapWidth		= windowWidth - searchAreaWidth; 
 	
 	var	windowHeight	= $(window).height();
 	var	userHeight		= 200;
@@ -66,36 +66,36 @@ function setLayoutSize() {
 }
 
 function getInfo() {
-    // ÁöµµÀÇ ÇöÀç Áß½ÉÁÂÇ¥¸¦ ¾ò¾î¿É´Ï´Ù 
+    // ì§€ë„ì˜ í˜„ì¬ ì¤‘ì‹¬ì¢Œí‘œë¥¼ ì–»ì–´ì˜µë‹ˆë‹¤ 
     var center = kakaomap.getCenter(); 
     
-    // ÁöµµÀÇ ÇöÀç ·¹º§À» ¾ò¾î¿É´Ï´Ù
+    // ì§€ë„ì˜ í˜„ì¬ ë ˆë²¨ì„ ì–»ì–´ì˜µë‹ˆë‹¤
     var level = kakaomap.getLevel();
     
-    // ÁöµµÅ¸ÀÔÀ» ¾ò¾î¿É´Ï´Ù
+    // ì§€ë„íƒ€ì…ì„ ì–»ì–´ì˜µë‹ˆë‹¤
     var mapTypeId = kakaomap.getMapTypeId(); 
     
-    // ÁöµµÀÇ ÇöÀç ¿µ¿ªÀ» ¾ò¾î¿É´Ï´Ù 
+    // ì§€ë„ì˜ í˜„ì¬ ì˜ì—­ì„ ì–»ì–´ì˜µë‹ˆë‹¤ 
     var bounds = kakaomap.getBounds();
     
-    // ¿µ¿ªÀÇ ³²¼­ÂÊ ÁÂÇ¥¸¦ ¾ò¾î¿É´Ï´Ù 
+    // ì˜ì—­ì˜ ë‚¨ì„œìª½ ì¢Œí‘œë¥¼ ì–»ì–´ì˜µë‹ˆë‹¤ 
     var swLatLng = bounds.getSouthWest(); 
     
-    // ¿µ¿ªÀÇ ºÏµ¿ÂÊ ÁÂÇ¥¸¦ ¾ò¾î¿É´Ï´Ù 
+    // ì˜ì—­ì˜ ë¶ë™ìª½ ì¢Œí‘œë¥¼ ì–»ì–´ì˜µë‹ˆë‹¤ 
     var neLatLng = bounds.getNorthEast(); 
     
-    // ¿µ¿ªÁ¤º¸¸¦ ¹®ÀÚ¿­·Î ¾ò¾î¿É´Ï´Ù. ((³²,¼­), (ºÏ,µ¿)) Çü½ÄÀÔ´Ï´Ù
+    // ì˜ì—­ì •ë³´ë¥¼ ë¬¸ìì—´ë¡œ ì–»ì–´ì˜µë‹ˆë‹¤. ((ë‚¨,ì„œ), (ë¶,ë™)) í˜•ì‹ì…ë‹ˆë‹¤
     var boundsStr = bounds.toString();
     
     
-    var message = 'Áöµµ Áß½ÉÁÂÇ¥´Â À§µµ ' + center.getLat() + ', <br>';
-    message += '°æµµ ' + center.getLng() + ' ÀÌ°í <br>';
-    message += 'Áöµµ ·¹º§Àº ' + level + ' ÀÔ´Ï´Ù <br> <br>';
-    message += 'Áöµµ Å¸ÀÔÀº ' + mapTypeId + ' ÀÌ°í <br> ';
-    message += 'ÁöµµÀÇ ³²¼­ÂÊ ÁÂÇ¥´Â ' + swLatLng.getLat() + ', ' + swLatLng.getLng() + ' ÀÌ°í <br>';
-    message += 'ºÏµ¿ÂÊ ÁÂÇ¥´Â ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' ÀÔ´Ï´Ù';
+    var message = 'ì§€ë„ ì¤‘ì‹¬ì¢Œí‘œëŠ” ìœ„ë„ ' + center.getLat() + ', <br>';
+    message += 'ê²½ë„ ' + center.getLng() + ' ì´ê³  <br>';
+    message += 'ì§€ë„ ë ˆë²¨ì€ ' + level + ' ì…ë‹ˆë‹¤ <br> <br>';
+    message += 'ì§€ë„ íƒ€ì…ì€ ' + mapTypeId + ' ì´ê³  <br> ';
+    message += 'ì§€ë„ì˜ ë‚¨ì„œìª½ ì¢Œí‘œëŠ” ' + swLatLng.getLat() + ', ' + swLatLng.getLng() + ' ì´ê³  <br>';
+    message += 'ë¶ë™ìª½ ì¢Œí‘œëŠ” ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' ì…ë‹ˆë‹¤';
     
-    // °³¹ßÀÚµµ±¸¸¦ ÅëÇØ Á÷Á¢ message ³»¿ëÀ» È®ÀÎÇØ º¸¼¼¿ä.
+    // ê°œë°œìë„êµ¬ë¥¼ í†µí•´ ì§ì ‘ message ë‚´ìš©ì„ í™•ì¸í•´ ë³´ì„¸ìš”.
     // ex) console.log(message);
     console.log(message);
 }

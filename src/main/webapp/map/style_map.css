@@ -8,11 +8,9 @@ body {
 }
 
 .areaSearch {
-	border	: 1px solid green;
 	float	: left;
 }
 
 .areaMap {
-	border	: 1px solid red;
 	float	: right;
 }
