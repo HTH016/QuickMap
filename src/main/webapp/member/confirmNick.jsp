@@ -1,22 +1,24 @@
+<%@page import="member.MemberDataBean"%>
+<%@page import="member.MemberDBBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%@include file="setting_member.jsp" %>
+<script type="text/javascript" src="/quickmap/jquery-3.6.4.js"></script>
 
 <script src="${project}member.js"></script>
 
-<h2>닉네임 중복확인</h2>
+<h2>${page_confirmnick}</h2>
 
 <c:if test="${result eq 0}">
 	<table>
 		<tr>
-			<th style="width:300px"> ${user_nick}는 사용할 수 있습니다 </th>
+			<th style="width:300px"> ${user_nick}${msg_use_o} </th>
 		</tr>
 		<tr>
 			<th>
 				<input type="button" value="확인"
-					onclick="setid('${user_nick}')">
+					onclick="setnick('${form}', '${user_nick}')">
 			</th>
 		</tr>
 	</table>
@@ -25,10 +27,10 @@
 	<form method="post" action="memberconfirmnick.do" name="confirmnickform" onsubmit="return confirmnickcheck()">
 		<table>
 			<tr>
-				<th colspan=2> ${user_nick}는 사용할 수 없습니다 </th>
+				<th colspan=2> ${user_nick}${msg_use_x} </th>
 			</tr>
 			<tr>
-				<th> 닉네임 </th>
+				<th> ${str_user_nick} </th>
 				<td> <input type="text" name="user_nick" maxlength=30 autofocus> </td>
 			</tr>
 			<tr>

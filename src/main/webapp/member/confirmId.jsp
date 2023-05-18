@@ -1,17 +1,19 @@
+<%@page import="member.MemberDataBean"%>
+<%@page import="member.MemberDBBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%@include file="setting_member.jsp" %>
+<script type="text/javascript" src="/quickmap/jquery-3.6.4.js"></script>
 
 <script src="${project}member.js"></script>
 
-<h2>아이디 중복확인</h2>
+<h2>${page_confirmid}</h2>
 
 <c:if test="${result eq 0}">
 	<table>
 		<tr>
-			<th style="width:300px"> ${user_id}는 사용할 수 있습니다 </th>
+			<th style="width:300px"> ${user_id}${msg_use_o} </th>
 		</tr>
 		<tr>
 			<th>
@@ -25,10 +27,10 @@
 	<form method="post" action="memberconfirmid.do" name="confirmidform" onsubmit="return confirmidcheck()">
 		<table>
 			<tr>
-				<th colspan=2> ${user_id}는 사용할 수 없습니다 </th>
+				<th colspan=2> ${user_id}${msg_use_x} </th>
 			</tr>
 			<tr>
-				<th> ID </th>
+				<th> ${str_user_id} </th>
 				<td> <input type="text" name="user_id" maxlength=30 autofocus> </td>
 			</tr>
 			<tr>

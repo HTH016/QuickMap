@@ -3,9 +3,8 @@
 <%@page import="member.MemberDBBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@include file="setting_member.jsp" %>
+<script type="text/javascript" src="/quickmap/jquery-3.6.4.js"></script>
     
 <script src="${project}member.js"></script>
 
@@ -17,7 +16,7 @@
 	</script>
 </c:if>
 <c:if test="${result eq 1}">
-	<form method="post" action="membermodifypro.do" name="modifyform" onsubmit="modifycheck()">
+	<form method="post" action="membermodifypro.do" name="modifyform" onsubmit="return modifycheck()">
 	<table>
 		<tr>
 				<th colspan=2> 회원정보수정 </th>
@@ -45,6 +44,12 @@
 		<tr>
 			<th> 닉네임 </th>
 			<td> &nbsp; ${dto.user_nick} </td>
+				<td>
+					<input type="text" name="nick" maxLength="30" autofocus
+							value="${dto.getUser_nick()}">
+					<input type="button" value="중복확인"
+							onclick="confirmnick('modifyform')">
+				</td>
 		</tr>
 		<tr>
 			<th> 전화번호 </th>
@@ -82,17 +87,17 @@
 			<th> 가입일자 </th>
 			
 			<td>
-				&nbsp; <fmt:formatDate value="${dto.user_reg_date}" type="both" pattern="yyyy-MM-dd HH:mm:ss"/>
+					&nbsp; <fmt:formatDate value="${dto.user_reg}" type="both" pattern="yyyy-MM-dd HH:mm:ss"/>
 			</td>
 		</tr>
 		<tr>
 			<th> 회원등급 </th>
 			<td>
-				<c:if test="${dto.user_grade_id eq 0}">
-					&nbsp; ${dto.user_grage_id}
+					<c:if test="${dto.grade_id eq 2}">
+						&nbsp; ${dto.grade_id}
 				</c:if>
-				<c:if test="${dto.user_grade_id ne 0}">
-					&nbsp; ${dto.user_grage_id}
+					<c:if test="${dto.grade_id ne 2}">
+						&nbsp; ${dto.grade_id}
 					<input type="button" value="수정" onclick="location='업장수정'">
 				</c:if>
 			</td>

@@ -4,28 +4,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Member">
+<mapper namespace="User">
 	<select id="checkId" parameterType="String" resultType="int">
-		select count(*) from qm where user_id=#{user_id}
+		select count(*) from qm_user where user_id=#{user_id, jdbcType=VARCHAR}
 	</select>
 	<select id="checkNick" parameterType="String" resultType="int">
-		select count(*) from qm where user_nick=#{user_nick}
+		select count(*) from qm_user where user_nick=#{user_nick, jdbcType=VARCHAR}
 	</select>
 	<select id="getMember" parameterType="String" resultType="member.MemberDataBean">
-		select * from qm where user_id=#{user_id}
+		select * from qm_user where user_id=#{user_id}
 	</select>
 	<insert id="insertMember" parameterType="member.MemberDataBean">
-		insert into qm values(
-			#{user_id}, #{user_passwd}, #{user_name}, #{user_nick},
+		insert into qm_user
+			(user_id, user_passwd, user_name, user_nick, user_tel, user_email, user_reg, grade_id) 
+		values(
+			#{user_id, jdbcType=VARCHAR}, #{user_passwd}, #{user_name, jdbcType=VARCHAR}, #{user_nick, jdbcType=VARCHAR},
 			#{user_tel, jdbcType=VARCHAR}, #{user_email, jdbcType=VARCHAR},
-			#{user_reg_date}, #{grade_id}
+			#{user_reg}, #{grade_id}
 		)
 	</insert>
 	<delete id="deleteMember" parameterType="String">
-		delete from qm where user_id=#{user_id}
+		delete from qm_user where user_id=#{user_id}
 	</delete>
 	<update id="modifyMember" parameterType="member.MemberDataBean">
-		update qm set user_passwd=#{user_passwd}, user_tel=#{user_tel, jdbcType=VARCHAR},
+		update qm_user set user_passwd=#{user_passwd}, user_tel=#{user_tel, jdbcType=VARCHAR},
 		user_email=#{user_email, jdbcType=VARCHAR} where user_id=#{user_id}
 	</update>
 </mapper>

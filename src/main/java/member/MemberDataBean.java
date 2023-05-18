@@ -9,7 +9,7 @@ public class MemberDataBean {
 	private String user_nick;
 	private String user_tel;
 	private String user_email;
-	private Timestamp user_reg_date;
+	private Timestamp user_reg;
 	private int grade_id;
 	
 	public String getUser_id() {
@@ -48,11 +48,11 @@ public class MemberDataBean {
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
 	}
-	public Timestamp getUser_reg_date() {
-		return user_reg_date;
+	public Timestamp getUser_reg() {
+		return user_reg;
 	}
-	public void setUser_reg_date(Timestamp user_reg_date) {
-		this.user_reg_date = user_reg_date;
+	public void setUser_reg(Timestamp user_reg) {
+		this.user_reg = user_reg;
 	}
 	public int getGrade_id() {
 		return grade_id;

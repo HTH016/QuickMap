@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import handler.CommandHandler;
 
 @Controller
-public class MemberLoginFromHandler implements CommandHandler {
+public class MemberLoginFormHandler implements CommandHandler {
 	@RequestMapping("/memberloginform")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {

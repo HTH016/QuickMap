@@ -9,11 +9,11 @@ public class MemberDBBean implements MemberDao {
 	public static SqlSession session = SqlMapClient.getSession();
 	
 	public int checkId(String user_id) {
-		return session.insert("Member.checkId", user_id);
+		return session.selectOne("User.checkId", user_id);
 	}
 	
 	public int checkNick(String user_nick) {
-		return session.insert("Member.checkNick", user_nick);
+		return session.selectOne("User.checkNick", user_nick);
 	}
 	
 	public int check(String user_id, String user_passwd) {
@@ -33,19 +33,19 @@ public class MemberDBBean implements MemberDao {
 	}
 	
 	public int insertMember(MemberDataBean dto) {
-		return session.insert("Member.insertMember", dto);
+		return session.insert("User.insertMember", dto);
 	}
 	
 	public MemberDataBean getMember(String user_id) {
-		return session.selectOne("Member.getMember", user_id);
+		return session.selectOne("User.getMember", user_id);
 	}
 	
 	public int deleteMember(String user_id) {
-		return session.delete("Member.deleteMember", user_id);
+		return session.delete("User.deleteMember", user_id);
 	}
 	
 	public int modifyMember(MemberDataBean dto) {
-		return session.update("Member.modifyMember", dto);
+		return session.update("User.modifyMember", dto);
 	}
 	
 	

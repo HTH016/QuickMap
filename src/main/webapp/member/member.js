@@ -24,15 +24,93 @@ function erroralert(msg) {
 	history.back();
 }
 
+// 정보수정 (본인확인용 비번 일치, 수정한 비번 = 2차비번 일치여부)
+function modifycheck() {
+	if(modifyform.checknick.value == 0) {
+		alert(confirmnickerror);
+		modifyform.user_nick.focus();
+		return false;
+	}
+	if(! modifyform.user_nick.value) {
+	alert(nickerror);
+	modifyform.user_nick.focus();
+	return false;
+	}
+	if(! modifyform.user_passwd.value) {
+		alert(passwderror);
+		modifyform.user_passwd.focus();
+		return false;
+	} else if(modifyform.user_passwd.value != modifyform.user_repasswd.value) {
+		alert(repasswderror);
+		modifyform.user_passwd.focus();
+		return false;
+	}
+}
 
+// 회원탈퇴 (본인확인용 비번 일치)
+function passwdcheck() {
+	if (! passwdform.user_passwd.value) {
+		alert(passwderror);
+		passwdform.user_passwd.focus();
+		return false;
+	}
+}
+// 닉네임 중복확인
+function confirmnick(formName) {
+	var form = document.forms[formName];
+	if (! inputform.user_nick.value) {
+		alert(nickerror);
+		inputform.user_nick.focus();
+	} else {
+		url="memberconfirmnick.do?form=" + formName + "&user_nick=" + inputform.user_nick.value;
+		open(url, "confirmnick", "scrollbar=no, statusbar=no, titlebar=no, menubar=no,"+
+				"width=400px, height=250px");
+	}
+}
+function confirmnickcheck() {
+	if(! confirmnickform.user_nick.value) {
+		alert(nickerror);
+		confirmnickform.user_nick.focus();
+		return false;
+	}
+}
+function setnick(formName, user_nick) {
+	var form = opener.document.forms[formName];
+	form.user_nick.value = user_nick;
+	form.checknick.value = 1;
+	window.close();
+}
+// 아이디 중복확인
+function confirmid() {
+	if (! inputform.user_id.value) {
+		alert(iderror);
+		inputform.user_id.focus();
+	} else {
+		url="memberconfirmid.do?user_id=" + inputform.user_id.value;
+		open(url, "confirmid", "scrollbar=no, statusbar=no, titlebar=no, menubar=no,"+
+				"width=400px, height=250px");
+	}
+}
+function confirmidcheck() {
+	if(! confirmidform.user_id.value) {
+		alert(iderror);
+		confirmidform.user_id.focus();
+		return false;
+	}
+}
+function setid(user_id) {
+	opener.document.inputform.user_id.value = user_id;
+	opener.document.inputform.checkid.value= 1;
+	window.close();
+}
 // 회원가입
 function inputcheck() {
-	if(inputform.check.value == "0") {
+	if(inputform.checkid.value == "0") {
 		alert(confirmiderror);
 		inputform.user_id.focus();
 		return false;
 	}
-	if(inputform.check.value == "1") {
+	if(inputform.checknick.value == "0") {
 		alert(confirmnickerror);
 		inputform.user_nick.focus();
 		return false;
@@ -42,21 +120,26 @@ function inputcheck() {
 		alert(iderror);
 		inputform.user_id.focus();
 		return false;
-	} else if(! inputform.user_passwd.value) {
+	}
+	if(! inputform.user_nick.value) {
+		alert(nickerror);
+		inputform.user_nick.focus();
+		return false;
+	}
+	if(! inputform.user_passwd.value) {
 		alert(passwderror);
 		inputform.user_passwd.focus();
 		return false;
 	} else if(inputform.user_passwd.value != inputform.user_repasswd.value) {
 		alert(repasswderror);
+		inputform.passwd.value="";
+		inputform.repasswd.value="";
 		inputform.user_passwd.focus();
 		return false;
-	} else if(! inputform.user_name.value) {
+	}
+	if(! inputform.user_name.value) {
 		alert(nameerror);
 		inputform.user_name.focus();
-		return false;
-	} else if(! inputform.user_nick.value) {
-		alert(nickerror);
-		inputform.user_nick.focus();
 		return false;
 	}
 	if(inputform.tel1.value || inputform.tel2.value || inputform.tel3.value) {
@@ -103,55 +186,13 @@ function nextemail1() {
 }
 
 
-// 아이디 중복확인
-function confirmid() {
-	if (! inputform.user_id.value) {
-		alert(iderror);
-		inputform.user_id.focus();
-	} else {
-		url="memberconfirmid.do?id=" + inputform.user_id.value;
-		open(url, "confirm", "scrollbar=no, statusbar=no, titlebar=no, menubar=no, width=400px, height=250px");
-	}
-}
-
-function confirmidcheck() {
-	if(! confirmidform.user_id.value) {
-		alert(iderror);
-		confirmidform.user_id.focus();
-		return false;
-	}
-}
-
-function setid(user_id) {
-	opener.document.inputform.user_id.value = user_id;
-	opener.document.inputform.check.value="1";
-	window.close();
-}
 
 
-// 닉네임 중복확인
-function confirmnick() {
-	if (! inputform.user_nick.value) {
-		alert(nickerror);
-		inputform.user_nick.focus();
-	} else {
-		url="memberconfirmnick.do?nick=" + inputform.user_nick.value;
-		open(url, "confirm", "scrollbar=no, statusbar=no, titlebar=no, menubar=no, width=400px, height=250px");
-	}
-}
 
-function confirmnickcheck() {
-	if(! confirmnickform.user_nick.value) {
-		alert(nickerror);
-		confirmnickform.user_nick.focus();
-		return false;
-	}
-}
-function setnick(user_nick) {
-	opener.document.inputform.user_nick.value = user_nick;
-	opener.document.inputform.check.value="2";
-	window.close();
-}
+
+
+
+
 
 
 // 로그인
@@ -166,41 +207,6 @@ function logincheck() {
 		return false;
 	}
 }
-
-
-
-// 정보수정 (본인확인용 비번 일치, 수정한 비번 = 2차비번 일치여부)
-function modifycheck() {
-	if(! modifyform.user_passwd.value) {
-		alert(passwderror);
-		modifyform.user_passwd.focus();
-		return false;
-	} else if(modifyform.user_passwd.value != modifyform.user_repasswd.value) {
-		alert(repasswderror);
-		modifyform.user_passwd.focus();
-		return false;
-	}
-}
-
-
-
-// 회원탈퇴 (본인확인용 비번 일치)
-function passwdcheck() {
-	if (! passwdform.user_passwd.value) {
-		alert(passwderror);
-		passwdform.user_passwd.focus();
-		return false;
-	}
-}
-
-
-
-
-
-
-
-
-
 
 
 

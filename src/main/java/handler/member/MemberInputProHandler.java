@@ -54,8 +54,8 @@ public class MemberInputProHandler implements CommandHandler {
 			}
 		}
 		dto.setUser_email(user_email);
-		dto.setUser_reg_date(new Timestamp(System.currentTimeMillis()));
-		dto.setGrade_id(0);
+		dto.setUser_reg(new Timestamp(System.currentTimeMillis()));
+		dto.setGrade_id(2);
 		
 		int result = memberDao.insertMember(dto);
 		request.setAttribute("result", result);
