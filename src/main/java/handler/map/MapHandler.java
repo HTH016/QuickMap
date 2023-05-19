@@ -10,12 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 import handler.CommandHandler;
 
 @Controller
-public class SearchHandler implements CommandHandler {
-	@RequestMapping("/map_search")
+public class MapHandler implements CommandHandler {
+	@RequestMapping("/map_main")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		return new ModelAndView("main/map");
+		return new ModelAndView("map/map");
 	}
 
 }

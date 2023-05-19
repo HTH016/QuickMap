@@ -14,8 +14,9 @@ public class MemberLogoutHandler implements CommandHandler {
 	@RequestMapping("/memberlogout")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.getSession().removeAttribute("memId");
 
-		return new ModelAndView("main/default");
+		return new ModelAndView("map/map");
 	}
 
 }

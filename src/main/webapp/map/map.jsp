@@ -20,7 +20,7 @@ $(document).ready(
 		
 		var container = document.getElementById('kakaomap');			// 지도를 담을 영역의 DOM 레퍼런스
 		var options = {													// 지도를 생성할 때 필요한 기본 옵션
-			center: new kakao.maps.LatLng(37.49455001, 127.02747878),	// 지도의 중심좌표
+			center: new kakao.maps.LatLng(37.49455001, 127.02747878),	// 지도의 중심좌표 : 비트빌 위도, 경도로 초기화
 			level: 3													// 지도의 레벨(확대, 축소 정도)
 		};
 		
@@ -105,7 +105,8 @@ function getInfo() {
 
 <body>
 	<div class="areaSearch">
-		<div id="user">user
+		<div id="user">
+			<jsp:include page="user.jsp"/>
 		</div>
 		<div id="search">search
 		</div>
