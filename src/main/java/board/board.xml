@@ -5,6 +5,15 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Board">
-
+	<select id="getCount" resultType="int">
+		select count(*) from qm_favorite
+	</select>
+	<select id="getBookmark" parameterType="String" resultType="board.BoardDataBean">
+		SELECT f.favorite_id, o.office_name, o.office_address, o.office_star, o.office_review_num, f.favorite_reg
+		FROM qm_office o, qm_favorite f
+		where o.office_id = f.office_id
+		and f.user_id = #{user_id}
+		ORDER BY f.favorite_reg DESC
+	</select>
 </mapper>
 

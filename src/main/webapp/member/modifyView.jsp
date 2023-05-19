@@ -5,7 +5,6 @@
     pageEncoding="UTF-8"%>
 <%@include file="setting_member.jsp" %>
 <script type="text/javascript" src="/quickmap/jquery-3.6.4.js"></script>
-    
 <script src="${project}member.js"></script>
 
 <h2>회원정보수정</h2>
@@ -100,16 +99,17 @@
 						&nbsp; ${dto.grade_id}
 					<input type="button" value="수정" onclick="location='업장수정'">
 				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<th colspan=2>
-				<input class="inputbutton" type="submit" value="수정">
-				<input class="inputbutton" type="reset" value="취소">
-				<input class="inputbutton" type="button" value="수정취소"
-					onclick="location='지도'">
-			</th>
-		</tr>
-	</table>
+				</td>
+			</tr>
+			<tr>
+				<th colspan=2>
+					<input type="submit" value="수정">
+					<input type="reset" value="취소">
+					<input type="button" value="즐겨찾기" onclick="location='boardfavoritelist.do'">
+					<input type="button" value="이용후기" onclick="location=''">
+					<input type="button" value="수정취소" onclick="location='지도'">
+				</th>
+			</tr>
+		</table>
 </form>
 </c:if>
