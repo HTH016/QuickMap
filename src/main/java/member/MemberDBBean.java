@@ -8,14 +8,6 @@ public class MemberDBBean implements MemberDao {
 	
 	public static SqlSession session = SqlMapClient.getSession();
 	
-	public int checkId(String user_id) {
-		return session.selectOne("User.checkId", user_id);
-	}
-	
-	public int checkNick(String user_nick) {
-		return session.selectOne("User.checkNick", user_nick);
-	}
-	
 	public int check(String user_id, String user_passwd) {
 		int result = 0;
 		if(checkId(user_id) != 0) {
@@ -32,16 +24,24 @@ public class MemberDBBean implements MemberDao {
 		return result;
 	}
 	
-	public int insertMember(MemberDataBean dto) {
-		return session.insert("User.insertMember", dto);
+	public int checkId(String user_id) {
+		return session.selectOne("User.checkId", user_id);
+	}
+	
+	public int checkNick(String user_nick) {
+		return session.selectOne("User.checkNick", user_nick);
+	}
+	
+	public int deleteMember(String user_id) {
+		return session.delete("User.deleteMember", user_id);
 	}
 	
 	public MemberDataBean getMember(String user_id) {
 		return session.selectOne("User.getMember", user_id);
 	}
 	
-	public int deleteMember(String user_id) {
-		return session.delete("User.deleteMember", user_id);
+	public int insertMember(MemberDataBean dto) {
+		return session.insert("User.insertMember", dto);
 	}
 	
 	public int modifyMember(MemberDataBean dto) {

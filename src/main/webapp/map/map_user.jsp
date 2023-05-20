@@ -30,7 +30,7 @@
 					<img alt="user image" src="${images}default-profile.png" width="100px" height="100px">
 				</td>
 				<td colspan="2">
-					<h3>nick name</h3>
+					<h3>${user_nick}</h3>
 				</td>
 			</tr>
 			<tr>
