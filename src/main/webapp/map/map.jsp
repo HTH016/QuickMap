@@ -106,11 +106,13 @@ function getInfo() {
 <body>
 	<div class="areaSearch">
 		<div id="user">
-			<jsp:include page="user.jsp"/>
+			<jsp:include page="map_user.jsp"/>
 		</div>
-		<div id="search">search
+		<div id="search">
+			<jsp:include page="map_search.jsp"/>
 		</div>
-		<div id="searchResult">searchResult
+		<div id="searchResult">
+			<jsp:include page="map_search_result.jsp"/>
 		</div>
 	</div>
 	<div id="kakaomap" class="areaMap">map
