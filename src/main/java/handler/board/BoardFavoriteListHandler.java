@@ -1,6 +1,5 @@
 package handler.board;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -24,16 +23,11 @@ public class BoardFavoriteListHandler implements CommandHandler {
 	@RequestMapping("/boardfavoritelist")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		String user_id = (String) request.getSession().getAttribute("memId");
-	    int count = boardDao.getCount();
-
-	    List<BoardDataBean>	dtos = null;
+	    List<BoardDataBean>	dtos	= null;
 	    
-//	    if(count > 0) {
-	    	dtos = boardDao.getBookmark("aaa");
-//	    	System.out.println(count);
-//	    }
+	    if(boardDao.getCount() > 0) {
+		    dtos = boardDao.getBookmark((String) request.getSession().getAttribute("memId"));
+	    }
 	    
 	    request.setAttribute("dtos", dtos);
 	    
