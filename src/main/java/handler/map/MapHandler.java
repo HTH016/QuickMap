@@ -20,9 +20,14 @@ public class MapHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		String	user_id	= (String)request.getSession().getAttribute("memId");
-		String	user_nick	= memberDao.getMember(user_id).getUser_nick();
+		String	user_id		= (String)request.getSession().getAttribute("memId");
+		String	user_nick	= null;
 		
+		if(user_id != null) {
+			user_nick	= memberDao.getMember(user_id).getUser_nick();
+		}
+
+		request.setAttribute("user_id", user_id);
 		request.setAttribute("user_nick", user_nick);
 
 		return new ModelAndView("map/map");

@@ -5,24 +5,24 @@
 
 <body>
 
-<c:if test="${sessionScope.memId eq null}">
+<c:if test="${user_id eq null}">
 	<form method="post" action="memberloginform.do" name="user_beforeloginform">
 		<table>
 			<tr>
 				<td>
-					<input type="submit" value="퀵맵 로그인">
+					<input type="submit" value="${str_login}">
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<a href="memberinputform.do">회원가입</a>
+					<a href="memberinputform.do">${str_id}</a>
 				</td>
 			</tr>
 		</table>
 	</form>
 </c:if>
 
-<c:if test="${sessionScope.memId ne null}">
+<c:if test="${user_id ne null}">
 	<form method="post" action="membermodifyview.do" name="user_afterloginform">
 		<table>
 			<tr>
@@ -35,15 +35,15 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<h4>${sessionScope.memId}</h4>
+					<h4>${user_id}</h4>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="submit" value="마이페이지">
+					<input type="submit" value="${str_mypage}">
 				</td>
 				<td>
-					<input type="button" value="로그아웃" onclick="location='memberlogout.do'">
+					<input type="button" value="${str_logout}" onclick="location='memberlogout.do'">
 				</td>
 			</tr>
 		</table>
