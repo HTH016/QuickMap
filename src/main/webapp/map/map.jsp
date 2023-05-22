@@ -3,10 +3,7 @@
 
 <%@ include file="setting_map.jsp"%>
 <link href="${project}style_map.css" rel="stylesheet" type="text/css">
-<!--
 <script src="${project}script_map.js"></script>
--->
-
 <script type="text/javascript" src="/quickmap/jquery-3.6.4.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3dc8348a47c6ca7030528334a83b33b0"></script>
 <script type="text/javascript">

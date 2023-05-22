@@ -1,12 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ include file="setting_map.jsp"%>
+<link href="${project}style_map.css" rel="stylesheet" type="text/css">
+<script src="${project}script_map.js"></script>
 
-
-
-
-
-
-
-map_search.jsp
+<form method="post" action="map_do_search.do" name="map_searchform" onsubmit="return checkSearchWord()">
+	<table>
+		<tr>
+			<td>
+				<select name="officeclass">
+					<option value="0">${str_class_hos}</option>
+					<option value="1">${str_class_pha}</option>
+				</select>
+			</td>
+			<td>
+				<input type="text" name="searchword" placeholder="${msg_searchword}" autofocus>
+			</td>
+			<td>
+				<input type="image" src="${images}search-32.png" alt="${btn_search}">
+			</td>
+		</tr>
+	</table>
+</form>
 

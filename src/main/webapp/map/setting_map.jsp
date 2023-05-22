@@ -9,12 +9,17 @@
 <c:set var="project"		value="/quickmap/map/"/>
 <c:set var="images"			value="/quickmap/images/"/>
 
-<c:set var="msg_main"		value="비회원이시면 회원가입을 해주세요"/>
-<c:set var="msg_greeting"	value="님 안녕하세요"/>
+
+<c:set var="msg_searchword"	value="증상을 입력해 주세요"/>
 
 
-<c:set var="str_login"		value="퀵맵 로그인"/>
 <c:set var="str_id"			value="회원가입"/>
 <c:set var="str_logout"		value="로그아웃"/>
 <c:set var="str_mypage"		value="마이페이지"/>
+<c:set var="str_class_hos"	value="병원"/>
+<c:set var="str_class_pha"	value="약국"/>
+
+
+<c:set var="btn_login"		value="퀵맵 로그인"/>
+<c:set var="btn_search"		value="검색"/>
 

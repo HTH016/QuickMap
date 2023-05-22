@@ -2,15 +2,15 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="setting_map.jsp"%>
-
-<body>
+<link href="${project}style_map.css" rel="stylesheet" type="text/css">
+<script src="${project}script_map.js"></script>
 
 <c:if test="${user_id eq null}">
 	<form method="post" action="memberloginform.do" name="user_beforeloginform">
 		<table>
 			<tr>
 				<td>
-					<input type="submit" value="${str_login}">
+					<input type="submit" value="${btn_login}">
 				</td>
 			</tr>
 			<tr>
@@ -50,4 +50,3 @@
 	</form>
 </c:if>
 
-</body>
