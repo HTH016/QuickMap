@@ -6,16 +6,21 @@
 <script src="${project}script_map.js"></script>
 
 <form method="post" action="map_do_search.do" name="map_searchform" onsubmit="return checkSearchWord()">
+	<input type="hidden" name="latiSouth" value="">
+	<input type="hidden" name="latiNorth" value="">
+	<input type="hidden" name="longWest"  value="">
+	<input type="hidden" name="longEast"  value="">
+	<input type="hidden" name="mapLevel"  value="">
 	<table>
 		<tr>
 			<td>
-				<select name="officeclass">
+				<select name="officeClass">
 					<option value="0">${str_class_hos}</option>
 					<option value="1">${str_class_pha}</option>
 				</select>
 			</td>
 			<td>
-				<input type="text" name="searchword" placeholder="${msg_searchword}" autofocus>
+				<input type="text" name="searchWord" placeholder="${msg_searchword}" autofocus>
 			</td>
 			<td>
 				<input type="image" src="${images}search-32.png" alt="${btn_search}">

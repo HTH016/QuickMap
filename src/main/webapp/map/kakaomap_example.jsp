@@ -16,7 +16,7 @@ $(document).ready(
 		
 		var container = document.getElementById('kakaomap');			// 지도를 담을 영역의 DOM 레퍼런스
 		var options = {													// 지도를 생성할 때 필요한 기본 옵션
-			center: new kakao.maps.LatLng(37.49455001, 127.02747878),	// 지도의 중심좌표
+			center: new kakao.maps.LatLng(37.49455001, 127.02747878),	// 지도의 중심좌표 : 비트빌 위도, 경도로 초기화
 			level: 3													// 지도의 레벨(확대, 축소 정도)
 		};
 		
@@ -41,11 +41,23 @@ $(window).resize(
 );
 
 function setMapSize() {
-	var	mapHeight	= $(window).height();
-	var	mapWidth	= $(window).width();
+	var	windowWidth		= $(window).width();
+	var	searchAreaWidth	= 350;
+	var	mapWidth		= windowWidth - searchAreaWidth; 
+	
+	var	windowHeight	= $(window).height();
+	var	userHeight		= 200;
+	var	searchHeight	= 150;
+	var	searchResHeight	= windowHeight - userHeight - searchHeight; 
+	var	mapHeight		= windowHeight;
 
-	$('#kakaomap').css({'height':mapHeight+'px'});
-	$('#kakaomap').css({'width':mapWidth+'px'});
+	$('.areaSearch').css({'width':searchAreaWidth+'px'});
+	$('.areaMap').css({'width':mapWidth+'px'});
+
+	$('#user').css({'height':userHeight+'px'});
+	$('#search').css({'height':searchHeight+'px'});
+	$('#searchResult').css({'height':searchResHeight+'px'});
+	$('.areaMap').css({'height':mapHeight+'px'});
 }
 
 function getInfo() {

@@ -8,22 +8,14 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import board.BoardDBBean;
 import board.BoardDao;
+import map.MapDao;
+import map.MapOfficeDetailDAO;
 import member.MemberDBBean;
 import member.MemberDao;
 
-//import board.BoardDBBean;
-//import board.BoardDao;
-//import logon.LogonDBBean;
-//import logon.LogonDao;
 
 @Configuration
 public class JavaBeans {
-/*
-	@Bean
-	public BoardDao boardDao() {
-		return new BoardDBBean();
-	}
-*/
 	@Bean
 	public BoardDao boardDao() {
 		return new BoardDBBean();
@@ -32,6 +24,11 @@ public class JavaBeans {
 	@Bean
 	public MemberDao memberDao() {
 		return new MemberDBBean();
+	}
+	
+	@Bean
+	public MapDao mapDao() {
+		return new MapOfficeDetailDAO();
 	}
 	
 	@Bean
