@@ -6,5 +6,165 @@
 
 <mapper namespace="Admin">
 
+
+	<select id="getUserCount" resultType="int"> 
+		select count(*) from qm_user
+	</select>
+	
+	<select id="getUserList" resultType="admin.AdminUserDTO">
+		 select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 
+        from qm_user, qm_user_grade
+        where qm_user.grade_id = qm_user_grade.grade_id
+ 
+	</select>
+	
+	<select id="getUserInfo" parameterType="String" resultType="admin.AdminUserDTO">
+		select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 
+        from qm_user, qm_user_grade
+        where qm_user.grade_id = qm_user_grade.grade_id
+        and qm_user.user_id = #{qm_user.user_id, jdbcType=VARCHAR}
+	</select>
+	<update id="deleteUser" parameterType="String">
+		update qm_user set grade_id = 0 where user_id = #{user_id, jdbcType=VARCHAR}		
+	</update>
+	<update id="freezeUser" parameterType="String">
+		update qm_user set grade_id = 1 where user_id = #{user_id, jdbcType=VARCHAR}
+	</update>
+	<update id="normalUser" parameterType="String">
+		update qm_user set grade_id = 2 where user_id = #{user_id, jdbcType=VARCHAR}
+	</update>
+	<update id="officeUser" parameterType="String">
+		update qm_user set grade_id = 3 where user_id = #{user_id, jdbcType=VARCHAR}
+	</update>
+
+
+
+
+
+	<select id="getRegistOfficeCount" resultType="int">
+		select count(*) from qm_office_regist_request where office_regist_confirm is null
+	</select>
+	<select id="getRegistOfficeList" parameterType="int" resultType="admin.AdminRegisterOfficeDTO">
+		 select qm_office_regist_request.regist_request_id, qm_user.user_id, qm_office.office_id, 
+        qm_office.office_regist_num, qm_office_regist_request.office_regist_num_img, 
+        qm_office_regist_request.office_regist_submit, qm_office_regist_request.office_regist_confirm, qm_user.grade_id, qm_office.office_name
+        from qm_office_regist_request, qm_user, qm_office
+        where qm_office_regist_request.user_id = qm_user.user_id
+        and qm_office_regist_request.office_id = qm_office.office_id
+        and office_regist_confirm is null
+        
+	</select> 
+	<select id="confirmRegistOffice" parameterType="int" resultType="admin.AdminRegisterOfficeDTO">
+		select qm_office_regist_request.regist_request_id, qm_user.user_id,  
+        qm_office.office_regist_num, qm_office_regist_request.office_regist_num_img, 
+        qm_office.office_name
+        from qm_office_regist_request, qm_user, qm_office
+        where qm_office_regist_request.user_id = qm_user.user_id
+        and qm_office_regist_request.office_id = qm_office.office_id
+        and qm_office_regist_request.regist_request_id = #{regist_request_id}
+	</select>
+	
+	<update id="idInOffice" parameterType="int"	>
+		update qm_office
+    	set 
+    	user_id = (select user_id from qm_office_regist_request where regist_request_id = #{regist_request_id})
+    	where office_id = ( select office_id from qm_office_regist_request where regist_request_id = #{regist_request_id})
+	</update>
+	<update id="changeUserGrade" parameterType="int"	>
+		update qm_office_regist_request
+    	set 
+    	office_regist_confirm = sysdate
+    	where regist_request_id = #{regist_request_id}
+	</update>
+	<update id="registConfirm" parameterType="int"	>
+		update qm_user
+    	set 
+    	grade_id = 3
+    	where user_id = ( select user_id from qm_office_regist_request where regist_request_id = #{regist_request_id})
+	</update>
+	
+	
+  
+  	<select id="getReviewCount" parameterType="String" resultType="int">
+		select count(*) from qm_review where user_id = #{user_id jdbcType=VARCHAR}
+	</select>
+	<select id="getReviewList" parameterType="String" resultType="admin.AdminReviewDTO">
+		select qm_review.review_id, qm_review.user_id, qm_review.office_id, qm_review.review_data, 
+		qm_review.review_star, qm_review.review_reg, qm_user.user_nick, qm_office.office_name 
+		from qm_review, qm_user, qm_office
+		where qm_user.user_id = qm_review.user_id
+		and qm_office.office_id = qm_review.office_id
+		and qm_review.user_id = #{user_id jdbcType=VARCHAR}
+	</select>
+	<select id="adminReview" parameterType="int" resultType="admin.AdminReviewDTO">
+		select qm_review.review_id, qm_review.user_id, qm_review.office_id, qm_review.review_data, 
+		qm_review.review_star, qm_review.review_reg, qm_user.user_nick, qm_office.office_name 
+		from qm_review, qm_user, qm_office
+		where qm_user.user_id = qm_review.user_id
+		and qm_office.office_id = qm_review.office_id
+		and qm_review.review_id = #{review_id}
+	</select>
+	<delete id="adminDeleteReview" parameterType="int">
+		delete from qm_review where review_id = #{review_id}
+	</delete>
+	
+	
+	
+	<select id="getRequestGradeCount" resultType="int">
+		select count(*) from qm_office_grade_request where grade_request_confirm is null
+	</select>
+	<select id="getRequestGradeList" parameterType="int" resultType="admin.AdminRequestGradeDTO">
+		select qm_office_grade_request.grade_request_id, qm_office.office_id, qm_office.office_name, qm_office.grade_id, 
+        qm_office_grade_request.grade_request_submit, qm_office_grade_request.grade_request_confirm
+        from qm_office_grade_request, qm_office
+        where qm_office_grade_request.office_id = qm_office.office_id
+        and grade_request_confirm is null
+	</select>
+	<update id="changeOfficeGrade" parameterType="int">
+		update qm_office
+    	set 
+    	grade_id = 1
+    	where office_id = ( select office_id from qm_office_grade_request where grade_request_id = #{grade_request_id})
+	</update>
+	<update id="changeOfficeGradeConfirm" parameterType="int">
+		update qm_office_grade_request
+    	set 
+    	grade_request_confirm = sysdate
+    	where grade_request_id = #{grade_request_id}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	<select id="getRequestAdCount" resultType="int">
+		select count(*) from qm_ad_request 
+		where ad_request_confirm is null
+		and ad_request_start &gt; sysdate
+	</select>
+	<select id="getRequestAdList" parameterType="int" resultType="admin.AdminRequestAdDTO">
+        select qm_ad_request.ad_request_id ,qm_office.office_id, qm_office.office_name, 
+        qm_ad_request.ad_request_start, qm_ad_request.ad_request_end, 
+        qm_ad_request.ad_request_level, qm_ad_request.ad_request_submit, qm_ad_request.ad_request_confirm
+        from qm_ad_request, qm_office
+        where qm_ad_request.office_id = qm_office.office_id
+        and ad_request_confirm is null
+        and ad_request_start &gt; sysdate
+	</select>
+	<update id="requestAd" parameterType="int">
+		update qm_office
+    	set 
+    	office_ad_state = 1
+    	where office_id = ( select office_id from qm_ad_request where ad_request_id = #{ad_request_id})
+	</update>
+	<update id="requestAdConfirm" parameterType="int">
+		update qm_ad_request
+    	set 
+    	ad_request_confirm = sysdate
+    	where ad_request_id = #{ad_request_id}
+	</update>
+	
 </mapper>
 

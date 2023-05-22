@@ -11,20 +11,20 @@
  <h2>관리자 페이지<h2>
  
  <input class="inputbutton" type="button" value="회원 관리"
-				onclick="location='adminUserListForm.jsp'">
+				onclick="location='adminuserlistform.do'">
 <input class="inputbutton" type="button" value="업장 등록 관리"
-				onclick="location='adminRegisterOfficeForm.jsp'">
+				onclick="location='adminregisterofficeform.do'">
 <input class="inputbutton" type="button" value="업장 등급 관리"
-				onclick="location='adminRequestGradeForm.jsp'">
+				onclick="location='adminrequestgradeform.do'">
 <input class="inputbutton" type="button" value="광고 신청 관리"
-				onclick="location='adminRequestAdForm.jsp'">
+				onclick="location='adminrequestadform.do'">
 <input class="inputbutton" type="button" value="통계"
-				onclick="location='adminStatics.jsp'">
+				onclick="location='adminstatics.do'">
  
  <h3> 업장 등록 신청 </h3>
  
 
-<c:set var="templistnum" value="20"/>
+
 
 <table style="margin-left: auto; margin-right: auto;">
 	
@@ -36,7 +36,7 @@
 
 	</tr>
 	
-	<c:if test="${templistnum eq 0}">
+	<c:if test="${count eq 0}">
 		<tr>
 			<td style="text-align:center" colspan="3">
 				대기중인 신청자가 없습니다.
@@ -44,18 +44,20 @@
 		</tr>
 	</c:if>
 	
-	<c:if test="${templistnum ne 0 }">
+	<c:if test="${count ne 0 }">
 		
-		<c:forEach var="i" begin="0" end="${templistnum}">
+		<c:forEach var="dto" items="${dtos}">
 			<tr>
 				<td style="text-align:center">
-					zxcv1234
+					${dto.user_id} 
 				</td>
 				<td style="text-align:center">
-					<a href="adminRegisterOfficeConfirmForm.jsp"> AAA 피부과 </a>
+					<a href="adminregisterofficeconfirmform.do?regist_request_id=${dto.regist_request_id}">
+						${dto.office_name}  
+					</a>
 				</td>
 				<td style="text-align:center">
-					2022.07.28
+					${dto.office_regist_submit} 
 				</td>
 			
 			</tr>

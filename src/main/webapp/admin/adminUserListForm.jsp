@@ -12,37 +12,38 @@
  <br>
  
 <input class="inputbutton" type="button" value="회원 관리"
-				onclick="location='adminUserListForm.jsp'">
+				onclick="location='adminuserlistform.do'">
 <input class="inputbutton" type="button" value="업장 등록 관리"
-				onclick="location='adminRegisterOfficeForm.jsp'">
+				onclick="location='adminregisterofficeform.do'">
 <input class="inputbutton" type="button" value="업장 등급 관리"
-				onclick="location='adminRequestGradeForm.jsp'">
+				onclick="location='adminrequestgradeform.do'">
 <input class="inputbutton" type="button" value="광고 신청 관리"
-				onclick="location='adminRequestAdForm.jsp'">
+				onclick="location='adminrequestadform.do'">
 <input class="inputbutton" type="button" value="통계"
-				onclick="location='adminStatics.jsp'">
+				onclick="location='adminstatics.do'">
  
-<form method="post" action="adminuserlistform.do" name="usersort">
+<form method="post" action="adminuserlistform.do" name="usersortby">
 	<select name="usersort">
-		<option value="0" selected>가입일자(최신순)</option>
-		<option value="1">가입일자(오래된순)</option>
-		<option value="2">일반회원</option>
-		<option value="3">등록회원</option>
+		<option value="1" selected>가입일자(최신순)</option>
+		<option value="2">가입일자(오래된순)</option>
+		<option value="3">일반회원</option>
+		<option value="4">등록회원</option>
 	</select>
 		<input class="button" type="submit" value="정렬">
 </form>
 
-<form method="post" action="adminuserlistform.do" name="usersort">
+<form method="post" action="adminuserlistform.do" name="userselectby">
  <select name="usersearch">
-  	<option value="0" selected>아이디</option>
-  	<option value="1">닉네임</option>
+  	<option value="5" selected>아이디</option>
+  	<option value="6">닉네임</option>
   	
 </select>
   	<input class="input" type="text" name="usersearchword">
-	<input class="button" type="submit" value="정렬">
+	<input class="button" type="submit" value="검색">
 </form>	
 
-<c:set var="templistnum" value="20"/>
+
+
 
 <table style="margin-left: auto; margin-right: auto;">
 	
@@ -54,7 +55,9 @@
 
 	</tr>
 	
-	<c:if test="${templistnum eq 0}">
+	<c:if test="${count eq 0}">
+	
+	
 		<tr>
 			<td style="text-align:center" colspan="4">
 				등록된 회원이 없습니다.
@@ -62,21 +65,23 @@
 		</tr>
 	</c:if>
 	
-	<c:if test="${templistnum ne 0 }">
+	<c:if test="${count ne 0 }">  ${count}
 		
-		<c:forEach var="i" begin="0" end="${templistnum}">
+		<c:forEach var="dto" items="${dtos}">
 			<tr>
 				<td style="text-align:center">
-					<a href="adminUserInfoForm.jsp">asdf123</a>
+					<a href="adminuserinfoform.do?user_id=${dto.user_id}">
+					${dto.user_id}
+					</a>
 				</td>
 				<td style="text-align:center">
-					닉네임
+					${dto.user_nick} 
 				</td>
 				<td style="text-align:center">
-					2023/05/16
+					${dto.user_reg} 
 				</td>
 				<td style="text-align:center">
-					일반
+					${dto.grade_name} 
 				</td>
 			</tr>
 		</c:forEach>

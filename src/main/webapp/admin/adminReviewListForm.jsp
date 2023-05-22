@@ -10,21 +10,19 @@
  <br><br>
  <h2>관리자 페이지<h2>
  
- <input class="inputbutton" type="button" value="회원 관리"
-				onclick="location='adminUserListForm.jsp'">
+<input class="inputbutton" type="button" value="회원 관리"
+				onclick="location='adminuserlistform.do'">
 <input class="inputbutton" type="button" value="업장 등록 관리"
-				onclick="location='adminRegisterOfficeForm.jsp'">
+				onclick="location='adminregisterofficeform.do'">
 <input class="inputbutton" type="button" value="업장 등급 관리"
-				onclick="location='adminRequestGradeForm.jsp'">
+				onclick="location='adminrequestgradeform.do'">
 <input class="inputbutton" type="button" value="광고 신청 관리"
-				onclick="location='adminRequestAdForm.jsp'">
+				onclick="location='adminrequestadform.do'">
 <input class="inputbutton" type="button" value="통계"
-				onclick="location='adminStatics.jsp'">
+				onclick="location='adminstatics.do'">
 				
- <h3> 회원 정보 수정 </h3>
+ <h3> ${user_id} 님의 리뷰  </h3>
  
-
-<c:set var="templistnum" value="20"/>
 
 <table style="margin-left: auto; margin-right: auto;">
 	
@@ -36,29 +34,31 @@
 
 	</tr>
 	
-	<c:if test="${templistnum eq 0}">
+	<c:if test="${count eq 0}">
 		<tr>
 			<td style="text-align:center" colspan="4">
-				닉네임(아이디)님의 리뷰가 없습니다.
+				${user_nick}(${user_id})님의 리뷰가 없습니다.
 			</td>
 		</tr>
 	</c:if>
 	
-	<c:if test="${templistnum ne 0 }">
+	<c:if test="${count ne 0 }">
 		
-		<c:forEach var="i" begin="0" end="${templistnum}">
+		<c:forEach var="dto" items="${dtos}">
 			<tr>
 				<td style="text-align:center">
-					3층 내과
+					${dto.office_name}
 				</td>
 				<td style="text-align:center">
-					<a href="adminReviewForm.jsp">아아아아아아아아아ㅏ아아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅏㅏㅏㅏㅏ</a>
+					<a href="adminreviewform.do?review_id=${dto.review_id}">
+						${dto.review_data}
+					</a>
 				</td>
 				<td style="text-align:center">
-					★★★★☆
+					${dto.review_star}
 				</td>
 				<td style="text-align:center">
-					2020/03/21
+					${dto.review_reg}
 				</td>
 			</tr>
 		</c:forEach>
@@ -69,36 +69,5 @@
 
 
 
-
-<table style="margin-left: auto; margin-right: auto;">
-	<tr>
-		<th style="width:7%"> 업장명 </th>
-		<th style="width:40%"> 후기 </th>
-		<th style="width:7%"> 별점 </th>
-		<th style="width:9%"> 작성일 </th>
-
-	</tr>
-	<tr>
-		<td style="text-align:center">
-			3층 내과
-		</td>
-		<td style="text-align:center">
-			<a href="adminReviewForm.jsp">아아아아아아아아아ㅏ아아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅏㅏㅏㅏㅏ</a>
-		</td>
-		<td style="text-align:center">
-			★★★★☆
-		</td>
-		<td style="text-align:center">
-			2020/03/21
-		</td>
-	</tr>
-	
-
-</table>
-
-
-
-
-<br><br><br><br><br><br>
 
 
