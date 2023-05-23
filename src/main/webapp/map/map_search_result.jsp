@@ -8,7 +8,7 @@
 
 <c:forEach var="dto" items="${dtos}">
 <div class="office_search_result_box">
-	<div>
+	<div id="office_card">
 		<c:if test="${dto.office_ad_state eq '1'}">
 		<img class="image_ad" src="${images}ad_24.png" alt="[ad]">
 		</c:if>

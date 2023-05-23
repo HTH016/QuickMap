@@ -25,10 +25,10 @@
 	    order by a.ad_request_level desc
 	</select>
 	<select id="searchOfficeNormal" parameterType="map" resultType="map.MapOfficeDetailDTO">
-		select o.office_id, o.user_id, o.grade_id, o.service_id, o.office_regist_num, o.office_name, o.office_ad_state, o.office_review_num, o.office_star, o.office_loc_latitude, o.office_loc_longitude, o.office_address, o.office_tel, o.office_class, o.office_image, o.office_keyword, o.office_business_hours_noti, o.office_start_mon, o.office_end_mon, o.office_start_tue, o.office_end_tue, o.office_start_wed, o.office_end_wed, o.office_start_thu, o.office_end_thu, o.office_start_fri, o.office_end_fri, o.office_start_sat, o.office_end_sat, o.office_start_sun, o.office_end_sun
-		from qm_office o, qm_ad_request a
-		where   o.office_id = a.office_id
-		    and #{latiSouth} &lt; office_loc_latitude 
+		select office_id, user_id, grade_id, service_id, office_regist_num, office_name, office_ad_state, office_review_num, office_star, office_loc_latitude, office_loc_longitude, office_address, office_tel, office_class, office_image, office_keyword, office_business_hours_noti, office_start_mon, office_end_mon, office_start_tue, office_end_tue, office_start_wed, office_end_wed, office_start_thu, office_end_thu, office_start_fri, office_end_fri, office_start_sat, office_end_sat, office_start_sun, office_end_sun
+		from qm_office
+		where
+		        #{latiSouth} &lt; office_loc_latitude 
 		    and office_loc_latitude &lt; #{latiNorth}
 		    and #{longWest} &lt; office_loc_longitude
 		    and office_loc_longitude &lt; #{longEast}
