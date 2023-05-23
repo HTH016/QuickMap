@@ -26,9 +26,10 @@
 	<!-- Mapper(DB 처리 담당) 연결 -->
 	<mappers>
 		<mapper resource="member/member.xml"/>
-		<mapper resource="board/board.xml"/>
+		<mapper resource="favorite/favorite.xml"/>
 		<mapper resource="admin/admin.xml"/>
-		<mapper resource="map/map.xml"/>
+		<mapper resource="review/review.xml"/>
+		<mapper resource="office/office.xml"/>
 	</mappers>
 
 </configuration>

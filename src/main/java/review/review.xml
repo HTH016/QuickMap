@@ -5,6 +5,27 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Review">
-
+	<select id="getReview" parameterType="String" resultType="review.ReviewDataBean">
+		select o.office_name, r.review_star, r.review_data, r.review_reg, r.review_id
+		from qm_office o, qm_review r
+		where o.office_id = r.office_id
+		and r.user_id = #{user_id}
+		order by r.review_reg desc
+	</select>
+	<select id="getCount" resultType="int">
+		select count(*) from qm_review
+	</select>
+	<select id="getData" parameterType="int" resultType="review.ReviewDataBean">
+		select o.office_name, r.review_star, r.review_data, r.review_id
+		from qm_office o, qm_review r
+		where o.office_id = r.office_id
+		and r.review_id = #{review_id}
+	</select>
+	<update id="modifyData" parameterType="review.ReviewDataBean">
+		update qm_review set review_star=#{review_star}, review_data=#{review_data} where review_id=#{review_id}
+	</update>
+	<delete id="deleteData" parameterType="int">
+		delete from qm_review where review_id=#{review_id}
+	</delete>
 </mapper>
 

@@ -1,8 +1,8 @@
-package board;
+package favorite;
 
 import java.sql.Timestamp;
 
-public class BoardDataBean {
+public class FavoriteDataBean {
 	private String user_id;				// 회원 id
 	private String user_nick;			// 회원 닉네임
 	private int office_id;				// 업장 id

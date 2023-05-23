@@ -5,6 +5,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Office">
-
+	<select id="getOffice" parameterType="String" resultType="office.OfficeDataBean">
+		select * from qm_office where user_id=#{user_id}
+	</select>
+	<update id="modifyOffice" parameterType="office.OfficeDataBean">
+		update qm_office set service_id=#{service_id}, office_tel=#{office_tel},
+		office_image=#{office_image, jdbcType=VARCHAR}, office_keyword=#{office_keyword, jdbcType=VARCHAR},
+		office_business_hours_noti=#{office_business_hours_noti},
+		office_start_mon=#{office_start_mon}, office_end_mon=#{office_end_mon},
+		office_start_tue=#{office_start_tue}, office_end_tue=#{office_end_tue},
+		office_start_wed=#{office_start_wed}, office_end_wed=#{office_end_wed},
+		office_start_thu=#{office_start_thu}, office_end_thu=#{office_end_thu},
+		office_start_fri=#{office_start_fri}, office_end_fri=#{office_end_fri},
+		office_start_sat=#{office_start_sat}, office_end_sat=#{office_end_sat},
+		office_start_sun=#{office_start_sun}, office_end_sun=#{office_end_sun} where user_id=#{user_id}
+	</update>
 </mapper>
 

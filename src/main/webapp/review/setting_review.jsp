@@ -10,17 +10,18 @@
 
 <c:set var="page_default"		value="기 본 페 이 지"/>
 <c:set var="page_main"			value="메 인 페 이 지"/>
-<c:set var="page_favorite" value="즐겨찾기 관리"/>
+<c:set var="page_review" value="리뷰 관리"/>
 
 <c:set var="msg_main"			value="비회원이시면 회원가입을 해주세요"/>
-
-<c:set var="str_favorite_id" value="번호"/>
+	
+<c:set var="str_review_id" value="리뷰 번호"/>
 <c:set var="str_office_name" value="업장명"/>
-<c:set var="str_office_address" value="주소"/>
-<c:set var="str_office_star" value="평균별점"/>
-<c:set var="str_office_review_num" value="리뷰 수"/>
-<c:set var="str_favorite_reg" value="즐겨찾기 등록일"/>
+<c:set var="str_review_reg" value="리뷰작성일"/>
+<c:set var="str_review_star" value="별점"/>
+<c:set var="str_review_data" value="리뷰 내용"/>
 
-<c:set var="btn_cancel"			value="취소"/>
+<c:set var="btn_modify" value="수정"/>
+<c:set var="btn_cancel" value="취소"/>
+<c:set var="btn_modifycancel" value="수정취소"/>
 
 

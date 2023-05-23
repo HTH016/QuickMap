@@ -70,7 +70,7 @@
 				<input type="submit" value="가입">
 				<input type="reset" value="취소">
 				<input type="button" value="가입취소"
-				onclick="location='지도'">
+				onclick="location='map_main.do'">
 			</th>
 		</tr>
 	</table>

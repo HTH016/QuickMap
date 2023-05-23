@@ -6,19 +6,26 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-import board.BoardDBBean;
-import board.BoardDao;
+import favorite.FavoriteDBBean;
+import favorite.FavoriteDao;
 import map.MapDao;
 import map.MapOfficeDetailDAO;
 import member.MemberDBBean;
 import member.MemberDao;
-
+import office.OfficeDBBean;
+import office.OfficeDao;
+import review.ReviewDBBean;
+import review.ReviewDao;
 
 @Configuration
 public class JavaBeans {
 	@Bean
-	public BoardDao boardDao() {
-		return new BoardDBBean();
+	public ReviewDao reviewDao() {
+		return new ReviewDBBean();
+	}
+	@Bean
+	public FavoriteDao favoriteDao() {
+		return new FavoriteDBBean();
 	}
 
 	@Bean
@@ -31,6 +38,10 @@ public class JavaBeans {
 		return new MapOfficeDetailDAO();
 	}
 	
+	@Bean
+	public OfficeDao officeDao() {
+		return new OfficeDBBean();
+	}
 	@Bean
 	public ViewResolver	getViewResolver() {
 		UrlBasedViewResolver	viewResolver	= new UrlBasedViewResolver();

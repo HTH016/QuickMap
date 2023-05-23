@@ -8,8 +8,6 @@
 <!-- 아래 내용은 참고용. 구현시 삭제/수정 후 사용하세요 -->
 <c:set var="project" value="/quickmap/member/"/>
 
-<c:set var="page_default"		value="기 본 페 이 지"/>
-<c:set var="page_main"			value="메 인 페 이 지"/>
 <c:set var="page_login" value="로그인"/>
 <c:set var="page_confirmid" value="아이디 중복확인"/>
 <c:set var="page_confirmnick" value="닉네임 중복확인"/>
@@ -19,7 +17,7 @@
 <c:set var="page_favorite" value="즐겨찾기"/>
 <c:set var="page_review" value="이용후기"/>
 
-<c:set var="msg_main" value= "회원가입 하시고 퀵맵의 모든 서비스를 이용하세요"/>
+<c:set var="msg_main" value= "로그인 하시고 퀵맵의 모든 서비스를 이용하세요"/>
 <c:set var="msg_input" value = "회원정보를 입력해 주세요"/>
 <c:set var="msg_use_o" value="는 사용할 수 있습니다"/>
 <c:set var="msg_use_x" value="는 사용할 수 없습니다"/>

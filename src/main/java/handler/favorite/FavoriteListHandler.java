@@ -1,4 +1,4 @@
-package handler.board;
+package handler.favorite;
 
 import java.util.List;
 
@@ -10,28 +10,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import board.BoardDao;
-import board.BoardDataBean;
+import favorite.FavoriteDao;
+import favorite.FavoriteDataBean;
 import handler.CommandHandler;
 
 @Controller
-public class BoardFavoriteListHandler implements CommandHandler {
+public class FavoriteListHandler implements CommandHandler {
 	
-	@Resource(name="boardDao")
-	private BoardDao boardDao;
+	@Resource(name="favoriteDao")
+	private FavoriteDao favoriteDao;
 	
-	@RequestMapping("/boardfavoritelist")
+	@RequestMapping("/favoritelist")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	    List<BoardDataBean>	dtos	= null;
+
+	    List<FavoriteDataBean>	dtos = null;
 	    
-	    if(boardDao.getCount() > 0) {
-		    dtos = boardDao.getBookmark((String) request.getSession().getAttribute("memId"));
+	    if(favoriteDao.getCount() > 0) {
+		    dtos = favoriteDao.getBookmark((String) request.getSession().getAttribute("memId"));
 	    }
 	    
 	    request.setAttribute("dtos", dtos);
 	    
-	    return new ModelAndView("board/favoriteList");
+	    return new ModelAndView("favorite/favoriteList");
 	}
 
 }

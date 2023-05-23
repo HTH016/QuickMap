@@ -9,12 +9,10 @@
 
 <h2>회원정보수정</h2>
 
-<c:if test="${result eq 0}">
-	<script type="text/javascript">
-		erroralert(passerror);
-	</script>
+<c:if test="${sessionScope.memId == null}">
+	<input type="button" value="확인" onclick="location='memberloginform.do'">
 </c:if>
-<c:if test="${result eq 1}">
+<c:if test="${sessionScope.memId != null}">
 	<form method="post" action="membermodifypro.do" name="modifyform" onsubmit="return modifycheck()">
 	<table>
 		<tr>
@@ -95,9 +93,9 @@
 					<c:if test="${dto.grade_id eq 2}">
 						&nbsp; ${dto.grade_id}
 				</c:if>
-					<c:if test="${dto.grade_id ne 2}">
+					<c:if test="${dto.grade_id eq 3}">
 						&nbsp; ${dto.grade_id}
-					<input type="button" value="수정" onclick="location='업장수정'">
+						<input type="button" value="업장수정" onclick="location='officemodifyform.do'">
 				</c:if>
 				</td>
 			</tr>
@@ -105,8 +103,8 @@
 				<th colspan=2>
 					<input type="submit" value="수정">
 					<input type="reset" value="취소">
-					<input type="button" value="즐겨찾기" onclick="location='boardfavoritelist.do'">
-					<input type="button" value="이용후기" onclick="location=''">
+					<input type="button" value="즐겨찾기" onclick="location='favoritelist.do'">
+					<input type="button" value="이용후기" onclick="location='reviewlist.do'">
 					<input type="button" value="수정취소" onclick="location='map_main.do'">
 				</th>
 			</tr>
