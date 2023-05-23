@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import handler.CommandHandler;
-import review.ReviewDao;
+import review.ReviewDAO;
 import review.ReviewDataBean;
 
 @Controller
 public class ReviewModifyProHandler implements CommandHandler {
 	
 	@Resource(name="reviewDao")
-	private ReviewDao reviewDao;
+	private ReviewDAO reviewDao;
 	
 	@RequestMapping("/reviewmodifypro")
 	@Override

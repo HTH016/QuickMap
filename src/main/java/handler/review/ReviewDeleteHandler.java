@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import handler.CommandHandler;
-import review.ReviewDao;
+import review.ReviewDAO;
 
 @Controller
 public class ReviewDeleteHandler implements CommandHandler {
 	
 	@Resource(name="reviewDao")
-	private ReviewDao reviewDao;
+	private ReviewDAO reviewDao;
 	
 	@RequestMapping("/reviewdelete")
 	@Override

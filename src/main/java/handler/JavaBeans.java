@@ -12,15 +12,15 @@ import map.MapDao;
 import map.MapOfficeDetailDAO;
 import member.MemberDBBean;
 import member.MemberDao;
+import office.OfficeDAO;
 import office.OfficeDBBean;
-import office.OfficeDao;
+import review.ReviewDAO;
 import review.ReviewDBBean;
-import review.ReviewDao;
 
 @Configuration
 public class JavaBeans {
 	@Bean
-	public ReviewDao reviewDao() {
+	public ReviewDAO reviewDao() {
 		return new ReviewDBBean();
 	}
 	@Bean
@@ -39,7 +39,7 @@ public class JavaBeans {
 	}
 	
 	@Bean
-	public OfficeDao officeDao() {
+	public OfficeDAO officeDao() {
 		return new OfficeDBBean();
 	}
 	@Bean

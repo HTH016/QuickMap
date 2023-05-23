@@ -1,7 +1,7 @@
 package review;
 
 import java.util.List;
-public interface ReviewDao {
+public interface ReviewDAO {
 	public int deleteData(int review_id);
 	public int getCount();
 	public ReviewDataBean getData(int review_id);

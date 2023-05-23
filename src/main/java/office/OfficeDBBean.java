@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import mybatis.SqlMapClient;
 
-public class OfficeDBBean implements OfficeDao {
+public class OfficeDBBean implements OfficeDAO {
 	public static SqlSession session = SqlMapClient.getSession();
 	
 	public OfficeDataBean getOffice(String user_id) {

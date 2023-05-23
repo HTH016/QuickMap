@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import mybatis.SqlMapClient;
 
-public class ReviewDBBean implements ReviewDao {
+public class ReviewDBBean implements ReviewDAO {
 	private SqlSession session = SqlMapClient.getSession();
 	
 	public int deleteData(int review_id) {
