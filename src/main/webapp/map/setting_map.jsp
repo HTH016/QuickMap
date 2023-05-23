@@ -18,6 +18,8 @@
 <c:set var="str_mypage"		value="마이페이지"/>
 <c:set var="str_class_hos"	value="병원"/>
 <c:set var="str_class_pha"	value="약국"/>
+<c:set var="str_review"		value="방문자리뷰 : "/>
+<c:set var="str_starpoint"	value="별점 : "/>
 
 
 <c:set var="btn_login"		value="퀵맵 로그인"/>

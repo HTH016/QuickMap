@@ -14,3 +14,51 @@ body {
 .areaMap {
 	float	: right;
 }
+
+.office_search_result_box {
+	background: gray;
+}
+.image_ad {
+	width : 24px;
+	height : 24px;
+	display: inline-block;
+}
+.office_name {
+	background: yellow;
+	width : 250px;
+	display: inline-block;
+}
+.image_office {
+	width : 60px;
+	height : 60px;
+	display: inline-block;
+}
+.office_info_box{
+	display: inline-block;
+	vertical-align: top;
+	width : 220px;
+}
+.office_keyword {
+	background: green;
+	display: inline-block;
+}
+.office_business_hours {
+	display: inline-block;
+	width: 200px;
+	margin: 0;
+}
+.office_review_box {
+	display: inline-block;
+}
+.office_star_box {
+	float:right;
+	vertical-align: top;
+}
+.office_review {
+	background: cyan;
+	display: inline-block;
+}
+.office_star {
+	background: cyan;
+	display: inline-block;
+}

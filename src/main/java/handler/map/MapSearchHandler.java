@@ -48,12 +48,19 @@ public class MapSearchHandler implements CommandHandler {
 		System.out.println("serviceIds   : " + serviceIds);
 //		System.out.println("serviceIdSet : " + serviceIdSet);
 		
-		double	latiSouth	= Double.parseDouble(request.getParameter("latiSouth"));
-		double	latiNorth	= Double.parseDouble(request.getParameter("latiNorth"));
-		double	longWest	= Double.parseDouble(request.getParameter("longWest"));
-		double	longEast	= Double.parseDouble(request.getParameter("longEast"));
-		int		mapLevel	= Integer.parseInt(request.getParameter("mapLevel"));
-		int		officeClass	= Integer.parseInt(request.getParameter("officeClass"));
+		String strLatiSouth	= request.getParameter("latiSouth");
+		String strLatiNorth	= request.getParameter("latiNorth");
+		String strLongWest	= request.getParameter("longWest");
+		String strlongEast	= request.getParameter("longEast");
+		String strMapLevel	= request.getParameter("mapLevel");
+		String strOfficeClass	= request.getParameter("officeClass");
+		
+		double	latiSouth	= Double.parseDouble(strLatiSouth);
+		double	latiNorth	= Double.parseDouble(strLatiNorth);
+		double	longWest	= Double.parseDouble(strLongWest);
+		double	longEast	= Double.parseDouble(strlongEast);
+		int		mapLevel	= Integer.parseInt(strMapLevel);
+		int		officeClass	= Integer.parseInt(strOfficeClass);
 		
 		System.out.println("latiSouth  : " + latiSouth + " / latiNorth : " + latiNorth);
 		System.out.println("longWest   : " + longWest  + " / longEast  : " + longEast);
@@ -71,26 +78,29 @@ public class MapSearchHandler implements CommandHandler {
 		
 		List<MapOfficeDetailDTO> officeList	= new ArrayList<>();
 		List<MapOfficeDetailDTO> dtosAd		= mapDao.searchOfficeList(param, true);
-		List<MapOfficeDetailDTO> dtosNormal	= mapDao.searchOfficeList(param, false);
-		
-		officeList.addAll(dtosAd);
-		officeList.addAll(dtosNormal);
-		
+
 		for(MapOfficeDetailDTO dto : dtosAd) {
 			System.out.println("[dtosAd] office_id : " + dto.getOffice_id() + " / service_id : " + dto.getService_id());
+			dto.setOffice_ad_state("1");
 		}
 
+		List<MapOfficeDetailDTO> dtosNormal	= mapDao.searchOfficeList(param, false);
+		
 		for(MapOfficeDetailDTO dto : dtosNormal) {
 			System.out.println("[dtosNo] office_id : " + dto.getOffice_id() + " / service_id : " + dto.getService_id());
 		}
 		
+		officeList.addAll(dtosAd);
+		officeList.addAll(dtosNormal);
+		
+
 		for(MapOfficeDetailDTO dto : officeList) {
 			System.out.println("[office] office_id : " + dto.getOffice_id() + " / service_id : " + dto.getService_id());
 		}
 		
 		request.setAttribute("dtos", officeList);
 
-		return new ModelAndView("map/map_search_result");
+		return new ModelAndView("map/map");
 	}
 
 }
