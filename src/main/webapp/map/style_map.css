@@ -18,6 +18,11 @@ body {
 .office_search_result_box {
 	background: gray;
 }
+
+.office_search_result_box div, h3, h5, img {
+	pointer-events: none;
+}
+
 .image_ad {
 	width : 24px;
 	height : 24px;

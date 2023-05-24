@@ -3,12 +3,61 @@ var search_word_empty = "검색어를 입력하세요";
 
 var searcherror = "검색에 실패했습니다 \n 잠시 후 다시 시도하세요";
 
+
 ////////// event handlers //////////
-$(document).ready(
-	function() {
+$(function() {
+		// initialize
 		setLayoutSize();
-//		loadLayout();
+		//loadLayout();
 		initializeMap('kakaomap');		// map을 표시할 element id : 'kakaomap'
+
+		// 검색 결과 항목 클릭
+		$(document).on(
+			"click",
+			".office_search_result_box",
+			function(){
+				alert("test");
+				return false;
+		});	// 검색 결과 항목 클릭
+
+		// 검색 버튼 클릭
+		$("input[name=imgSearchOffice]").on(
+			"click",
+			function(event) {
+				if(checkSearchWord() == false) {
+					return false;
+				}
+				
+				var level		= kakaomap.getLevel();
+				var bounds		= kakaomap.getBounds();
+				var swLatLng	= bounds.getSouthWest();
+				var neLatLng	= bounds.getNorthEast();
+		
+				$.ajax(
+					{
+						url : "map_do_search_ajax.do",
+						type : "POST",
+						data : {
+							searchWord  : $("input[name=searchWord]").val(),
+							latiSouth   : swLatLng.getLat(),
+							latiNorth   : neLatLng.getLat(),
+							longWest    : swLatLng.getLng(),
+							longEast    : neLatLng.getLng(),
+							mapLevel    : level,
+							officeClass : $("select[name=officeClass]").val()
+						},
+						dataType : "html",
+						success : function(data) {
+							alert(data);
+							$("#searchResult").html(data);
+						},
+						error : function(request, status, error) {
+							$("#div searchResult").html(error);
+						}
+					}
+				);
+			}
+		);	// 검색 버튼 클릭
 	}
 );
 
@@ -18,44 +67,6 @@ $(window).resize(
 	}
 );
 
-/*
-$("input[name=imgSearchOffice]").on(
-	"click",
-	function(event) {
-		if(checkSearchWord() == false) {
-			return false;
-		}
-		
-		var level		= kakaomap.getLevel();
-		var bounds		= kakaomap.getBounds();
-		var swLatLng	= bounds.getSouthWest();
-		var neLatLng	= bounds.getNorthEast();
-
-		$.ajax(
-			{
-				url : "map_do_search.do",
-				type : "POST",
-				data : {
-					searchWord  : $("input[name=searchWord]").val(),
-					latiSouth   : swLatLng.getLat(),
-					latiNorth   : neLatLng.getLat(),
-					longWest    : swLatLng.getLng(),
-					longEast    : neLatLng.getLng(),
-					mapLevel    : level,
-					officeClass : $("select[name=officeClass]").val()
-				},
-				dataType : "text",
-				success : function(data) {
-					
-				},
-				error : function(request, status, error) {
-					
-				}
-			}
-		);
-	}
-);
-*/
 
 ////////// functions //////////
 function searchOffice() {
@@ -139,39 +150,38 @@ function initializeMap(div) {
 //	kakaomap.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
 // 지도가 확대 또는 축소되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
-/*
-	kakao.maps.event.addListener(map, 'zoom_changed', function() {        
+//	kakao.maps.event.addListener(map, 'zoom_changed', function() {        
 	    // 지도의 현재 레벨을 얻어옵니다
-	    var level = map.getLevel();
-	    var message = '현재 지도 레벨은 ' + level + ' 입니다';
-	    var resultDiv = document.getElementById('result');  
-	    resultDiv.innerHTML = message;
-	});
-*/
+//	    var level = map.getLevel();
+//	    var message = '현재 지도 레벨은 ' + level + ' 입니다';
+//	    var resultDiv = document.getElementById('result');  
+//	    resultDiv.innerHTML = message;
+//	});
+
 //	kakao.maps.event.addListener(kakaomap, 'zoom_changed', search_office());
 
 	// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
-/*
-	kakao.maps.event.addListener(map, 'center_changed', function() {
+//	kakao.maps.event.addListener(map, 'center_changed', function() {
 	    // 지도의  레벨을 얻어옵니다
-	    var level = map.getLevel();
+//	    var level = map.getLevel();
 	
 	    // 지도의 중심좌표를 얻어옵니다 
-	    var latlng = map.getCenter(); 
+//	    var latlng = map.getCenter(); 
 	
-	    var message = '<p>지도 레벨은 ' + level + ' 이고</p>';
-	    message += '<p>중심 좌표는 위도 ' + latlng.getLat() + ', 경도 ' + latlng.getLng() + '입니다</p>';
+//	    var message = '<p>지도 레벨은 ' + level + ' 이고</p>';
+//	    message += '<p>중심 좌표는 위도 ' + latlng.getLat() + ', 경도 ' + latlng.getLng() + '입니다</p>';
 	
-	    var resultDiv = document.getElementById('result');
-	    resultDiv.innerHTML = message;
-});
-*/
+//	    var resultDiv = document.getElementById('result');
+//	    resultDiv.innerHTML = message;
+//});
+
 //	kakao.maps.event.addListener(kakaomap, 'center_changed', search_office());
 	
 	// 지도 정보 출력
 //	getInfo();
 }
 
+/*
 function getInfo() {
     // 지도의 현재 중심좌표를 얻어옵니다 
     var center = kakaomap.getCenter(); 
@@ -204,3 +214,4 @@ function getInfo() {
     // 개발자도구를 통해 직접 message 내용을 확인해 보세요.
     console.log(message);
 }
+*/

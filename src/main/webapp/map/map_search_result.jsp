@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+${resulthtml}
+
+
+<%-- 검증용으로 주석 처리만 해둠
 <%@ include file="setting_map.jsp"%>
 <link href="${project}style_map.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/quickmap/jquery-3.6.4.js"></script>
-<script src="${project}script_map.js"></script>
 
 <c:forEach var="dto" items="${dtos}">
 <div class="office_search_result_box">
@@ -58,3 +61,4 @@
 	</div>
 </div>
 </c:forEach>
+--%>
