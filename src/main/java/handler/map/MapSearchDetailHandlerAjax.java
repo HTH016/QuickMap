@@ -17,11 +17,11 @@ import map.MapDao;
 import map.MapOfficeDetailDTO;
 
 @Controller
-public class MapSearchHandlerAjax {
+public class MapSearchDetailHandlerAjax {
 	@Resource(name="mapDao")
 	private MapDao mapDao;
 
-	@RequestMapping("/map_search_ajax")
+	@RequestMapping("/map_search_detail_ajax")
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");

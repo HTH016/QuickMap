@@ -22,7 +22,7 @@ public class MapSearchHandler implements CommandHandler {
 	@Resource(name="mapDao")
 	private MapDao mapDao;
 
-	@RequestMapping("/map_do_search")
+	@RequestMapping("/map_search")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		

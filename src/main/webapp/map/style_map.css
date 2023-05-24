@@ -1,47 +1,245 @@
 *{
-	margin	: 0;
-	padding	: 0;
+	margin: 0;
+	padding: 0;
 }
 
 body {
 	overflow: hidden;
 }
 
+img {
+	vertical-align: middle;
+}
+
 .areaSearch {
-	float	: left;
+	float: left;
 }
 
 .areaMap {
-	float	: right;
+	float: right;
 }
 
-.office_search_result_box {
+.office_detail {
+	background: gray;
+	display: flex;
+	height: 100%;
+}
+
+.office_detail_info_box {
 	background: gray;
 }
 
-.office_search_result_box div, h3, h5, img {
+.office_detail_close_box {
+	background: gray;
+}
+
+.office_detail_close_image {
+	width: 20px;
+	height: 40px;
+	background: white;
+}
+
+.office_detail_image {
+	background: gray;
+	display: flex;
+	justify-content: space-between;
+}
+
+.office_detail_image * {
+	background: salmon;
+	width: 100px;
+	height: 100px;
+	margin: 5 auto;
+	display: inline-block;
+}
+
+.office_detail_name {
+	background: gold;
+	width: 350px;
+	text-align: center;
+}
+
+.office_detail_keyword {
+	display: inline-block;
+	width: 350px;
+	margin-top: 5px;
+}
+
+.office_detail_keyword * {
+	background: tomato;
+	text-align: center;
+	display: inline-block;
+}
+
+.office_detail_tel {
+	background: olive;
+	width: 350px;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.office_detail_address {
+	background: DeepSkyBlue;
+	width: 350px;
+	margin-top: 5px;
+}
+
+.office_detail_comm {
+	background: YellowGreen;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.office_detail_comm * {
+	display: inline-block;
+}
+
+.office_detail_favorite {
+	width: 25px;
+	height: 25px;
+}
+
+.office_detail_fav_y {
+	background: lime;
+}
+
+.office_detail_fav_n {
+	background: lime;
+}
+
+.office_detail_star {
+	background: LightPink;
+}
+
+.office_detail_image_star {
+	width: 25px;
+	height: 25px;
+	background: seagreen;
+}
+
+.office_detail_review_num {
+	background: green;
+}
+
+.office_detail_reg {
+	background: pink;
+	color: blue;
+	width: 350px;
+	font-size: 9pt;
+	margin-top: 10px;
+}
+
+.office_detail_business_hours {
+	background: gray;
+	margin-top: 10px;
+	width: 350px;
+}
+
+.office_detail_business_hours_title {
+	background: silver;
+}
+
+.office_detail_service {
+	background: gray;
+	margin-top: 10px;
+	width: 350px;
+}
+
+.office_detail_service_title {
+	background: silver;
+}
+
+.office_detail_review_list {
+	background: silver;
+}
+
+.office_detail_review_list_title {
+	background: silver;
+	display: flex;
+	justify-content: space-between;
+	margin-right: 10px;
+	margin-top: 10px;
+	width: 325px;
+}
+
+.office_detail_review_list_title * {
+	display: inline-block;
+}
+
+.office_detail_review_image {
+	background: orange;
+	width: 25px;
+	height: 25px;
+}
+
+.office_detail_review_item {
+	background: gray;
+}
+
+.office_detail_review_item * {
+	font-size:13px
+}
+
+.office_detail_review_content {
+	background: SlateGray;
+	margin-top: 5px;
+	width: 350px;
+}
+
+.office_detail_review_comm {
+	background: gray;
+	margin-top: 5px;
+	display: flex;
+	justify-content: space-between;
+	width: 350px;
+}
+
+.office_detail_review_comm * {
+	display: inline-block;
+}
+
+.office_detail_user_nick {
+	margin-left: 10px;
+	background: MediumSlateBlue;
+}
+
+.office_detail_user_star {
+	background: RoyalBlue;
+}
+
+.office_detail_review_date {
+	margin-right: 10px;
+	background: plum;
+}
+
+.office_search_result_box {
+	background: khaki;
+}
+
+.office_search_result_box * {
 	pointer-events: none;
 }
 
 .image_ad {
-	width : 24px;
-	height : 24px;
+	width: 24px;
+	height: 24px;
 	display: inline-block;
 }
 .office_name {
 	background: yellow;
-	width : 250px;
+	width: 250px;
 	display: inline-block;
 }
 .image_office {
-	width : 60px;
-	height : 60px;
+	width: 60px;
+	height: 60px;
 	display: inline-block;
 }
 .office_info_box{
 	display: inline-block;
 	vertical-align: top;
-	width : 220px;
+	width: 220px;
 }
 .office_keyword {
 	background: green;
@@ -56,7 +254,7 @@ body {
 	display: inline-block;
 }
 .office_star_box {
-	float:right;
+	float: right;
 	vertical-align: top;
 }
 .office_review {
