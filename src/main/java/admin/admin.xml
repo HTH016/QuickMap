@@ -15,8 +15,51 @@
 		 select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 
         from qm_user, qm_user_grade
         where qm_user.grade_id = qm_user_grade.grade_id
- 
 	</select>
+	
+	<select id="getUserListByRegAsc" resultType="admin.AdminUserDTO">
+		 select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 
+        from qm_user, qm_user_grade
+        where qm_user.grade_id = qm_user_grade.grade_id
+        order by qm_user.user_reg asc
+	</select>
+	
+	<select id="getUserListByRegDesc" resultType="admin.AdminUserDTO">
+		 select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 
+        from qm_user, qm_user_grade
+        where qm_user.grade_id = qm_user_grade.grade_id
+        order by qm_user.user_reg desc
+	</select>
+	
+	<select id="getUserListGeneral" resultType="admin.AdminUserDTO">
+		 select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 
+        from qm_user, qm_user_grade
+        where qm_user.grade_id = qm_user_grade.grade_id
+        and qm_user.grade_id = 2
+	</select>
+	
+	<select id="getUserListOffice" resultType="admin.AdminUserDTO">
+		 select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 
+        from qm_user, qm_user_grade
+        where qm_user.grade_id = qm_user_grade.grade_id
+        and qm_user.grade_id = 3
+	</select>
+	
+	<select id="getUserListId" resultType="admin.AdminUserDTO" parameterType="String">
+		 select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 
+        from qm_user, qm_user_grade
+        where qm_user.grade_id = qm_user_grade.grade_id
+        and qm_user.user_id like '%' || #{search_word, jdbcType=VARCHAR} || '%'
+	</select>
+	
+	<select id="getUserListNick" resultType="admin.AdminUserDTO" parameterType="String">
+		 select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 
+        from qm_user, qm_user_grade
+        where qm_user.grade_id = qm_user_grade.grade_id
+        and qm_user.user_nick like '%' || #{search_word, jdbcType=VARCHAR} || '%'
+	</select>
+	
+	
 	
 	<select id="getUserInfo" parameterType="String" resultType="admin.AdminUserDTO">
 		select qm_user.user_id, qm_user.grade_id, qm_user.user_nick, qm_user.user_name, qm_user.user_passwd, qm_user.user_reg, qm_user.user_tel, qm_user.user_email, qm_user_grade.grade_name 

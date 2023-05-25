@@ -15,20 +15,25 @@ import admin.AdminUserDTO;
 import handler.CommandHandler;
 
 @Controller
-public class AdminUserListFormHandler implements CommandHandler {
+public class AdminUserListOptionSortFormHandler implements CommandHandler {
 	
 	private AdminDAO adminDAO = new AdminDAO();
 	
-	@RequestMapping("/adminuserlistform")
+	@RequestMapping("/adminuserlistoptionsortform")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		request.setCharacterEncoding( "utf-8" );
+		int userSort = 0;
+		
+		userSort = Integer.parseInt(request.getParameter("usersort"));
 
 		
 		
 		// 검색 옵션
 		
 		/* 페이지 생략 */
-		request.setCharacterEncoding( "utf-8" );
+		
 		
 		int count = adminDAO.getUserCount();
 		 //회원 카운트
@@ -37,7 +42,7 @@ public class AdminUserListFormHandler implements CommandHandler {
 		 //카운트 보내기
 		
 		if( count > 0 ) {
-			List<AdminUserDTO> dtos = adminDAO.getUserList();
+			List<AdminUserDTO> dtos = adminDAO.getUserListByOptionSort( userSort );
 		//dto에 selectList
 			
 			request.setAttribute( "dtos", dtos ); 

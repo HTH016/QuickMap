@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Statistics">
+	
+	<select id="statisticsUserGrade" resultType="int" parameterType="int"> 
+		select c
+		from ( select grade_id g,
+ 		count(grade_id) c
+ 		from qm_user
+ 		group by grade_id)
+ 		where g = #{g}
+	</select>
+	
+	<select id="statisticsOfficeGrade" resultType="int" parameterType="int"> 
+		select c
+		from ( select grade_id g,
+ 		count(grade_id) c
+ 		from qm_office
+ 		group by grade_id)
+ 		where g = #{g}
+	</select>
+	
+	<select id="statisticsOfficeAd" resultType="int" parameterType="int"> 
+		select c
+ 		from ( select office_ad_state a,
+ 		count(office_ad_state) c
+ 		from qm_office
+ 		group by office_ad_state)
+ 		where a = #{a}
+	</select>
+	
+	<select id="statisticsAdIncome" resultType="statistics.StatisticsAdIncomeDTO" parameterType="java.util.Map"> 
+		select sum(len) s, ad_request_level 
+   from (select to_number((least(L1, L2, L3, L4)) + abs(least(L1, L2, L3, L4)))/2 len, ad_request_level
+      from ( select (to_date(#{end, jdbcType=VARCHAR}, 'YYYY-MM-DD') - ad_request_start)+1 L1, 
+    (to_date(#{end, jdbcType=VARCHAR}, 'YYYY-MM-DD') - to_date(#{start, jdbcType=VARCHAR}, 'YYYY-MM-DD'))+1 L2, 
+    ( ad_request_end - to_date(#{start, jdbcType=VARCHAR}, 'YYYY-MM-DD'))+1 L3, 
+    ( ad_request_end - ad_request_start)+1 L4, ad_request_level
+    from qm_ad_request))
+    group by ad_request_level
+    order by ad_request_level asc
+	</select>
+	
+	
+
+	
+	<select id="statisticsSearchWord" resultType="statistics.StatisticsAdminSearchWordDTO" parameterType="java.util.Map">
+		select s, rank() over( order by c desc ) r, c 
+ 		from ( select s, c  from ( select search_word s,
+ 		count(search_word) c
+ 		from qm_statistics_search
+        where search_date &gt;= to_date(#{start},'YYYY-MM-DD')
+        and search_date &lt;= to_date(#{end},'YYYY-MM-DD') 
+ 		group by search_word))
+	</select>
+	
+	
+	
+	
+	<select id="statisticsDetail" resultType="statistics.StatisticsDetailDTO" parameterType="java.util.Map">
+		<!--  
+		select to_char( detail_date, 'YYYY-MM-DD') detail_date, count(*) count from qm_statistics_detail
+        where detail_date
+        between to_date(#{start},'YYYY-MM-DD') and to_date(#{end},'YYYY-MM-DD')
+        and office_id = to_number(#{office_id, jdbcType=VARCHAR}, '99999')
+        group by detail_date
+        order by detail_date asc
+        -->
+
+		 SELECT TO_CHAR(b.dt, 'YYYY-MM-DD') AS detail_date
+     , NVL(SUM(a.cnt), 0) cnt
+  FROM ( SELECT TO_CHAR(detail_date, 'YYYY-MM-DD') AS detail_date
+              , COUNT(*) cnt
+           FROM qm_statistics_detail
+          WHERE detail_date BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD')
+                             AND TO_DATE(#{end}, 'YYYY-MM-DD') 
+                             and office_id = #{office_id, jdbcType=VARCHAR}
+          GROUP BY detail_date
+        ) a
+      , ( SELECT TO_DATE(#{start},'YYYY-MM-DD') + LEVEL - 1 AS dt
+            FROM dual 
+         CONNECT BY LEVEL &lt;= (TO_DATE(#{end},'YYYY-MM-DD') 
+                            - TO_DATE(#{start},'YYYY-MM-DD') + 1)
+        ) b
+  WHERE b.dt = a.detail_date(+)
+  GROUP BY b.dt
+  ORDER BY b.dt
+	</select>
+	
+	<select id="statisticsFavorite" resultType="statistics.StatisticsFavoriteDTO" parameterType="java.util.Map">
+	
+		<!--  
+		select to_char( favorite_reg, 'YYYY-MM-DD') favorite_reg, count(*) count from qm_favorite
+        where favorite_reg
+        between to_date(#{start},'YYYY-MM-DD') and to_date(#{end},'YYYY-MM-DD')
+        and office_id = to_number(#{office_id, jdbcType=VARCHAR}, '99999')
+        group by favorite_reg
+        order by favorite_reg asc
+        -->
+
+		 SELECT TO_CHAR(b.dt, 'YYYY-MM-DD') AS favorite_reg
+     , NVL(SUM(a.cnt), 0) cnt
+  FROM ( SELECT TO_CHAR(favorite_reg, 'YYYY-MM-DD') AS favorite_reg
+              , COUNT(*) cnt
+           FROM qm_favorite
+          WHERE favorite_reg BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD')
+                             AND TO_DATE(#{end}, 'YYYY-MM-DD') 
+                             and office_id = #{office_id, jdbcType=VARCHAR}
+          GROUP BY favorite_reg
+        ) a
+      , ( SELECT TO_DATE(#{start},'YYYY-MM-DD') + LEVEL - 1 AS dt
+            FROM dual 
+         CONNECT BY LEVEL &lt;= (TO_DATE(#{end},'YYYY-MM-DD') 
+                            - TO_DATE(#{start},'YYYY-MM-DD') + 1)
+        ) b
+  WHERE b.dt = a.favorite_reg(+)
+  GROUP BY b.dt
+  ORDER BY b.dt
+	</select>
+	
+	<select id="statisticsReview" resultType="statistics.StatisticsReviewDTO" parameterType="java.util.Map">
+		<!--  
+		select to_char( review_reg, 'YYYY-MM-DD') review_reg, count(*) count from qm_review
+        where review_reg
+        between to_date(#{start},'YYYY-MM-DD') and to_date(#{end},'YYYY-MM-DD')
+        and office_id = to_number(#{office_id, jdbcType=VARCHAR}, '99999')
+        group by review_reg
+        order by review_reg asc
+		-->
+
+		 SELECT TO_CHAR(b.dt, 'YYYY-MM-DD') AS review_reg
+     , NVL(SUM(a.cnt), 0) cnt
+  FROM ( SELECT TO_CHAR(review_reg, 'YYYY-MM-DD') AS review_reg
+              , COUNT(*) cnt
+           FROM qm_review
+          WHERE review_reg BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD')
+                             AND TO_DATE(#{end}, 'YYYY-MM-DD') 
+                             and office_id = #{office_id, jdbcType=VARCHAR}
+          GROUP BY review_reg
+        ) a
+      , ( SELECT TO_DATE(#{start},'YYYY-MM-DD') + LEVEL - 1 AS dt
+            FROM dual 
+         CONNECT BY LEVEL &lt;= (TO_DATE(#{end},'YYYY-MM-DD') 
+                            - TO_DATE(#{start},'YYYY-MM-DD') + 1)
+        ) b
+  WHERE b.dt = a.review_reg(+)
+  GROUP BY b.dt
+  ORDER BY b.dt
+	</select>
+	
+	<select id="statisticsOfficeAdHistory" resultType="statistics.StatisticsAdDTO" parameterType="int">
+		select ad_request_id, ad_request_start, ad_request_end, ad_request_level
+ 		from qm_ad_request
+ 		where ad_request_confirm is not null
+ 		and office_id = #{office_id}
+	</select>
+	
+	
+	
+	
+	<!--  
+	<select id="statisticsDetail" resultType="statistics.StatisticsOfficeDetailDTO" parameterType="int">
+		select detail_id, user_id, office_id, detail_date
+		from qm_statistics_detail
+		where office_id = #{office_id}
+
+	</select>
+	
+	<select id="statisticsFavorite" resultType="statistics.StatisticsOfficeFavoriteDTO" parameterType="int">
+		select favorite_id, user_id, office_id, favorite_reg
+		from qm_favorite
+		where office_id = #{office_id}
+
+	</select>
+	
+	<select id="statisticsReview" resultType="statistics.StatisticsOfficeReviewDTO" parameterType="int">
+		select review_id, office_id, user_id, review_reg
+		from qm_review
+		where office_id = #{office_id}
+
+	</select>
+	
+	<select id="statisticsOfficeAdHistory" resultType="statistics.StatisticsAdDTO" parameterType="int">
+		select ad_request_id, ad_request_start, ad_request_end, ad_request_level
+ 		from qm_ad_request
+ 		where ad_request_confirm is not null
+ 		and office_id = #{office_id}
+	</select>
+	-->
+</mapper>
+

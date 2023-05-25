@@ -15,7 +15,7 @@
 <input class="inputbutton" type="button" value="광고 신청 관리"
 				onclick="location='adminrequestadform.do'">
 <input class="inputbutton" type="button" value="통계"
-				onclick="location='adminstatics.do'">
+				onclick="location='statisticsadminform.do'">
 
 
 <table border="1" style="margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto;">

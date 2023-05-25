@@ -19,7 +19,8 @@
 <input class="inputbutton" type="button" value="광고 신청 관리"
 				onclick="location='adminrequestadform.do'">
 <input class="inputbutton" type="button" value="통계"
-				onclick="location='adminstatics.do'">
+				onclick="location='statisticsadminform.do'">
+
 
 <h3> 업장 등록 확인 </h3>
 

@@ -89,6 +89,32 @@ public class AdminDAO {
 		return session.selectList( "Admin.getUserList" );
 	}
 	
+	public List<AdminUserDTO> getUserListByOptionSort( int userSort ) {	
+		
+		if ( userSort == 2) {
+			return session.selectList( "Admin.getUserListByRegAsc" );
+		} else if (userSort == 3 ) {
+			return session.selectList( "Admin.getUserListGeneral" );
+		} else if (userSort == 4 ) {
+			return session.selectList( "Admin.getUserListOffice" );
+		} else {
+			return session.selectList( "Admin.getUserListByRegDesc" );
+		}
+		
+	}
+	
+	public List<AdminUserDTO> getUserListByOptionSelect( int userSelect, String search_word ) {	
+		
+		if ( userSelect == 5 ) {
+			return session.selectList( "Admin.getUserListId", search_word );
+		} else if ( userSelect == 6 ) {
+			return session.selectList( "Admin.getUserListNick", search_word );
+		} else {
+			return session.selectList( "Admin.getUserList");
+		}
+		
+	}
+	
 	public int registAd( int checkedId ) {
 		int requestAdResult = 0;
 		int requestAdConfirmResult = 0;

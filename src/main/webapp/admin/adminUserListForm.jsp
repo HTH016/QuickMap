@@ -20,9 +20,9 @@
 <input class="inputbutton" type="button" value="광고 신청 관리"
 				onclick="location='adminrequestadform.do'">
 <input class="inputbutton" type="button" value="통계"
-				onclick="location='adminstatics.do'">
+				onclick="location='statisticsadminform.do'">
  
-<form method="post" action="adminuserlistform.do" name="usersortby">
+<form method="post" action="adminuserlistoptionsortform.do" name="usersortby">
 	<select name="usersort">
 		<option value="1" selected>가입일자(최신순)</option>
 		<option value="2">가입일자(오래된순)</option>
@@ -32,8 +32,8 @@
 		<input class="button" type="submit" value="정렬">
 </form>
 
-<form method="post" action="adminuserlistform.do" name="userselectby">
- <select name="usersearch">
+<form method="post" action="adminuserlistoptionselectform.do" name="userselectby">
+ <select name="userselect">
   	<option value="5" selected>아이디</option>
   	<option value="6">닉네임</option>
   	
