@@ -96,6 +96,8 @@
 					<c:if test="${dto.grade_id eq 3}">
 						&nbsp; ${dto.grade_id}
 						<input type="button" value="업장수정" onclick="location='officemodifyform.do'">
+						<input type="button" value="광고신청" onclick="location='officeadrequest.do'">
+						<input type="button" value="프리미엄" onclick="premium()">
 				</c:if>
 				</td>
 			</tr>
@@ -111,3 +113,13 @@
 		</table>
 </form>
 </c:if>
+<script type="text/javascript">
+	function premium() {
+		if(confirm("월 300,000원의 프리미엄 서비스 이용료가 부과됩니다. 신청하시겠습니까?") == true) {
+			location.href="officegraderequest.do";
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>

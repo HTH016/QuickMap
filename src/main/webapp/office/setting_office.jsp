@@ -6,7 +6,7 @@
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- 아래 내용은 참고용. 구현시 삭제/수정 후 사용하세요 -->
-<c:set var="project"			value="/quickmap/amdin/"/>
+<c:set var="project"			value="/quickmap/office/"/>
 
 <c:set var="page_office_modify" value="업장 정보 수정"/>
 
@@ -22,6 +22,7 @@
 <c:set var="str_service_id" value="진료과 ID"/>
 <c:set var="str_office_tel" value="전화번호"/>
 <c:set var="str_office_image" value="홍보사진경로"/>
+<c:set var="str_office_image_path" value="홍보사진경로"/>
 <c:set var="str_office_keyword" value="홍보문구"/>
 <c:set var="str_office_business_hours_noti" value="영업시간 기타 공지"/>
 <c:set var="str_office_start_mon" value="월요일 영업 시작"/>

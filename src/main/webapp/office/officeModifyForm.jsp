@@ -9,10 +9,11 @@
 <h2>${page_office_modify}</h2>
 
 <c:if test="${sessionScope.memId == null}">
-	<input type="button" value="확인" onclick="location='memberloginform.do'">
+	<input type="button" value="로그인" onclick="location='memberloginform.do'">
 </c:if>
 <c:if test="${sessionScope.memId != null}">
-<form method="post" action="officemodifypro.do" name="officemodify" onsubmit="return modifycheck()">
+<form method="post" action="officemodifypro.do" name="officemodify"
+	onsubmit="return modifycheck()" enctype="multipart/form-data">
 	<table border=1>
 		<tr>
 			<th colspan=2> ${str_user_id} </th>
@@ -51,9 +52,19 @@
 			</td>
 		</tr>
 		<tr>
-			<th colspan=2> ${str_office_image} </th>
+			<th colspan=2 rowspan=3> ${str_office_image} </th>
+			<td> <input type="file" name="office_image1"> </td>
+		</tr>
+		<tr>
+			<td> <input type="file" name="office_image2"> </td>
+		</tr>
+		<tr>
+			<td> <input type="file" name="office_image3"> </td>
+		</tr>
+		<tr>
+			<th colspan=2> ${str_office_image_path} </th>
 			<td colspan=2>
-				<c:set var="i" value="${fn:split(dto.office_image, ',')}"/>
+				<c:set var="i" value="${fn:split(dto.office_image, ';')}"/>
 				<input type="text" name="image1" maxlength=100 value="${i[0]}" style="width:90px">
 				, <input type="text" name="image2" maxlength=100 value="${i[1]}" style="width:90px">
 				, <input type="text" name="image3" maxlength=100 value="${i[2]}" style="width:90px">
@@ -62,7 +73,7 @@
 		<tr>
 			<th colspan=2> ${str_office_keyword} </th>
 			<td colspan=2>
-				<c:set var="k" value="${fn:split(dto.office_keyword, ',')}"/>
+				<c:set var="k" value="${fn:split(dto.office_keyword, ';')}"/>
 				<input type="text" name="keyword1" maxlength=10 value="${k[0]}" style="width:65px">
 				, <input type="text" name="keyword2" maxlength=10 value="${k[1]}" style="width:65px">
 				, <input type="text" name="keyword3" maxlength=10 value="${k[2]}" style="width:65px">

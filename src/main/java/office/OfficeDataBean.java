@@ -1,5 +1,6 @@
 package office;
 
+import java.sql.Timestamp;
 public class OfficeDataBean {
 	// 보여만 주는 항목
 	private String user_id;
@@ -8,6 +9,8 @@ public class OfficeDataBean {
 	private String office_name;
 	private String office_address;
 	private int office_class;
+	private int office_id;
+	private Timestamp grade_request_submit;
 	
 	// 수정해야되는 항목
 	private int service_id;
@@ -65,6 +68,18 @@ public class OfficeDataBean {
 	}
 	public void setOffice_class(int office_class) {
 		this.office_class = office_class;
+	}
+	public int getOffice_id() {
+		return office_id;
+	}
+	public void setOffice_id(int office_id) {
+		this.office_id = office_id;
+	}
+	public Timestamp getGrade_request_submit() {
+		return grade_request_submit;
+	}
+	public void setGrade_request_submit(Timestamp grade_request_submit) {
+		this.grade_request_submit = grade_request_submit;
 	}
 	public int getService_id() {
 		return service_id;
