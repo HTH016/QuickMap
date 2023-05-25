@@ -54,7 +54,7 @@ function setMapSize() {
 	$('.areaSearch').css({'width':searchAreaWidth+'px'});
 	$('.areaMap').css({'width':mapWidth+'px'});
 
-	$('#user').css({'height':userHeight+'px'});
+	$('#user_part').css({'height':userHeight+'px'});
 	$('#search').css({'height':searchHeight+'px'});
 	$('#searchResult').css({'height':searchResHeight+'px'});
 	$('.areaMap').css({'height':mapHeight+'px'});

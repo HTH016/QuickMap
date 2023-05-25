@@ -27,6 +27,7 @@ public class MapSearchDetailHandlerAjax {
 		request.setCharacterEncoding("utf-8");
 
 		String		strSearchResult	= "";
+/*
 		String[]	arrayWords		= request.getParameter("searchWord").split("\\s");
 
 		for(int i=0 ; i<arrayWords.length ; i++) {
@@ -90,75 +91,98 @@ public class MapSearchDetailHandlerAjax {
 			
 			officeList.addAll(dtosAd);
 			officeList.addAll(dtosNormal);
-			
+*/			
 
-			for(MapOfficeDetailDTO dto : officeList) {
-				strSearchResult	+= "<div class=\"office_search_result_box\">\n";
-				strSearchResult	+= "	<div id=\"office_card\">\n";
-				
-				if(dto.getOffice_ad_state().equals("1")) {
-					strSearchResult	+= "		<img class=\"image_ad\" src=\"/quickmap/images/ad_24.png\" alt=\"[ad]\">\n";
-				}
-				
-				strSearchResult	+= "		<div class=\"office_name\">\n";
-				strSearchResult	+= "			<h3>" + dto.getOffice_name() + "</h3>\n";
-				strSearchResult	+= "		</div>\n";
-				strSearchResult	+= "	</div>\n";
-				strSearchResult	+= "	<div>\n";
-				strSearchResult	+= "		<div class=\"image_office\">\n";
-				strSearchResult	+= "		</div>\n";
-				strSearchResult	+= "		<div class=\"office_info_box\">\n";
-				strSearchResult	+= "			<div class=\"office_keyword_box\">\n";
-				
-				if(dto.getOffice_keyword() != null) {
-					String[] arrKeyword	= dto.getOffice_keyword().split(";");
-					
-					if(arrKeyword[0] != null) {
-						strSearchResult	+= "					<div>\n";
-						strSearchResult	+= "						<h5 class=\"office_keyword\">" + arrKeyword[0] + "</h5>\n";
-						
-						if(arrKeyword[1] != null) {
-							strSearchResult	+= "						<h5 class=\"office_keyword\">" + arrKeyword[1] + "</h5>\n";
-						}
-						
-						strSearchResult	+= "					</div>\n";
-					}
+		strSearchResult	+= "<div class=\"office_detail\">\n";
+		strSearchResult	+= "	<div class=\"office_detail_info_box\">\n";
+		strSearchResult	+= "		<!-- 병원정보 -->\n";
+		strSearchResult	+= "		<div class=\"office_detail_image\">\n";
+		strSearchResult	+= "			<img src=\"${images}ad_24.png\" alt=\"[ad]\">\n";
+		strSearchResult	+= "			<img src=\"${images}ad_24.png\" alt=\"[ad]\">\n";
+		strSearchResult	+= "			<img src=\"${images}ad_24.png\" alt=\"[ad]\">\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "		<div class=\"office_detail_name\">\n";
+		strSearchResult	+= "			<h3>세상에서 제일가는 치킨 전문 병원</h3>\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "		<div class=\"office_detail_keyword\">\n";
+		strSearchResult	+= "			<h5>강남역 22번 출구</h5>\n";
+		strSearchResult	+= "			<h5>강남역 23번 출구</h5>\n";
+		strSearchResult	+= "			<h5>강남역 34번 출구</h5>\n";
+		strSearchResult	+= "			<h5>강남역 45번 출구</h5>\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "		<div class=\"office_detail_tel\">\n";
+		strSearchResult	+= "			<h5>02-1234-1234</h5>\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "		<div class=\"office_detail_address\">\n";
+		strSearchResult	+= "			<h5>서울 서초구 서초대로 74길 33 비트빌빌딩</h5>\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "		<div class=\"office_detail_comm\">\n";
+		strSearchResult	+= "			<div class=\"office_detail_favorite\">\n";
+		strSearchResult	+= "				<!-- 즐겨찾기 등록/해제 구분해야 함 -->\n";
+		strSearchResult	+= "				<img class=\"office_detail_fav_y\" src=\"${images}ad_24.png\" alt=\"[f_y]\">\n";
+		strSearchResult	+= "			</div>\n";
+		strSearchResult	+= "			<div class=\"office_detail_star\">\n";
+		strSearchResult	+= "				<img class=\"office_detail_image_star\" src=\"${images}ad_24.png\" alt=\"[star]\">\n";
+		strSearchResult	+= "				<h5>4.5</h5>\n";
+		strSearchResult	+= "			</div>\n";
+		strSearchResult	+= "			<div class=\"office_detail_review_num\">\n";
+		strSearchResult	+= "				<h5>방문자 리뷰 : </h5>\n";
+		strSearchResult	+= "				<h5>9999</h5>\n";
+		strSearchResult	+= "			</div>\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "		<hr>\n";
+		strSearchResult	+= "		<div class=\"office_detail_reg\">\n";
+		strSearchResult	+= "			<!-- 소유주 등록 -->\n";
+		strSearchResult	+= "			<a href=\"#\">비즈니스의 소유주인가요? 소유주 등록하고 혜택을 받아보세요</a>\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "		<hr>\n";
+		strSearchResult	+= "		<div class=\"office_detail_business_hours\">\n";
+		strSearchResult	+= "			<!-- 영업 시간 -->\n";
+		strSearchResult	+= "			<h4 class=\"office_detail_business_hours_title\">영업 시간</h4>\n";
+		strSearchResult	+= "			<h5>영업중 - 18:30에 영업 종료</h5>\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "		<hr>\n";
+		strSearchResult	+= "		<div class=\"office_detail_service\">\n";
+		strSearchResult	+= "			<!-- 진료 과목 -->\n";
+		strSearchResult	+= "			<h4 class=\"office_detail_service_title\">진료 과목</h4>\n";
+		strSearchResult	+= "			<h5>내과</h5>\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "		<hr>\n";
+		strSearchResult	+= "		<div class=\"office_detail_review_list\">\n";
+		strSearchResult	+= "			<!-- 방문자 리뷰 -->\n";
+		strSearchResult	+= "			<div class=\"office_detail_review_list_title\">\n";
+		strSearchResult	+= "				<h4>방문자 리뷰</h4>\n";
+		strSearchResult	+= "				<!-- 편집 / 작성 구분해야 함 -->\n";
+		strSearchResult	+= "				<img class=\"office_detail_review_image\" src=\"${images}ad_24.png\" alt=\"[close]\">\n";
+		strSearchResult	+= "			</div>\n";
+		strSearchResult	+= "			<div class=\"office_detail_review_item\">\n";
+		strSearchResult	+= "				<!-- 리뷰 리스트 -->\n";
+		strSearchResult	+= "				<div class=\"office_detail_review_content\">\n";
+		strSearchResult	+= "					잘 먹었습니다! 고기가 엄청 부드럽진 않고.. 멸치국수 너무 비리고, 안경쓴 아주머니..주문하면 대답도 없고, 계산서.. 왜 돈 내고 먹는데 손님이 거지인 것.. 굉장히 무례하고 다시는 안가고 싶네요.. 쬬아~!\n";
+		strSearchResult	+= "				</div>\n";
+		strSearchResult	+= "				<div class=\"office_detail_review_comm\">\n";
+		strSearchResult	+= "					<div class=\"office_detail_user_nick\">\n";
+		strSearchResult	+= "						<b>내가다시는가나봐라</b>\n";
+		strSearchResult	+= "					</div>\n";
+		strSearchResult	+= "					<div class=\"office_detail_user_star\">\n";
+		strSearchResult	+= "						★★★★★\n";
+		strSearchResult	+= "					</div>\n";
+		strSearchResult	+= "					<div class=\"office_detail_review_date\">\n";
+		strSearchResult	+= "						2023.05.24\n";
+		strSearchResult	+= "					</div>\n";
+		strSearchResult	+= "				</div>\n";
+		strSearchResult	+= "			</div>\n";
+		strSearchResult	+= "		</div>\n";
+		strSearchResult	+= "	</div>\n";
+		strSearchResult	+= "	<div class=\"office_detail_close_box\">\n";
+		strSearchResult	+= "		<img class=\"office_detail_close_image\" src=\"${images}ad_24.png\" alt=\"[close]\">\n";
+		strSearchResult	+= "	</div>\n";
+		strSearchResult	+= "</div>\n";
 
-					if(arrKeyword[2] != null) {
-						strSearchResult	+= "					<div>\n";
-						strSearchResult	+= "						<h5 class=\"office_keyword\">" + arrKeyword[2] + "</h5>\n";
-						
-						if(arrKeyword[3] != null) {
-							strSearchResult	+= "						<h5 class=\"office_keyword\">" + arrKeyword[3] + "</h5>\n";
-						}
-						
-						strSearchResult	+= "					</div>\n";
-					}
-				}
-				
-				strSearchResult	+= "			</div>\n";
-				strSearchResult	+= "			<div>\n";
-				strSearchResult	+= "				<h5 class=\"office_business_hours\">" + dto.getOffice_business_hours_noti() + "</h5>\n";
-				strSearchResult	+= "			</div>\n";
-				strSearchResult	+= "			<div>\n";
-				strSearchResult	+= "				<div class=\"office_review_box\">\n";
-				strSearchResult	+= "					<h5 class=\"office_review\">방문자리뷰 : </h5>\n";
-				strSearchResult	+= "					<h5 class=\"office_review\">" + dto.getOffice_review_num() + "</h5>\n";
-				strSearchResult	+= "				</div>\n";
-				strSearchResult	+= "				<div class=\"office_star_box\">\n";
-				strSearchResult	+= "					<h5 class=\"office_star\">별점 : </h5>\n";
-				strSearchResult	+= "					<h5 class=\"office_star\">" + dto.getOffice_star() + "</h5>\n";
-				strSearchResult	+= "				</div>\n";
-				strSearchResult	+= "			</div>\n";
-				strSearchResult	+= "		</div>\n";
-				strSearchResult	+= "	</div>\n";
-				strSearchResult	+= "</div>\n";
-			}
-			
-			request.setAttribute("resulthtml", strSearchResult);
-		}
+		request.setAttribute("detailhtml", strSearchResult);
+//		}
 		
-		return new ModelAndView("map/map_search_result");
+		return new ModelAndView("map/map_search_detail");
 	}
 
 }

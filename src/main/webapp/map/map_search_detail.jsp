@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%-- ${resulthtml} --%>
-
+${detailhtml}
+<%--
 <%@ include file="setting_map.jsp"%>
 <link href="${project}style_map.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/quickmap/jquery-3.6.4.js"></script>
@@ -11,9 +11,9 @@
 	<div class="office_detail_info_box">
 		<!-- 병원정보 -->
 		<div class="office_detail_image">
-			<img src="${images}ad_24.png" alt="[ad]">
-			<img src="${images}ad_24.png" alt="[ad]">
-			<img src="${images}ad_24.png" alt="[ad]">
+			<img src="${images}ad_24.png">
+			<img src="${images}ad_24.png">
+			<img src="${images}ad_24.png">
 		</div>
 		<div class="office_detail_name">
 			<h3>세상에서 제일가는 치킨 전문 병원</h3>
@@ -33,10 +33,10 @@
 		<div class="office_detail_comm">
 			<div class="office_detail_favorite">
 				<!-- 즐겨찾기 등록/해제 구분해야 함 -->
-				<img class="office_detail_fav_y" src="${images}ad_24.png" alt="[f_y]">
+				<img class="office_detail_fav_y" src="${images}ad_24.png"">
 			</div>
 			<div class="office_detail_star">
-				<img class="office_detail_image_star" src="${images}ad_24.png" alt="[star]">
+				<img class="office_detail_image_star" src="${images}ad_24.png">
 				<h5>4.5</h5>
 			</div>
 			<div class="office_detail_review_num">
@@ -67,7 +67,7 @@
 			<div class="office_detail_review_list_title">
 				<h4>방문자 리뷰</h4>
 				<!-- 편집 / 작성 구분해야 함 -->
-				<img class="office_detail_review_image" src="${images}ad_24.png" alt="[close]">
+				<img class="office_detail_review_image" src="${images}ad_24.png">
 			</div>
 			<div class="office_detail_review_item">
 				<!-- 리뷰 리스트 -->
@@ -89,6 +89,7 @@
 		</div>
 	</div>
 	<div class="office_detail_close_box">
-		<img class="office_detail_close_image" src="${images}ad_24.png" alt="[close]">
+		<img class="office_detail_close_image" src="${images}ad_24.png">
 	</div>
 </div>
+--%>

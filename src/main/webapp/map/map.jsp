@@ -9,73 +9,57 @@
 
 <body>
 	<div class="areaSearch">
-		<div id="user">
+		<div id="user_part">
 			<c:if test="${user_id eq null}">
-				<form method="post" action="memberloginform.do" name="user_beforeloginform">
-					<table>
-						<tr>
-							<td>
-								<input type="submit" value="${btn_login}">
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<a href="memberinputform.do">${str_id}</a>
-							</td>
-						</tr>
-					</table>
-				</form>
+				<div class="user_do_login">
+					<form method="post" action="memberloginform.do" name="user_beforeloginform">
+						<input class="user_login_btn" type="submit" value="퀵맵 로그인">
+						<div class="user_sign_up">
+							<a href="memberinputform.do">회원가입</a>
+						</div>
+					</form>
+				</div>
 			</c:if>
 			
 			<c:if test="${user_id ne null}">
-				<form method="post" action="membermodifyview.do" name="user_afterloginform">
-					<table>
-						<tr>
-							<td rowspan="3">
-								<img alt="user image" src="${images}default-profile.png" width="100px" height="100px">
-							</td>
-							<td colspan="2">
+				<div class="user_do_logout">
+					<form method="post" action="membermodifyview.do" name="user_afterloginform">
+						<div class="user_image">
+							<img src="${images}default-profile.png">
+						</div>
+						<div class="user_info">
+							<div class="user_info_nick">
 								<h3>${user_nick}</h3>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
+							</div>
+							<div class="user_info_id">
 								<h4>${user_id}</h4>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<input type="submit" value="${str_mypage}">
-							</td>
-							<td>
-								<input type="button" value="${str_logout}" onclick="location='memberlogout.do'">
-							</td>
-						</tr>
-					</table>
-				</form>
+							</div>
+							<div class="user_info_button">
+								<input type="submit" value="마이페이지">
+								<input type="button" value="로그아웃" onclick="location='memberlogout.do'">
+							</div>
+						</div>
+					</form>
+				</div>
 			</c:if>
 		</div>
 		<div id="search">
-			<!-- <form method="post" name="map_searchform"> -->
-				<table>
-					<tr>
-						<td>
-							<select name="officeClass">
-								<option value="0">${str_class_hos}</option>
-								<option value="1">${str_class_pha}</option>
-							</select>
-						</td>
-						<td>
-							<input type="text" name="searchWord" placeholder="${msg_searchword}" autofocus>
-						</td>
-						<td>
-							<input type="image" name="imgSearchOffice" src="${images}search-32.png" alt="${btn_search}">
-						</td>
-					</tr>
-				</table>
-			<!-- </form> -->
+			<div class="search_class">
+				<select name="officeClass">
+					<option value="0">${str_class_hos}</option>
+					<option value="1">${str_class_pha}</option>
+				</select>
+			</div>
+			<div class="search_word">
+				<input type="text" name="searchWord" placeholder="${msg_searchword}" autofocus>
+			</div>
+			<div class="search_image">
+				<input type="image" name="imgSearchOffice" src="${images}search-32.png">
+			</div>
 		</div>
 		<div id="searchResult">
+		</div>
+		<div id="searchDetail">
 		</div>
 	</div>
 	<div id="kakaomap" class="areaMap">

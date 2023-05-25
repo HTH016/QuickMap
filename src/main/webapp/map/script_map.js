@@ -6,60 +6,99 @@ var searcherror = "검색에 실패했습니다 \n 잠시 후 다시 시도하�
 
 ////////// event handlers //////////
 $(function() {
-		// initialize
-		setLayoutSize();
-		//loadLayout();
-		initializeMap('kakaomap');		// map을 표시할 element id : 'kakaomap'
+	// initialize
+	setLayoutSize();
+	//loadLayout();
+	initializeMap('kakaomap');		// map을 표시할 element id : 'kakaomap'
 
-		// 검색 결과 항목 클릭
-		$(document).on(
-			"click",
-			".office_search_result_box",
-			function(){
-				alert("test");
-				return false;
-		});	// 검색 결과 항목 클릭
+	// 상세 정보 닫기 클릭
+	$(document).on(
+		"click",
+		".office_detail_close_box",
+		function() {
+			
+		}
+	);
+	
+	// 검색 결과 항목 클릭
+	$(document).on(
+		"click",
+		".office_search_result_box",
+		function() {
+//			alert("click");
 
-		// 검색 버튼 클릭
-		$("input[name=imgSearchOffice]").on(
-			"click",
-			function(event) {
-				if(checkSearchWord() == false) {
-					return false;
-				}
-				
-				var level		= kakaomap.getLevel();
-				var bounds		= kakaomap.getBounds();
-				var swLatLng	= bounds.getSouthWest();
-				var neLatLng	= bounds.getNorthEast();
+			$.ajax({
+				url : "map_search_detail_ajax.do",
+				type : "POST",
+				data : {
+//					searchWord  : $("input[name=searchWord]").val(),
+//					latiSouth   : swLatLng.getLat(),
+//					latiNorth   : neLatLng.getLat(),
+//					longWest    : swLatLng.getLng(),
+//					longEast    : neLatLng.getLng(),
+//					mapLevel    : level,
+//					officeClass : $("select[name=officeClass]").val()
+				},
+				dataType : "html",
+				success : function(data) {
+//					alert(data);
+					var $officeDetail = $("#searchDetail");
 		
-				$.ajax(
-					{
-						url : "map_do_search_ajax.do",
-						type : "POST",
-						data : {
-							searchWord  : $("input[name=searchWord]").val(),
-							latiSouth   : swLatLng.getLat(),
-							latiNorth   : neLatLng.getLat(),
-							longWest    : swLatLng.getLng(),
-							longEast    : neLatLng.getLng(),
-							mapLevel    : level,
-							officeClass : $("select[name=officeClass]").val()
-						},
-						dataType : "html",
-						success : function(data) {
-							alert(data);
-							$("#searchResult").html(data);
-						},
-						error : function(request, status, error) {
-							$("#div searchResult").html(error);
-						}
+					if ($officeDetail.hasClass('on')) {
+//						$officeDetail.css('z-index', -99);
+						$officeDetail.removeClass('on'); // detail 닫기
+					} else {
+						$officeDetail.html(data);
+						$officeDetail.css('z-index', 2);
+						$officeDetail.addClass('on'); // detail 열기
 					}
-				);
+				},
+				error : function(request, status, error) {
+					$("#searchDetail").html(error);
+				}
+			});	// ajax
+
+			return false;
+		}
+	);	// 검색 결과 항목 클릭
+
+	// 검색 버튼 클릭
+	$("input[name=imgSearchOffice]").on(
+		"click",
+		function(event) {
+			if(checkSearchWord() == false) {
+				return false;
 			}
-		);	// 검색 버튼 클릭
-	}
-);
+			
+			var level		= kakaomap.getLevel();
+			var bounds		= kakaomap.getBounds();
+			var swLatLng	= bounds.getSouthWest();
+			var neLatLng	= bounds.getNorthEast();
+	
+			$.ajax({
+				url : "map_search_ajax.do",
+				type : "POST",
+				data : {
+					searchWord  : $("input[name=searchWord]").val(),
+					latiSouth   : swLatLng.getLat(),
+					latiNorth   : neLatLng.getLat(),
+					longWest    : swLatLng.getLng(),
+					longEast    : neLatLng.getLng(),
+					mapLevel    : level,
+					officeClass : $("select[name=officeClass]").val()
+				},
+				dataType : "html",
+				success : function(data) {
+//					alert(data);
+					$("#searchResult").html(data);
+				},
+				error : function(request, status, error) {
+					$("#searchResult").html(error);
+				}
+			});	// ajax
+		}
+	);	// 검색 버튼 클릭
+});
 
 $(window).resize(
 	function() {
@@ -113,17 +152,19 @@ function setLayoutSize() {
 	var	searchResHeight	= windowHeight - userHeight - searchHeight; 
 	var	mapHeight		= windowHeight;
 
-	$('.areaSearch').css({'width':searchAreaWidth+'px'});
+	// width
+//	$('.areaSearch').css({'width':searchAreaWidth+'px'});
 	$('.areaMap').css({'width':mapWidth+'px'});
 
-	$('#user').css({'height':userHeight+'px'});
-	$('#search').css({'height':searchHeight+'px'});
-	$('#searchResult').css({'height':searchResHeight+'px'});
-	$('.areaMap').css({'height':mapHeight+'px'});
+	// height
+//	$('#user_part').css({'height': userHeight+'px'});
+//	$('#search').css({'height': searchHeight+'px'});
+//	$('#searchResult').css({'height': searchResHeight+'px'});
+	$('.areaMap').css({'height': mapHeight+'px'});
 }
 
 function loadLayout() {
-	$("#user").load("map/map_user.jsp");
+	$("#user_part").load("map/map_user.jsp");
 	$("#search").load("map/map_search.jsp");
 	$("#searchResult").load("map/map_search_result.jsp");
 }
