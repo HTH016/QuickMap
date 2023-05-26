@@ -255,16 +255,17 @@ body {
 }
 
 .office_detail_favorite {
-	width: 25px;
-	height: 25px;
+	background: lime;
 }
 
 .office_detail_fav_y {
-	background: lime;
-}
+	width: 25px;
+	height: 25px;
+	}
 
 .office_detail_fav_n {
-	background: lime;
+	width: 25px;
+	height: 25px;
 }
 
 .office_detail_star {
@@ -319,7 +320,7 @@ body {
 	justify-content: space-between;
 	margin-right: 10px;
 	margin-top: 10px;
-	width: 325px;
+	width: 340px;
 }
 
 .office_detail_review_list_title * {
@@ -330,6 +331,7 @@ body {
 	background: orange;
 	width: 25px;
 	height: 25px;
+	align-self: center;
 }
 
 .office_detail_review_item {

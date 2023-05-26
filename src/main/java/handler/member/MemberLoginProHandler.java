@@ -21,9 +21,9 @@ public class MemberLoginProHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		String user_id = request.getParameter("user_id");
-		String user_passwd = request.getParameter("user_passwd");
-		int result = memberDao.check(user_id, user_passwd);
+		String	user_id		= request.getParameter("user_id");
+		String	user_passwd	= request.getParameter("user_passwd");
+		int		result		= memberDao.check(user_id, user_passwd);
 		
 		request.setAttribute("result", result);
 		request.setAttribute("user_id", user_id);

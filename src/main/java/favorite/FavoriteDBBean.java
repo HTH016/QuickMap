@@ -26,4 +26,14 @@ public class FavoriteDBBean implements FavoriteDao {
 	public int getFavoriteCount(Map<String, Object> param) {
 		return session.selectOne("Favorite.getFavoriteCountByParam", param);
 	}
+	
+	// favorite 등록 : parameter - userId, officeId
+	public int insertFavorite(Map<String, Object> param) {
+		return session.selectOne("Favorite.insertFavorite", param);
+	}
+	
+	// favorite 삭제 : parameter - userId, officeId
+	public int deleteFavorite(Map<String, Object> param) {
+		return session.selectOne("Favorite.deleteFavorite", param);
+	}
 }

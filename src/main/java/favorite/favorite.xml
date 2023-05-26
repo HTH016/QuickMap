@@ -20,5 +20,9 @@
 		and f.user_id = #{user_id}
 		ORDER BY f.favorite_reg DESC
 	</select>
+	<insert id="insertFavorite" parameterType="map">
+	</insert>
+	<delete id="deleteFavorite" parameterType="map">
+	</delete>
 </mapper>
 
