@@ -12,7 +12,15 @@
 		and r.user_id = #{user_id}
 		order by r.review_reg desc
 	</select>
-	<select id="getCount" resultType="int">
+	<select id="getReviewByOffice" parameterType="Map" resultType="review.ReviewDataBean">
+		select * from qm_review where office_id = 26
+		order by (case when user_id = #{user_id, jdbcType=VARCHAR} then 0 else 1 end), review_reg desc
+	</select>
+	<select id="getReviewByOfficeNoLogin" parameterType="Map" resultType="review.ReviewDataBean">
+		select * from qm_review where office_id = #{office_id}
+		order by review_reg desc
+	</select>
+	<select id="getReviewCount" resultType="int">
 		select count(*) from qm_review
 	</select>
 	<select id="getData" parameterType="int" resultType="review.ReviewDataBean">
@@ -27,5 +35,16 @@
 	<delete id="deleteData" parameterType="int">
 		delete from qm_review where review_id=#{review_id}
 	</delete>
+	<select id="getOffice" parameterType="int" resultType="review.ReviewDataBean">
+		select o.office_name, r.review_star, r.review_data, r.review_id
+		from qm_office o, qm_review r
+		where o.user_id = r.user_id
+		and r.office_id = #{office_id}
+	</select>
+	<insert id="insertReview" parameterType="review.ReviewDataBean">
+		insert into qm_review
+		(office_id, user_id, review_reg, review_data, review_star)
+		values(#{office_id}, #{user_id}, #{review_reg}, #{review_data}, #{review_star})		
+	</insert>
 </mapper>
 

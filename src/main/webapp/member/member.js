@@ -132,8 +132,8 @@ function inputcheck() {
 		return false;
 	} else if(inputform.user_passwd.value != inputform.user_repasswd.value) {
 		alert(repasswderror);
-		inputform.passwd.value="";
-		inputform.repasswd.value="";
+		inputform.user_passwd.value="";
+		inputform.user_repasswd.value="";
 		inputform.user_passwd.focus();
 		return false;
 	}

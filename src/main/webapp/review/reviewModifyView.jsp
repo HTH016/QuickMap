@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="setting_review.jsp"%>
-<h2> 리뷰 확인(수정X) </h2>
+<h2> 리뷰 확인 </h2>
 
 <form method="post" action="reviewdelete.do" onsubmit="return deletedata()">
 	<input type="hidden" name="review_id" value="${dto.review_id}">

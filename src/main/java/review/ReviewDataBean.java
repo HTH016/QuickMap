@@ -9,7 +9,14 @@ public class ReviewDataBean {
 	private Timestamp review_reg;
 	private int review_star;
 	private String user_id;
+	private int office_id;
 	
+	public int getOffice_id() {
+		return office_id;
+	}
+	public void setOffice_id(int office_id) {
+		this.office_id = office_id;
+	}
 	public String getOffice_name() {
 		return office_name;
 	}
