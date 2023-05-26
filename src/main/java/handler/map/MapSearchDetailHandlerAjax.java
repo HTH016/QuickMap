@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import favorite.FavoriteDao;
 import map.MapDao;
 import map.MapOfficeDetailDTO;
+import review.ReviewDAO;
+import review.ReviewDataBean;
 
 @Controller
 public class MapSearchDetailHandlerAjax {
@@ -25,6 +28,9 @@ public class MapSearchDetailHandlerAjax {
 	
 	@Resource(name="favoriteDao")
 	private FavoriteDao favoriteDao;
+	
+	@Resource(name="reviewDao")
+	private ReviewDAO reviewDao;
 	
 	@RequestMapping("/map_search_detail_ajax")
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -37,6 +43,9 @@ public class MapSearchDetailHandlerAjax {
 		String				strSearchResult	= "";
 		
 		System.out.println(Thread.currentThread().getStackTrace()[1] + ">> userId : " + userId);
+		
+		strSearchResult	+= "<span id=\"favorite_user_id\" hidden>" + userId + "</span>\n";
+		strSearchResult	+= "<span id=\"favorite_office_id\" hidden>" + officeId + "</span>\n";
 
 		strSearchResult	+= "<div class=\"office_detail\">\n";
 		strSearchResult	+= "	<div class=\"office_detail_info_box\">\n";
@@ -87,15 +96,15 @@ public class MapSearchDetailHandlerAjax {
 		strSearchResult	+= "			<div class=\"office_detail_favorite\">\n";
 
 		if(userId != null) {
-			Map<String, Object>	param	= new HashMap<>();
+			Map<String, Object>	paramFav	= new HashMap<>();
 			
-			param.put("userId", userId);
-			param.put("officeId", dto.getOffice_id());
+			paramFav.put("userId", userId);
+			paramFav.put("officeId", officeId);
 			
-			if(favoriteDao.getFavoriteCount(param) == 0) {
-				strSearchResult	+= "				<img class=\"office_detail_fav_y\" src=\"/quickmap/images/fav_emp.png\">\n";
+			if(favoriteDao.getFavoriteCount(paramFav) == 0) {
+				strSearchResult	+= "				<img class=\"office_detail_fav_image\" src=\"/quickmap/images/fav_emp.png\">\n";
 			} else {
-				strSearchResult	+= "				<img class=\"office_detail_fav_y\" src=\"/quickmap/images/fav_sol.png\">\n";
+				strSearchResult	+= "				<img class=\"office_detail_fav_image\" src=\"/quickmap/images/fav_sol.png\">\n";
 			}
 		}
 		
@@ -215,26 +224,44 @@ public class MapSearchDetailHandlerAjax {
 		strSearchResult	+= "				<h4>방문자 리뷰</h4>\n";
 
 		if(userId != null) {
-			strSearchResult	+= "				<img id=\"" + userId + "\" class=\"office_detail_review_image\" src=\"/quickmap/images/write_32.png\">\n";
+//			strSearchResult	+= "				<img id=\"" + userId + "\" class=\"office_detail_review_image\" src=\"/quickmap/images/write_32.png\">\n";
+			strSearchResult	+= "				<img class=\"office_detail_review_image\" src=\"/quickmap/images/write_32.png\">\n";
 		}
 
 		strSearchResult	+= "			</div>\n";
 		strSearchResult	+= "			<div class=\"office_detail_review_item\">\n";
-		strSearchResult	+= "				<!-- 리뷰 리스트 -->\n";
-		strSearchResult	+= "				<div class=\"office_detail_review_content\">\n";
-		strSearchResult	+= "					잘 먹었습니다! 고기가 엄청 부드럽진 않고.. 멸치국수 너무 비리고, 안경쓴 아주머니..주문하면 대답도 없고, 계산서.. 왜 돈 내고 먹는데 손님이 거지인 것.. 굉장히 무례하고 다시는 안가고 싶네요.. 쬬아~!\n";
-		strSearchResult	+= "				</div>\n";
-		strSearchResult	+= "				<div class=\"office_detail_review_comm\">\n";
-		strSearchResult	+= "					<div class=\"office_detail_user_nick\">\n";
-		strSearchResult	+= "						<b>내가다시는가나봐라</b>\n";
-		strSearchResult	+= "					</div>\n";
-		strSearchResult	+= "					<div class=\"office_detail_user_star\">\n";
-		strSearchResult	+= "						★★★★★\n";
-		strSearchResult	+= "					</div>\n";
-		strSearchResult	+= "					<div class=\"office_detail_review_date\">\n";
-		strSearchResult	+= "						2023.05.24\n";
-		strSearchResult	+= "					</div>\n";
-		strSearchResult	+= "				</div>\n";
+
+		Map<String, Object>		paramRev	= new HashMap<>();
+		List<ReviewDataBean>	reviews		= null;
+		
+		if(userId == null) {
+			paramRev.put("officeId", officeId);
+			
+			reviews	= reviewDao.getReviewByOffice(paramRev, false);
+		} else {
+			paramRev.put("userId", userId);
+			paramRev.put("officeId", officeId);
+
+			reviews	= reviewDao.getReviewByOffice(paramRev, true);
+		}
+		
+		for(ReviewDataBean review : reviews) {
+			strSearchResult	+= "				<div class=\"office_detail_review_content\">\n";
+			strSearchResult	+= "					" + review.getReview_data() + "\n";
+			strSearchResult	+= "				</div>\n";
+			strSearchResult	+= "				<div class=\"office_detail_review_comm\">\n";
+			strSearchResult	+= "					<div class=\"office_detail_user_nick\">\n";
+			strSearchResult	+= "						<b>" + review.getUser_nick() + "내가다시는가나봐라</b>\n";
+			strSearchResult	+= "					</div>\n";
+			strSearchResult	+= "					<div class=\"office_detail_user_star\">\n";
+			strSearchResult	+= "						★★★★★\n";
+			strSearchResult	+= "					</div>\n";
+			strSearchResult	+= "					<div class=\"office_detail_review_date\">\n";
+			strSearchResult	+= "						" + review.getReview_reg() + "\n";
+			strSearchResult	+= "					</div>\n";
+			strSearchResult	+= "				</div>\n";
+		}
+		
 		strSearchResult	+= "			</div>\n";
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "	</div>\n";

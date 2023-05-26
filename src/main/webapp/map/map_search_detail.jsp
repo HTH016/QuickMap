@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 ${detailhtml}
+
 <%--
 <%@ include file="setting_map.jsp"%>
 <link href="${project}style_map.css" rel="stylesheet" type="text/css">

@@ -29,7 +29,7 @@
 			<th colspan=2>
 				<input type="submit" value="작성">
 				<input type="reset" value="${btn_cancel}">
-				<input type="button" value="작성취소" onclick="location='map_main.do'">
+				<input type="button" value="작성취소" onclick="location='main.do'">
 			</th>
 		</tr>
 	</table>

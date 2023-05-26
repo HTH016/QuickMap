@@ -21,7 +21,7 @@
 		<tr>
 			<th colspan=2>
 				<input type="submit" value="확인">
-				<input type="button" value="취소" onclick="location='map_main.do'">
+				<input type="button" value="취소" onclick="location='main.do'">
 			</th>
 		</tr>
 	</table>

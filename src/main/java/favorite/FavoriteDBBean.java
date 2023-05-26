@@ -29,11 +29,11 @@ public class FavoriteDBBean implements FavoriteDao {
 	
 	// favorite 등록 : parameter - userId, officeId
 	public int insertFavorite(Map<String, Object> param) {
-		return session.selectOne("Favorite.insertFavorite", param);
+		return session.insert("Favorite.insertFavorite", param);
 	}
 	
 	// favorite 삭제 : parameter - userId, officeId
 	public int deleteFavorite(Map<String, Object> param) {
-		return session.selectOne("Favorite.deleteFavorite", param);
+		return session.delete("Favorite.deleteFavorite", param);
 	}
 }

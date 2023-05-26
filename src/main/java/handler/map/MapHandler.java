@@ -16,7 +16,7 @@ public class MapHandler implements CommandHandler {
 	@Resource(name="memberDao")
 	private MemberDao memberDao;
 
-	@RequestMapping("/map_main")
+	@RequestMapping("/main")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		

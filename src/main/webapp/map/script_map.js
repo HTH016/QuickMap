@@ -11,6 +11,36 @@ $(function() {
 	//loadLayout();
 	initializeMap('kakaomap');		// map을 표시할 element id : 'kakaomap'
 
+	// 리뷰 작성 클릭
+	
+	// 즐겨찾기 클릭
+	$(document).on(
+		"click",
+		".office_detail_favorite",
+		function(e) {
+			var userId			= $("#favorite_user_id").text();
+			var officeId		= $("#favorite_office_id").text();
+
+			$.ajax({
+				url : "map_favorite_ajax.do",
+				type : "POST",
+				data : {
+					userId		: userId,
+					officeId	: officeId
+				},
+				dataType : "html",
+				success : function(data) {
+					var $favoriteImage	= $(".office_detail_fav_image");
+					
+					$favoriteImage.attr("src", data);
+				},
+				error : function(request, status, error) {
+					alert("즐겨찾기 등록/해제에 실패하였습니다\n잠시 후 다시 시도해주세요.");
+				}
+			});	// ajax
+		}
+	);
+	
 	// 상세 정보 닫기 클릭
 	$(document).on(
 		"click",
@@ -41,7 +71,6 @@ $(function() {
 					var $officeDetail = $("#searchDetail");
 
 					$officeDetail.html(data);
-//					$officeDetail.css('z-index', 2);
 					$officeDetail.addClass('on'); // detail 열기
 /*		
 					if ($officeDetail.hasClass('on')) {
@@ -54,11 +83,11 @@ $(function() {
 */
 				},
 				error : function(request, status, error) {
-					$("#searchDetail").html(error);
+					alert("상세정보 불러오기에 실패하였습니다\n잠시 후 다시 시도해주세요.");
 				}
 			});	// ajax
 
-			return false;
+//			return false;
 		}
 	);	// 검색 결과 항목 클릭
 
@@ -93,7 +122,7 @@ $(function() {
 					$("#searchResult").html(data);
 				},
 				error : function(request, status, error) {
-					$("#searchResult").html(error);
+					alert("검색에 실패하였습니다\n잠시 후 다시 시도해주세요.");
 				}
 			});	// ajax
 		}

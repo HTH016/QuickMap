@@ -17,5 +17,5 @@
 	</script>
 </c:if>
 <c:if test="${result eq 1}">
-	<c:redirect url="map_main.do"/>
+	<c:redirect url="main.do"/>
 </c:if>

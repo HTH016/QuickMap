@@ -258,12 +258,7 @@ body {
 	background: lime;
 }
 
-.office_detail_fav_y {
-	width: 25px;
-	height: 25px;
-	}
-
-.office_detail_fav_n {
+.office_detail_fav_image {
 	width: 25px;
 	height: 25px;
 }

@@ -107,7 +107,7 @@
 					<input type="reset" value="취소">
 					<input type="button" value="즐겨찾기" onclick="location='favoritelist.do'">
 					<input type="button" value="이용후기" onclick="location='reviewlist.do'">
-					<input type="button" value="수정취소" onclick="location='map_main.do'">
+					<input type="button" value="수정취소" onclick="location='main.do'">
 				</th>
 			</tr>
 		</table>

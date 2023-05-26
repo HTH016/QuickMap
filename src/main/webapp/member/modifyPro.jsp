@@ -12,9 +12,9 @@
 	<script type="text/javascript">
 		alert(modifyerror);
 	</script>
-	<meta http-equiv="refresh" content="0; url=map_main.do">
+	<meta http-equiv="refresh" content="0; url=main.do">
 </c:if>
 <c:if test="${result eq 1}">
-	<c:redirect url="map_main.do"/>
+	<c:redirect url="main.do"/>
 </c:if>
 

@@ -19,5 +19,5 @@
 </c:if>
 <c:if test="${result eq 1}">
 	${sessionScope.memId = user_id}
-	<c:redirect url="map_main.do"/>
+	<c:redirect url="main.do"/>
 </c:if>
