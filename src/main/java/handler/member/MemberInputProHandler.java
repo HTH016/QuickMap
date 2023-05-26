@@ -19,7 +19,7 @@ public class MemberInputProHandler implements CommandHandler {
 	
 	@Resource(name="memberDao")
 	private MemberDao memberDao;
-	
+
 	@RequestMapping("/memberinputpro")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {

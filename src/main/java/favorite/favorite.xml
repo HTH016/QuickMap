@@ -21,8 +21,13 @@
 		ORDER BY f.favorite_reg DESC
 	</select>
 	<insert id="insertFavorite" parameterType="map">
+		insert into qm_favorite
+		(user_id, office_id, favorite_reg)
+		values (#{userId}, #{officeId}, #{favorite_reg})
 	</insert>
 	<delete id="deleteFavorite" parameterType="map">
+		delete from qm_favorite where office_id = #{officeId}
+		and user_id = #{userId}
 	</delete>
 </mapper>
 

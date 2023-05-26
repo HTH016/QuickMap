@@ -25,10 +25,13 @@ public class ReviewDBBean implements ReviewDAO {
 	public ReviewDataBean getOffice(int office_id) {
 		return session.selectOne("Review.getOffice", office_id);
 	}
+	// 내가 쓴 리뷰 확인 (user_id당 리뷰 리스트)
 	public List<ReviewDataBean> getReview(String user_id) {
 		return session.selectList("Review.getReview", user_id);
 	}
 	
+	// 특정 업장 리뷰 확인 (office_id당 리뷰 리스트)
+	// user_id O / user_id X
 	public List<ReviewDataBean> getReviewByOffice(Map<String, Object> param, boolean hasUserId) {
 		if(! hasUserId) {
 			return session.selectList("Review.getReviewByOfficeNoLogin", param);
@@ -36,9 +39,11 @@ public class ReviewDBBean implements ReviewDAO {
 			return session.selectList("Review.getReviewByOffice", param);
 		}
 	}
+	
 	public int insertReview(ReviewDataBean dto) {
 		return session.insert("Review.insertReview", dto);
 	}
+	
 	public int modifyData(ReviewDataBean dto) {
 		return session.update("Review.modifyData", dto);
 	}
