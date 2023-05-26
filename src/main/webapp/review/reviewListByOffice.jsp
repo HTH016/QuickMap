@@ -23,7 +23,7 @@
 			${dto.user_id}
 		</td>
 		<td style="text-align:center">
-			<a href="reviewmodifyview.do?review_id=${dto.review_id}">${dto.review_data}</a>
+			${dto.review_data}
 		</td>
 		<td style="text-align:center">
 			${dto.review_star}(<fmt:formatDate value="${dto.review_reg}" type="both" pattern="yyyy-MM-dd HH:mm:ss"/>)

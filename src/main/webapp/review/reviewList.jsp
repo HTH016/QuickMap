@@ -17,7 +17,7 @@
 		<th style="width:7%"> ${str_review_id} </th>
 		<th style="width:15%"> ${str_office_name} </th>
 		<th style="width:40%"> ${str_review_data} </th>
-		<th style="width:10%"> ${str_review_star}(${str_review_reg}) </th>
+		<th style="width:15%"> ${str_review_star}(${str_review_reg}) </th>
 	</tr> 
 	<c:if test="${reviewDao.getReviewCount() eq 0}">
 		<tr>

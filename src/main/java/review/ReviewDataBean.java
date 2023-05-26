@@ -10,7 +10,14 @@ public class ReviewDataBean {
 	private int review_star;
 	private String user_id;
 	private int office_id;
+	private String user_nick;
 	
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
 	public int getOffice_id() {
 		return office_id;
 	}

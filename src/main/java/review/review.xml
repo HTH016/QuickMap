@@ -13,11 +13,17 @@
 		order by r.review_reg desc
 	</select>
 	<select id="getReviewByOffice" parameterType="Map" resultType="review.ReviewDataBean">
-		select * from qm_review where office_id = 26
+		select review_id, office_id, r.user_id, review_reg, review_data, review_star, user_nick
+		from qm_review r, qm_user u
+		where r.user_id = u.user_id
+		and office_id = #{office_id}
 		order by (case when user_id = #{user_id, jdbcType=VARCHAR} then 0 else 1 end), review_reg desc
 	</select>
 	<select id="getReviewByOfficeNoLogin" parameterType="Map" resultType="review.ReviewDataBean">
-		select * from qm_review where office_id = #{office_id}
+		select review_id, office_id, r.user_id, review_reg, review_data, review_star, user_nick
+		from qm_review r, qm_user u
+		where r.user_id = u.user_id
+		and office_id = #{office_id}
 		order by review_reg desc
 	</select>
 	<select id="getReviewCount" resultType="int">
