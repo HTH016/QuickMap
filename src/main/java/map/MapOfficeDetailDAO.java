@@ -27,4 +27,8 @@ public class MapOfficeDetailDAO implements MapDao {
 		return session.selectOne("Map.getOfficeInfoByOfficeId", officeId);
 	}
 	
+	public String getServiceName(int serviceId) {
+		return session.selectOne("Map.getServiceName", serviceId);
+	}
+	
 }

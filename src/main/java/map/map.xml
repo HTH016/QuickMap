@@ -52,5 +52,11 @@
 		select office_id, user_id, grade_id, service_id, office_regist_num, office_name, office_ad_state, office_review_num, office_star, office_loc_latitude, office_loc_longitude, office_address, office_tel, office_class, office_image, office_keyword, office_business_hours_noti, office_start_mon, office_end_mon, office_start_tue, office_end_tue, office_start_wed, office_end_wed, office_start_thu, office_end_thu, office_start_fri, office_end_fri, office_start_sat, office_end_sat, office_start_sun, office_end_sun 
 		from qm_office where office_id = #{officeId}
 	</select>
+	
+	<select id="getServiceName" resultType="String">
+		select service_name from qm_service
+		where service_id=#{serviceId}
+	</select>
+	
 </mapper>
 

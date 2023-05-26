@@ -216,7 +216,7 @@ public class MapSearchDetailHandlerAjax {
 		strSearchResult	+= "		<hr>\n";
 		strSearchResult	+= "		<div class=\"office_detail_service\">\n";
 		strSearchResult	+= "			<h4 class=\"office_detail_service_title\">진료 과목</h4>\n";
-		strSearchResult	+= "			<h5>"+ dto.getService_id() +"</h5>\n";
+		strSearchResult	+= "			<h5>"+ mapDao.getServiceName(dto.getService_id()) +"</h5>\n";
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<hr>\n";
 		strSearchResult	+= "		<div class=\"office_detail_review_list\">\n";
