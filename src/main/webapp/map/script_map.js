@@ -16,7 +16,9 @@ $(function() {
 		"click",
 		".office_detail_close_box",
 		function() {
-			
+			var $officeDetail = $("#searchDetail");
+
+			$officeDetail.removeClass('on'); // detail 닫기
 		}
 	);
 	
@@ -24,34 +26,32 @@ $(function() {
 	$(document).on(
 		"click",
 		".office_search_result_box",
-		function() {
+		function(e) {
 //			alert("click");
 
 			$.ajax({
 				url : "map_search_detail_ajax.do",
 				type : "POST",
 				data : {
-//					searchWord  : $("input[name=searchWord]").val(),
-//					latiSouth   : swLatLng.getLat(),
-//					latiNorth   : neLatLng.getLat(),
-//					longWest    : swLatLng.getLng(),
-//					longEast    : neLatLng.getLng(),
-//					mapLevel    : level,
-//					officeClass : $("select[name=officeClass]").val()
+					officeId	: e.currentTarget.id
 				},
 				dataType : "html",
 				success : function(data) {
 //					alert(data);
 					var $officeDetail = $("#searchDetail");
-		
+
+					$officeDetail.html(data);
+//					$officeDetail.css('z-index', 2);
+					$officeDetail.addClass('on'); // detail 열기
+/*		
 					if ($officeDetail.hasClass('on')) {
-//						$officeDetail.css('z-index', -99);
 						$officeDetail.removeClass('on'); // detail 닫기
 					} else {
 						$officeDetail.html(data);
 						$officeDetail.css('z-index', 2);
 						$officeDetail.addClass('on'); // detail 열기
 					}
+*/
 				},
 				error : function(request, status, error) {
 					$("#searchDetail").html(error);

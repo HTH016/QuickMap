@@ -93,7 +93,7 @@ public class MapSearchHandlerAjax {
 			
 
 			for(MapOfficeDetailDTO dto : officeList) {
-				strSearchResult	+= "<div class=\"office_search_result_box\">\n";
+				strSearchResult	+= "<div id=\"" + dto.getOffice_id() + "\" class=\"office_search_result_box\">\n";
 				strSearchResult	+= "	<div id=\"office_card\">\n";
 				
 				if(dto.getOffice_ad_state().equals("1")) {

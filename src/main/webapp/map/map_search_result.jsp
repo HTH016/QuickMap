@@ -10,7 +10,7 @@ ${resulthtml}
 <script type="text/javascript" src="/quickmap/jquery-3.6.4.js"></script>
 
 <c:forEach var="dto" items="${dtos}">
-<div class="office_search_result_box">
+<div id="${dto.office_id}" class="office_search_result_box">
 	<div id="office_card">
 		<c:if test="${dto.office_ad_state eq '1'}">
 		<img class="image_ad" src="${images}ad_24.png">

@@ -13,7 +13,7 @@ public class ReviewDBBean implements ReviewDAO {
 		return session.delete("Review.deleteData", review_id);
 	}
 	
-	public int getCount() {
+	public int getReviewCount() {
 		return session.selectOne("Review.getCount");
 	}
 	

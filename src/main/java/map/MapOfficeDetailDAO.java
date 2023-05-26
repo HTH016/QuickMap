@@ -13,14 +13,18 @@ public class MapOfficeDetailDAO implements MapDao {
 	
 	public List<MapOfficeDetailDTO> searchOfficeList(Map<String, Object> param, boolean searchAd) {
 		if(searchAd == true) {
-			return session.selectList("Map.searchOfficeAd", param);
+			return session.selectList("Map.searchOfficeListAd", param);
 		} else {
-			return session.selectList("Map.searchOfficeNormal", param);
+			return session.selectList("Map.searchOfficeListNormal", param);
 		}
 	}
 	
 	public List<String> searchServiceIdList(String[] searchWord) {
-		return session.selectList("Map.searchService", searchWord);
+		return session.selectList("Map.searchServiceIdList", searchWord);
+	}
+	
+	public MapOfficeDetailDTO getOfficeInfoByOfficeId(int officeId) {
+		return session.selectOne("Map.getOfficeInfoByOfficeId", officeId);
 	}
 	
 }

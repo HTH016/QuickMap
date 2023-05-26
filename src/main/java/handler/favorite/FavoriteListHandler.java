@@ -26,8 +26,8 @@ public class FavoriteListHandler implements CommandHandler {
 
 	    List<FavoriteDataBean>	dtos = null;
 	    
-	    if(favoriteDao.getCount() > 0) {
-		    dtos = favoriteDao.getBookmark((String) request.getSession().getAttribute("memId"));
+	    if(favoriteDao.getFavoriteCount() > 0) {
+		    dtos = favoriteDao.getFavoriteList((String) request.getSession().getAttribute("memId"));
 	    }
 	    
 	    request.setAttribute("dtos", dtos);

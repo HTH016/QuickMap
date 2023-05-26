@@ -1,8 +1,9 @@
 package handler.map;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import favorite.FavoriteDao;
 import map.MapDao;
 import map.MapOfficeDetailDTO;
 
@@ -20,140 +22,202 @@ import map.MapOfficeDetailDTO;
 public class MapSearchDetailHandlerAjax {
 	@Resource(name="mapDao")
 	private MapDao mapDao;
-
+	
+	@Resource(name="favoriteDao")
+	private FavoriteDao favoriteDao;
+	
 	@RequestMapping("/map_search_detail_ajax")
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-
-		String		strSearchResult	= "";
-/*
-		String[]	arrayWords		= request.getParameter("searchWord").split("\\s");
-
-		for(int i=0 ; i<arrayWords.length ; i++) {
-			String	word	= arrayWords[i];
-			
-			if(word.length() == 1) {
-				arrayWords[i] = arrayWords[i] + "이";
-			} else if(word.length() > 2) {
-				arrayWords[i] = word.substring(0, 2);
-			}
-
-			System.out.println("wordlist : " + arrayWords[i]);
-		}
 		
-		List<String>	serviceIds		= mapDao.searchServiceIdList(arrayWords);
+		int					officeId		= Integer.parseInt(request.getParameter("officeId"));
+		MapOfficeDetailDTO	dto				= mapDao.getOfficeInfoByOfficeId(officeId);
+		String				userId			= (String) request.getSession().getAttribute("memId");
+		String				strSearchResult	= "";
 		
-		System.out.println("serviceIds   : " + serviceIds);
-		
-		if(serviceIds.size() > 0) {
-			String strLatiSouth	= request.getParameter("latiSouth");
-			String strLatiNorth	= request.getParameter("latiNorth");
-			String strLongWest	= request.getParameter("longWest");
-			String strlongEast	= request.getParameter("longEast");
-			String strMapLevel	= request.getParameter("mapLevel");
-			String strOfficeClass	= request.getParameter("officeClass");
-			
-			double	latiSouth	= Double.parseDouble(strLatiSouth);
-			double	latiNorth	= Double.parseDouble(strLatiNorth);
-			double	longWest	= Double.parseDouble(strLongWest);
-			double	longEast	= Double.parseDouble(strlongEast);
-			int		mapLevel	= Integer.parseInt(strMapLevel);
-			int		officeClass	= Integer.parseInt(strOfficeClass);
-			
-			System.out.println("latiSouth  : " + latiSouth + " / latiNorth : " + latiNorth);
-			System.out.println("longWest   : " + longWest  + " / longEast  : " + longEast);
-			System.out.println("mapLevel   : " + mapLevel);
-			
-			Map<String, Object> param	= new HashMap<>();
-
-			param.put("latiSouth", latiSouth);
-			param.put("latiNorth", latiNorth);
-			param.put("longWest", longWest);
-			param.put("longEast", longEast);
-			param.put("mapLevel", mapLevel);
-			param.put("officeClass", officeClass);
-			param.put("serviceIds", serviceIds);
-			
-			List<MapOfficeDetailDTO> officeList	= new ArrayList<>();
-			List<MapOfficeDetailDTO> dtosAd		= mapDao.searchOfficeList(param, true);
-
-			for(MapOfficeDetailDTO dto : dtosAd) {
-				System.out.println("[dtosAd] office_id : " + dto.getOffice_id() + " / service_id : " + dto.getService_id());
-				dto.setOffice_ad_state("1");
-			}
-
-			List<MapOfficeDetailDTO> dtosNormal	= mapDao.searchOfficeList(param, false);
-			
-			for(MapOfficeDetailDTO dto : dtosNormal) {
-				System.out.println("[dtosNo] office_id : " + dto.getOffice_id() + " / service_id : " + dto.getService_id());
-			}
-			
-			officeList.addAll(dtosAd);
-			officeList.addAll(dtosNormal);
-*/			
+		System.out.println(Thread.currentThread().getStackTrace()[1] + ">> userId : " + userId);
 
 		strSearchResult	+= "<div class=\"office_detail\">\n";
 		strSearchResult	+= "	<div class=\"office_detail_info_box\">\n";
-		strSearchResult	+= "		<!-- 병원정보 -->\n";
 		strSearchResult	+= "		<div class=\"office_detail_image\">\n";
-		strSearchResult	+= "			<img src=\"${images}ad_24.png\" alt=\"[ad]\">\n";
-		strSearchResult	+= "			<img src=\"${images}ad_24.png\" alt=\"[ad]\">\n";
-		strSearchResult	+= "			<img src=\"${images}ad_24.png\" alt=\"[ad]\">\n";
+		
+		String	images	= dto.getOffice_image();
+		
+		if(images != null) {
+			String[] arrImage	= images.split(";");
+			
+			for(int i=0 ; i<arrImage.length ; i++) {
+				strSearchResult	+= "			<img src=\"" + arrImage[i]+ "\">\n";
+			}
+
+			for(int i=0 ; i<3-arrImage.length ; i++) {
+				strSearchResult	+= "			<img src=\"/quickmap/images/hos_0" + i + ".jpg\">\n";
+			}
+		} else {
+			for(int i=0 ; i<3 ; i++) {
+				strSearchResult	+= "			<img src=\"/quickmap/images/hos_0" + i + ".jpg\">\n";
+			}
+		}
+
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<div class=\"office_detail_name\">\n";
-		strSearchResult	+= "			<h3>세상에서 제일가는 치킨 전문 병원</h3>\n";
+		strSearchResult	+= "			<h3>" + dto.getOffice_name() + "</h3>\n";
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<div class=\"office_detail_keyword\">\n";
-		strSearchResult	+= "			<h5>강남역 22번 출구</h5>\n";
-		strSearchResult	+= "			<h5>강남역 23번 출구</h5>\n";
-		strSearchResult	+= "			<h5>강남역 34번 출구</h5>\n";
-		strSearchResult	+= "			<h5>강남역 45번 출구</h5>\n";
+
+		String	keywords	= dto.getOffice_keyword();
+		
+		if(keywords != null) {
+			String[] arrKeyword	= keywords.split(";");
+
+			for(int i=0 ; i<arrKeyword.length ; i++) {
+				strSearchResult	+= "			<h5>" + arrKeyword[i] + "</h5>\n";
+			}
+		}
+
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<div class=\"office_detail_tel\">\n";
-		strSearchResult	+= "			<h5>02-1234-1234</h5>\n";
+		strSearchResult	+= "			<h5>"+ dto.getOffice_tel() +"</h5>\n";
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<div class=\"office_detail_address\">\n";
-		strSearchResult	+= "			<h5>서울 서초구 서초대로 74길 33 비트빌빌딩</h5>\n";
+		strSearchResult	+= "			<h5>"+ dto.getOffice_address() +"</h5>\n";
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<div class=\"office_detail_comm\">\n";
 		strSearchResult	+= "			<div class=\"office_detail_favorite\">\n";
-		strSearchResult	+= "				<!-- 즐겨찾기 등록/해제 구분해야 함 -->\n";
-		strSearchResult	+= "				<img class=\"office_detail_fav_y\" src=\"${images}ad_24.png\" alt=\"[f_y]\">\n";
+
+		if(userId != null) {
+			Map<String, Object>	param	= new HashMap<>();
+			
+			param.put("userId", userId);
+			param.put("officeId", dto.getOffice_id());
+			
+			if(favoriteDao.getFavoriteCount(param) == 0) {
+				strSearchResult	+= "				<img class=\"office_detail_fav_y\" src=\"/quickmap/images/fav_emp.png\">\n";
+			} else {
+				strSearchResult	+= "				<img class=\"office_detail_fav_y\" src=\"/quickmap/images/fav_sol.png\">\n";
+			}
+		}
+		
 		strSearchResult	+= "			</div>\n";
 		strSearchResult	+= "			<div class=\"office_detail_star\">\n";
-		strSearchResult	+= "				<img class=\"office_detail_image_star\" src=\"${images}ad_24.png\" alt=\"[star]\">\n";
-		strSearchResult	+= "				<h5>4.5</h5>\n";
+		strSearchResult	+= "				<img class=\"office_detail_image_star\" src=\"/quickmap/images/star_32.png\">\n";
+		strSearchResult	+= "				<h5>" + dto.getOffice_star() + "</h5>\n";
 		strSearchResult	+= "			</div>\n";
 		strSearchResult	+= "			<div class=\"office_detail_review_num\">\n";
 		strSearchResult	+= "				<h5>방문자 리뷰 : </h5>\n";
-		strSearchResult	+= "				<h5>9999</h5>\n";
+		strSearchResult	+= "				<h5>" + dto.getOffice_review_num() + "</h5>\n";
 		strSearchResult	+= "			</div>\n";
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<hr>\n";
 		strSearchResult	+= "		<div class=\"office_detail_reg\">\n";
-		strSearchResult	+= "			<!-- 소유주 등록 -->\n";
-		strSearchResult	+= "			<a href=\"#\">비즈니스의 소유주인가요? 소유주 등록하고 혜택을 받아보세요</a>\n";
+		strSearchResult	+= "			<a href=\"#\">비즈니스의 소유주인가요?<br> 소유주 등록하고 혜택을 받아보세요</a>\n";
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<hr>\n";
 		strSearchResult	+= "		<div class=\"office_detail_business_hours\">\n";
-		strSearchResult	+= "			<!-- 영업 시간 -->\n";
 		strSearchResult	+= "			<h4 class=\"office_detail_business_hours_title\">영업 시간</h4>\n";
-		strSearchResult	+= "			<h5>영업중 - 18:30에 영업 종료</h5>\n";
+		
+		int		dayofweek	= LocalDateTime.now().getDayOfWeek().getValue();	// 1:월요일 ~ 7:일요일
+		String	startT		= "";
+		String	endT		= "";
+		
+		switch(dayofweek) {
+		case 1:
+			startT	= dto.getOffice_start_mon();
+			endT	= dto.getOffice_end_mon();
+			break;
+		case 2:
+			startT	= dto.getOffice_start_tue();
+			endT	= dto.getOffice_end_tue();
+			break;
+		case 3:
+			startT	= dto.getOffice_start_wed();
+			endT	= dto.getOffice_end_wed();
+			break;
+		case 4:
+			startT	= dto.getOffice_start_thu();
+			endT	= dto.getOffice_end_thu();
+			break;
+		case 5:
+			startT	= dto.getOffice_start_fri();
+			endT	= dto.getOffice_end_fri();
+			break;
+		case 6:
+			startT	= dto.getOffice_start_sat();
+			endT	= dto.getOffice_end_sat();
+			break;
+		case 7:
+			startT	= dto.getOffice_start_sun();
+			endT	= dto.getOffice_end_sun();
+			break;
+		}
+		
+		DateTimeFormatter	dtf			= DateTimeFormatter.ofPattern("HHmm");
+		LocalTime	now			= LocalTime.now();
+		LocalTime	officeStart	= null;
+		LocalTime	officeEnd	= null;
+		int			nWorking	= -1;	// -1 : 영업전, 0 : 영업중, 1 : 영업종료
+
+		System.out.println(Thread.currentThread().getStackTrace()[1] + " >> startT : " + startT);
+		System.out.println(Thread.currentThread().getStackTrace()[1] + " >> endT   : " + endT);
+
+		if(!startT.equals("")) {
+			officeStart	= LocalTime.parse(startT, dtf);
+			
+			if(now.compareTo(officeStart) > 0)
+			{
+				nWorking	= 0;
+				
+				if(!endT.equals("")) {
+					officeEnd	= LocalTime.parse(endT, dtf);
+					
+					if(now.compareTo(officeEnd) > 0) {
+						nWorking	= 1;
+					}
+				}
+			}
+		} else if(!endT.equals("")) {
+			officeEnd	= LocalTime.parse(endT, dtf);
+			
+			if(now.compareTo(officeEnd) < 0) {
+				nWorking	= 0;
+			} else if(now.compareTo(officeEnd) > 0) {
+				nWorking	= 1;
+			}
+		}
+		
+		if(nWorking > 0) {
+			strSearchResult	+= "			<h5>영업종료</h5>\n";
+		} else if(nWorking < 0) {
+			if(!startT.equals("")) {
+				strSearchResult	+= "			<h5>영업전 - " + officeStart.getHour() + ":" + officeStart.getMinute() + " 에 영업 시작</h5>\n";
+			} else {
+				strSearchResult	+= "			<h5>영업전 - 영업 시작 정보 없음</h5>\n";
+			}
+		} else {
+			if(!endT.equals("")) {
+				strSearchResult	+= "			<h5>영업중 - " + officeEnd.getHour() + ":" + officeEnd.getMinute() + " 에 영업 종료</h5>\n";
+			} else {
+				strSearchResult	+= "			<h5>영업중 - 영업 종료 정보 없음</h5>\n";
+			}
+		}
+		
+		
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<hr>\n";
 		strSearchResult	+= "		<div class=\"office_detail_service\">\n";
-		strSearchResult	+= "			<!-- 진료 과목 -->\n";
 		strSearchResult	+= "			<h4 class=\"office_detail_service_title\">진료 과목</h4>\n";
-		strSearchResult	+= "			<h5>내과</h5>\n";
+		strSearchResult	+= "			<h5>"+ dto.getService_id() +"</h5>\n";
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<hr>\n";
 		strSearchResult	+= "		<div class=\"office_detail_review_list\">\n";
-		strSearchResult	+= "			<!-- 방문자 리뷰 -->\n";
 		strSearchResult	+= "			<div class=\"office_detail_review_list_title\">\n";
 		strSearchResult	+= "				<h4>방문자 리뷰</h4>\n";
-		strSearchResult	+= "				<!-- 편집 / 작성 구분해야 함 -->\n";
-		strSearchResult	+= "				<img class=\"office_detail_review_image\" src=\"${images}ad_24.png\" alt=\"[close]\">\n";
+
+		if(userId != null) {
+			strSearchResult	+= "				<img id=\"" + userId + "\" class=\"office_detail_review_image\" src=\"/quickmap/images/write_32.png\">\n";
+		}
+
 		strSearchResult	+= "			</div>\n";
 		strSearchResult	+= "			<div class=\"office_detail_review_item\">\n";
 		strSearchResult	+= "				<!-- 리뷰 리스트 -->\n";
@@ -175,7 +239,7 @@ public class MapSearchDetailHandlerAjax {
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "	</div>\n";
 		strSearchResult	+= "	<div class=\"office_detail_close_box\">\n";
-		strSearchResult	+= "		<img class=\"office_detail_close_image\" src=\"${images}ad_24.png\" alt=\"[close]\">\n";
+		strSearchResult	+= "		<img class=\"office_detail_close_image\" src=\"/quickmap/images/arrow_left_32.png\">\n";
 		strSearchResult	+= "	</div>\n";
 		strSearchResult	+= "</div>\n";
 

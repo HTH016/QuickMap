@@ -19,14 +19,14 @@
 		<th style="width:40%"> ${str_review_data} </th>
 		<th style="width:10%"> ${str_review_star}(${str_review_reg}) </th>
 	</tr> 
-	<c:if test="${reviewDao.getCount() eq 0}">
+	<c:if test="${reviewDao.getReviewCount() eq 0}">
 		<tr>
 			<td style="text-align:center" colspan=5>
 			작성한 리뷰가 존재하지 않습니다
 			</td>
 		</tr>
 	</c:if>
-	<c:if test="${reviewDao.getCount() ne 0}"></c:if>	
+	<c:if test="${reviewDao.getReviewCount() ne 0}"></c:if>	
 	<c:forEach var="dto" items="${dtos}">
 	<tr>
 		<td style="text-align:center">
