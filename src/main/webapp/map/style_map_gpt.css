@@ -1,24 +1,18 @@
-*{
+* {
 	margin: 0;
 	padding: 0;
-}
-
-img {
-	vertical-align: middle;
-}
-
-div {
-	vertical-align: middle;
+	box-sizing: border-box;
 }
 
 body {
 	overflow: hidden;
-	background: silver;
+	background: #f8f8f8;
+	font-family: Arial, sans-serif;
 }
 
 .areaSearch {
 	height: 100%;
-	background: silver;
+	background: #f8f8f8;
 	float: left;
 	position: absolute;
 	left: 0;
@@ -29,14 +23,14 @@ body {
 #user_part {
 	width: 320px;
 	height: 100px;
-	background: forestgreen;
+	background: #2ecc71;
 	position: absolute;
 	z-index: 3;
 }
 
 .user_do_login {
 	height: 100px;
-	text-align:center;
+	text-align: center;
 }
 
 .user_login_btn {
@@ -44,15 +38,23 @@ body {
 	height: 50px;
 	margin: 10px auto;
 	font-size: 16pt;
-	background: pink;
+	background: #ff6b6b;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .user_sign_up {
 	height: 30px;
-	font-size:12pt;
+	font-size: 12pt;
 	margin-right: 10px;
 	text-align: right;
-	background: salmon;
+	background: #ff9f43;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .user_do_logout {
@@ -66,6 +68,8 @@ body {
 .user_image > img {
 	width: 100px;
 	height: 100px;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 .user_info {
@@ -75,74 +79,99 @@ body {
 .user_info_nick {
 	width: 185px;
 	height: 35px;
+	text-align: center;
+	background: #f9ca24;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	margin-top: 10px;
 }
 
 .user_info_id {
 	width: 185px;
 	height: 30px;
+	text-align: center;
+	background: #f9ca24;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	margin-top: 5px;
 }
 
 .user_info_button {
-	text-align:center;
+	text-align: center;
 	display: flex;
 	justify-content: space-between;
 	width: 185px;
+	margin-top: 10px;
 }
 
 .user_info_button > input {
-	width: 80;
-	height: 25;
-	margin-left: 5;
-	margin-right: 5;
+	width: 80px;
+	height: 25px;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: 10pt;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
 }
 
-#search{
-	background: turquoise;
+#search {
+	background: #1abc9c;
 	position: absolute;
-	width: 320;
-	top: 100;
+	width: 320px;
+	top: 100px;
 	left: 0;
-	padding-top: 10;
+	padding-top: 10px;
 	z-index: 3;
 	display: flex;
 	justify-content: space-between;
 }
 
 .search_class {
-	background: khaki;
-	height: 30;
-	z-index: 3;
-	margin-left: 5;
+	background: #f39c12;
+	height: 30px;
+	margin-left: 5px;
 	align-self: center;
+	padding: 5px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 10pt;
 }
 
 .search_word {
-	background: orange;
-	height: 30;
-	z-index: 3;
+	background: #e67e22;
+	height: 30px;
+	padding: 5px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 10pt;
 }
 
 .search_image {
-	width: 30;
-	height: 30;
-	background: lightgreen;
-	z-index: 3;
-	margin-right: 5;
+	width: 30px;
+	height: 30px;
+	background: #2ecc71;
+	margin-right: 5px;
+	padding: 5px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 #searchResult {
-	background: palegreen;
+	background: #d2dae2;
 	position: absolute;
-	width: 320;
-	top: 140;
-	padding-top: 10;
+	width: 320px;
+	top: 140px;
+	padding-top: 10px;
 	left: 0;
 	z-index: 3;
 	overflow-y: auto;
 }
 
 #searchDetail {
-	background: powderblue;
+	background: #bdc3c7;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -153,60 +182,55 @@ body {
 	float: right;
 }
 
-/* ¾Ö´Ï¸ŞÀÌ¼Ç ´ë»ó */
+/* ì• ë‹ˆë©”ì´ì…˜ ëŒ€ìƒ */
 #searchDetail {
 	/*overflow: hidden;*/
-	z-index:2;
+	z-index: 2;
 	position: absolute;
-	width:390px;
-	left:-390;
-	/* ÁÂÃø¿¡ À§Ä¡ ½ÃÅ°±â À§ÇØ Çö °¡·ÎÆøÀÇ -100%¸¸Å­ ¿ŞÂÊÀ¸·Î ÀÌµ¿ */
-	top:0;    /* ½½¶óÀÌµå ¸Ş´ºÀÇ °æ¿ì È­¸é¿¡ ²ËÂ÷°Ô ÇØ¾ß ÇÏ´Âµ¥ */
-	right:0;  /* ¸ğ¹ÙÀÏ À¥Àº È­¸éÀÇ ³ôÀÌ°¡ ÀÏÁ¤ÇÏÁö ¾ÊÀ» ÀÏÀÌ ¸¹¾Æ */
-	bottom:0; /* Àü,ÈÄ,ÁÂ,¿ì ÀüÃ¼ 0À» ÁÖ¸é È­¸é¿¡ °¡µæ Â÷°Ô µË´Ï´Ù. */
-	-webkit-transition: left .3s;	/* ¾Ö´Ï¸ŞÀÌ¼Ç css ºê¶ó¿ìÀúº°·Î ÀÛµ¿½ÃÅ°±â À§ÇØ ´Ù Àû¾îÁÖ´Â°Ô ÁÁ´Ù */
-	-moz-transition: left .3s;		/* left ¼Ó¼º¿¡ ´ëÇØ 0.3ÃÊ µ¿¾È ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà */
-	-ms-transition: left .3s;
-	-o-transition: left .3s;
-	transition: left .3s;
-	background-color:#cccccc;
+	width: 390px;
+	left: -390px;
+	/* ì¢Œì¸¡ì— ìœ„ì¹˜ ì‹œí‚¤ê¸° ìœ„í•´ í˜„ ê°€ë¡œí­ì˜ -100%ë§Œí¼ ì™¼ìª½ìœ¼ë¡œ ì´ë™ */
+	top: 0;    /* ìŠ¬ë¼ì´ë“œ ë©”ë‰´ì˜ ê²½ìš° í™”ë©´ì— ê½‰ì°¨ê²Œ í•´ì•¼ í•˜ëŠ”ë° */
+	right: 0;  /* ëª¨ë°”ì¼ ì›¹ì€ í™”ë©´ì˜ ë†’ì´ê°€ ì¼ì •í•˜ì§€ ì•Šì„ ì¼ì´ ë§ì•„ */
+	bottom: 0; /* ì „,í›„,ì¢Œ,ìš° ì „ì²´ 0ì„ ì£¼ë©´ í™”ë©´ì— ê°€ë“ ì°¨ê²Œ ë©ë‹ˆë‹¤. */
+	transition: left .3s;  /* ì• ë‹ˆë©”ì´ì…˜ íš¨ê³¼ë¥¼ ì£¼ê¸° ìœ„í•´ transition ì†ì„±ì„ ì‚¬ìš©í•©ë‹ˆë‹¤. */
 }
 
 #searchDetail.on {
-	left:320;
+	left: 320px;
 }
 
 .office_detail {
-	background: gray;
+	background: #f1f1f1;
 	display: flex;
 	width: 390px;
 	height: 100%;
 }
 
 .office_detail_info_box {
-	background: gray;
+	background: #f1f1f1;
 }
 
 .office_detail_close_box {
 	display: flex;
 	align-items: center;
-	background: gray;
+	background: #f1f1f1;
 }
 
 .office_detail_close_image {
 	width: 20px;
 	height: 40px;
-	background: white;
+	background: #ffffff;
 }
 
 .office_detail_image {
-	background: gray;
+	background: #f1f1f1;
 	display: flex;
 	justify-content: space-between;
 }
 
 .office_detail_image * {
-	background: salmon;
+	background: #e6e6e6;
 	width: 100px;
 	height: 100px;
 	margin: 5 auto;
@@ -214,7 +238,7 @@ body {
 }
 
 .office_detail_name {
-	background: gold;
+	background: #f9f9f9;
 	width: 370px;
 	text-align: center;
 }
@@ -226,26 +250,26 @@ body {
 }
 
 .office_detail_keyword * {
-	background: tomato;
+	background: #e6e6e6;
 	text-align: center;
 	display: inline-block;
 }
 
 .office_detail_tel {
-	background: olive;
+	background: #f1f1f1;
 	width: 370px;
 	text-align: center;
 	margin-top: 5px;
 }
 
 .office_detail_address {
-	background: DeepSkyBlue;
+	background: #f1f1f1;
 	width: 370px;
 	margin-top: 5px;
 }
 
 .office_detail_comm {
-	background: YellowGreen;
+	background: #f1f1f1;
 	display: flex;
 	justify-content: space-between;
 	margin-top: 10px;
@@ -256,7 +280,7 @@ body {
 }
 
 .office_detail_favorite {
-	background: lime;
+	background: #f1f1f1;
 }
 
 .office_detail_fav_image {
@@ -265,53 +289,44 @@ body {
 }
 
 .office_detail_star {
-	background: LightPink;
+	background: #f1f1f1;
 }
 
 .office_detail_image_star {
 	width: 25px;
 	height: 25px;
-	background: seagreen;
 }
 
 .office_detail_review_num {
-	background: green;
+	background: #f1f1f1;
 }
 
 .office_detail_reg {
-	background: pink;
-	color: blue;
+	background: #f1f1f1;
+	color: #0000ff;
 	width: 370px;
 	font-size: 9pt;
 	margin-top: 10px;
 }
 
 .office_detail_business_hours {
-	background: gray;
+	background: #f1f1f1;
 	margin-top: 10px;
 	width: 370px;
-}
-
-.office_detail_business_hours_title {
-	background: silver;
 }
 
 .office_detail_service {
-	background: gray;
+	background: #f1f1f1;
 	margin-top: 10px;
 	width: 370px;
 }
 
-.office_detail_service_title {
-	background: silver;
-}
-
 .office_detail_review_list {
-	background: silver;
+	background: #f1f1f1;
 }
 
 .office_detail_review_list_title {
-	background: silver;
+	background: #f1f1f1;
 	display: flex;
 	justify-content: space-between;
 	margin-right: 10px;
@@ -324,29 +339,29 @@ body {
 }
 
 .office_detail_review_image {
-	background: orange;
+	background: #f1f1f1;
 	width: 25px;
 	height: 25px;
 	align-self: center;
 }
 
 .office_detail_review_item {
-	background: gray;
+	background: #f1f1f1;
 	overflow-y: auto;
 }
 
 .office_detail_review_item * {
-	font-size:13px
+	font-size: 13px;
 }
 
 .office_detail_review_content {
-	background: SlateGray;
+	background: #f1f1f1;
 	margin-top: 5px;
 	width: 350px;
 }
 
 .office_detail_review_comm {
-	background: gray;
+	background: #f1f1f1;
 	margin-top: 5px;
 	display: flex;
 	justify-content: space-between;
@@ -359,20 +374,20 @@ body {
 
 .office_detail_user_nick {
 	margin-left: 10px;
-	background: MediumSlateBlue;
+	background: #f1f1f1;
 }
 
 .office_detail_user_star {
-	background: RoyalBlue;
+	background: #f1f1f1;
 }
 
 .office_detail_review_date {
 	margin-right: 10px;
-	background: plum;
+	background: #f1f1f1;
 }
 
 .office_search_result_box {
-	background: khaki;
+	background: #f1f1f1;
 }
 
 .office_search_result_box * {
@@ -384,42 +399,49 @@ body {
 	height: 24px;
 	display: inline-block;
 }
+
 .office_name {
-	background: yellow;
+	background: #ffff00;
 	width: 270px;
 	display: inline-block;
 }
+
 .image_office {
 	width: 60px;
 	height: 60px;
 	display: inline-block;
 }
-.office_info_box{
+
+.office_info_box {
 	display: inline-block;
 	vertical-align: top;
 	width: 220px;
 }
+
 .office_keyword {
-	background: green;
 	display: inline-block;
 }
+
 .office_business_hours {
 	display: inline-block;
 	width: 200px;
 	margin: 0;
 }
+
 .office_review_box {
 	display: inline-block;
 }
+
+.office_review {
+	background: #00ffff;
+	display: inline-block;
+}
+
 .office_star_box {
 	float: right;
 	vertical-align: top;
 }
-.office_review {
-	background: cyan;
-	display: inline-block;
-}
+
 .office_star {
-	background: cyan;
 	display: inline-block;
 }

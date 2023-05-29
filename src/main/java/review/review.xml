@@ -29,6 +29,9 @@
 	<select id="getReviewCount" resultType="int">
 		select count(*) from qm_review
 	</select>
+	<select id="getReviewCountByIds" resultType="int">
+		select count(*) from qm_review where user_id=#{userId} and office_id=#{officeId}
+	</select>
 	<select id="getData" parameterType="int" resultType="review.ReviewDataBean">
 		select o.office_name, r.review_star, r.review_data, r.review_id
 		from qm_office o, qm_review r

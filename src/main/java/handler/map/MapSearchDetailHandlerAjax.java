@@ -1,5 +1,6 @@
 package handler.map;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -37,15 +38,27 @@ public class MapSearchDetailHandlerAjax {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		int					officeId		= Integer.parseInt(request.getParameter("officeId"));
-		MapOfficeDetailDTO	dto				= mapDao.getOfficeInfoByOfficeId(officeId);
-		String				userId			= (String) request.getSession().getAttribute("memId");
-		String				strSearchResult	= "";
+		int		officeId		= Integer.parseInt(request.getParameter("officeId"));
+		String	userId			= (String) request.getSession().getAttribute("memId");
+		MapOfficeDetailDTO	dto	= mapDao.getOfficeInfoByOfficeId(officeId);
+		
+		String	strSearchResult	= "";
 		
 		System.out.println(Thread.currentThread().getStackTrace()[1] + ">> userId : " + userId);
 		
-		strSearchResult	+= "<span id=\"favorite_user_id\" hidden>" + userId + "</span>\n";
-		strSearchResult	+= "<span id=\"favorite_office_id\" hidden>" + officeId + "</span>\n";
+		strSearchResult	+= "<span id=\"map_user_id\" hidden>" + userId + "</span>\n";
+		strSearchResult	+= "<span id=\"map_office_id\" hidden>" + officeId + "</span>\n";
+
+		if(userId != null) {
+			Map<String, Object>	param	= new HashMap<>();
+
+			param.put("userId", userId);
+			param.put("officeId", officeId);
+
+			int	hasReview	= reviewDao.getReviewCount(param);
+
+			strSearchResult	+= "<span id=\"map_has_review\" hidden>" + hasReview + "</span>\n";
+		}
 
 		strSearchResult	+= "<div class=\"office_detail\">\n";
 		strSearchResult	+= "	<div class=\"office_detail_info_box\">\n";
@@ -119,10 +132,14 @@ public class MapSearchDetailHandlerAjax {
 		strSearchResult	+= "			</div>\n";
 		strSearchResult	+= "		</div>\n";
 		strSearchResult	+= "		<hr>\n";
-		strSearchResult	+= "		<div class=\"office_detail_reg\">\n";
-		strSearchResult	+= "			<a href=\"#\">비즈니스의 소유주인가요?<br> 소유주 등록하고 혜택을 받아보세요</a>\n";
-		strSearchResult	+= "		</div>\n";
-		strSearchResult	+= "		<hr>\n";
+
+		if(userId != null) {
+			strSearchResult	+= "		<div class=\"office_detail_reg\">\n";
+			strSearchResult	+= "			<a href=\"officeregister.do\">비즈니스의 소유주인가요?<br> 소유주 등록하고 혜택을 받아보세요</a>\n";
+			strSearchResult	+= "		</div>\n";
+			strSearchResult	+= "		<hr>\n";
+		}
+		
 		strSearchResult	+= "		<div class=\"office_detail_business_hours\">\n";
 		strSearchResult	+= "			<h4 class=\"office_detail_business_hours_title\">영업 시간</h4>\n";
 		
@@ -251,13 +268,16 @@ public class MapSearchDetailHandlerAjax {
 			strSearchResult	+= "				</div>\n";
 			strSearchResult	+= "				<div class=\"office_detail_review_comm\">\n";
 			strSearchResult	+= "					<div class=\"office_detail_user_nick\">\n";
-			strSearchResult	+= "						<b>" + review.getUser_nick() + "내가다시는가나봐라</b>\n";
+			strSearchResult	+= "						<b>" + review.getUser_nick() + "</b>\n";
 			strSearchResult	+= "					</div>\n";
 			strSearchResult	+= "					<div class=\"office_detail_user_star\">\n";
 			strSearchResult	+= "						★★★★★\n";
 			strSearchResult	+= "					</div>\n";
 			strSearchResult	+= "					<div class=\"office_detail_review_date\">\n";
-			strSearchResult	+= "						" + review.getReview_reg() + "\n";
+			
+			SimpleDateFormat	sdf	= new SimpleDateFormat("yyyy-MM-dd");
+
+			strSearchResult	+= "						" + sdf.format(review.getReview_reg()) + "\n";
 			strSearchResult	+= "					</div>\n";
 			strSearchResult	+= "				</div>\n";
 		}

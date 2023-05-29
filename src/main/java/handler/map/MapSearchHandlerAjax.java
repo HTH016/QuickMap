@@ -91,13 +91,17 @@ public class MapSearchHandlerAjax {
 			officeList.addAll(dtosAd);
 			officeList.addAll(dtosNormal);
 			
+			int i = 0;
 
 			for(MapOfficeDetailDTO dto : officeList) {
 				strSearchResult	+= "<div id=\"" + dto.getOffice_id() + "\" class=\"office_search_result_box\">\n";
+				strSearchResult	+= "	<span class=\"marker_index\" hidden>" + (i++) + "</span>\n";
+				strSearchResult	+= "	<span class=\"office_loc_latitude\" hidden>" + dto.getOffice_loc_latitude() + "</span>\n";
+				strSearchResult	+= "	<span class=\"office_loc_longitude\" hidden>" + dto.getOffice_loc_longitude() + "</span>\n";
 				strSearchResult	+= "	<div id=\"office_card\">\n";
 				
 				if(dto.getOffice_ad_state().equals("1")) {
-					strSearchResult	+= "		<img class=\"image_ad\" src=\"/quickmap/images/ad_24.png\" alt=\"[ad]\">\n";
+					strSearchResult	+= "		<img class=\"image_ad\" src=\"/quickmap/images/ad_24.png\">\n";
 				}
 				
 				strSearchResult	+= "		<div class=\"office_name\">\n";

@@ -18,6 +18,11 @@ public class ReviewDBBean implements ReviewDAO {
 		return session.selectOne("Review.getReviewCount");
 	}
 	
+	// map : userId, officeId
+	public int getReviewCount(Map<String, Object> param) {
+		return session.selectOne("Review.getReviewCountByIds", param);
+	}
+	
 	public ReviewDataBean getData(int review_id) {
 		return session.selectOne("Review.getData", review_id);
 	}

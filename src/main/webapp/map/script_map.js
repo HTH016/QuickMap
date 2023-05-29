@@ -12,14 +12,29 @@ $(function() {
 	initializeMap('kakaomap');		// map을 표시할 element id : 'kakaomap'
 
 	// 리뷰 작성 클릭
+	$(document).on(
+		"click",
+		".office_detail_review_image",
+		function() {
+			var userId		= $("#map_user_id").text();
+			var officeId	= $("#map_office_id").text();
+			var hasReview	= $("#map_has_review").text();
+			
+			if(hasReview == 0) {
+				window.location.href = "reviewwrite.do?userId=" + userId + "&officeId=" + officeId;
+			} else {
+				window.location.href = "reviewmodify.do?userId=" + userId + "&officeId=" + officeId;
+			}
+		}
+	);
 	
 	// 즐겨찾기 클릭
 	$(document).on(
 		"click",
 		".office_detail_favorite",
-		function(e) {
-			var userId			= $("#favorite_user_id").text();
-			var officeId		= $("#favorite_office_id").text();
+		function() {
+			var userId		= $("#map_user_id").text();
+			var officeId	= $("#map_office_id").text();
 
 			$.ajax({
 				url : "map_favorite_ajax.do",
@@ -51,13 +66,19 @@ $(function() {
 			$officeDetail.removeClass('on'); // detail 닫기
 		}
 	);
-	
+
 	// 검색 결과 항목 클릭
 	$(document).on(
 		"click",
 		".office_search_result_box",
 		function(e) {
 //			alert("click");
+
+			index	= $(this).find("span.marker_index:hidden").map(function() {
+							return $(this).text();
+						}).get();
+			
+			setSelectedMarker(index)
 
 			$.ajax({
 				url : "map_search_detail_ajax.do",
@@ -71,7 +92,8 @@ $(function() {
 					var $officeDetail = $("#searchDetail");
 
 					$officeDetail.html(data);
-					$officeDetail.addClass('on'); // detail 열기
+					setDetailLayoutSize();			// detail layout 설정
+					$officeDetail.addClass('on');	// detail layout 열기
 /*		
 					if ($officeDetail.hasClass('on')) {
 						$officeDetail.removeClass('on'); // detail 닫기
@@ -83,7 +105,7 @@ $(function() {
 */
 				},
 				error : function(request, status, error) {
-					alert("상세정보 불러오기에 실패하였습니다\n잠시 후 다시 시도해주세요.");
+					alert("상세정보 불러오기에 실패하였습니다\n잠시 후 다시 시도해주세요");
 				}
 			});	// ajax
 
@@ -91,12 +113,22 @@ $(function() {
 		}
 	);	// 검색 결과 항목 클릭
 
-	// 검색 버튼 클릭
-	$("input[name=imgSearchOffice]").on(
-		"click",
+	// 검색 버튼 클릭 + 검색어 입력 창에서 엔터 입력
+	$(document).on(
+		"keyup click",
+		"input[name='searchWord'], input[name='imgSearchOffice']",
 		function(event) {
+			if(event.type === "keyup" && event.keyCode !== 13) {
+				return;
+			}
+			
+			if (event.type === "click" && event.target.name === 'searchWord') {
+				$('input[name="searchWord"]').val('');
+				return;
+			}
+			
 			if(checkSearchWord() == false) {
-				return false;
+				return;
 			}
 			
 			var level		= kakaomap.getLevel();
@@ -120,6 +152,25 @@ $(function() {
 				success : function(data) {
 //					alert(data);
 					$("#searchResult").html(data);
+					
+					hideMarkers();
+					
+					markerIndexs		= $("span.marker_index:hidden").map(function() {
+							return $(this).text();
+						}).toArray();
+					var arrLatitude		= $("span.office_loc_latitude:hidden").map(function() {
+							return $(this).text();
+						}).toArray();
+					var arrLongitude	= $("span.office_loc_longitude:hidden").map(function() {
+							return $(this).text();
+						}).toArray();
+
+					for(var i=0 ; i<arrLatitude.length ; i++) {
+//						console.log(arrLatitude[i]);
+						addMarker(new kakao.maps.LatLng(arrLatitude[i], arrLongitude[i]));
+					}
+
+					showMarkers();
 				},
 				error : function(request, status, error) {
 					alert("검색에 실패하였습니다\n잠시 후 다시 시도해주세요.");
@@ -172,15 +223,19 @@ function erroralert(msg) {
 ////////// layout functions //////////
 function setLayoutSize() {
 	var	windowWidth		= $(window).width();
-	var	searchAreaWidth	= 300;
+	var	searchAreaWidth	= $("#user_part").width();	// 320;
 	var	mapWidth		= windowWidth - searchAreaWidth; 
 	
 	var	windowHeight	= $(window).height();
-	var	userHeight		= 150;
-	var	searchHeight	= 100;
+	var	userHeight		= $("#user_part").height();
+	var	searchHeight	= $("#search").height();
 	var	searchResHeight	= windowHeight - userHeight - searchHeight; 
 	var	mapHeight		= windowHeight;
 
+	if($(".office_detail_review_item").length) {
+		setDetailLayoutSize();
+	}
+	
 	// width
 //	$('.areaSearch').css({'width':searchAreaWidth+'px'});
 	$('.areaMap').css({'width':mapWidth+'px'});
@@ -188,8 +243,16 @@ function setLayoutSize() {
 	// height
 //	$('#user_part').css({'height': userHeight+'px'});
 //	$('#search').css({'height': searchHeight+'px'});
-//	$('#searchResult').css({'height': searchResHeight+'px'});
+	$('#searchResult').css({'height': searchResHeight+'px'});
 	$('.areaMap').css({'height': mapHeight+'px'});
+}
+
+function setDetailLayoutSize() {
+	var	windowHeight	= $(window).height();
+	var reviewOffset	= $(".office_detail_review_item").offset();
+	var reviewHeight	= windowHeight - reviewOffset.top - 1;
+	
+	$(".office_detail_review_item").css({'height': reviewHeight+'px'});
 }
 
 function loadLayout() {
@@ -250,6 +313,71 @@ function initializeMap(div) {
 	// 지도 정보 출력
 //	getInfo();
 }
+
+// 지도에 표시된 마커 객체를 가지고 있을 배열입니다
+var markers				= [];
+var markerIndexs		= [];
+var selectedMarkerIndex	= -1;
+
+var iconNormal		= "/quickmap/images/icon_office_normal.png";
+var iconSelected	= "/quickmap/images/icon_office_selected.png";
+var iconSize		= new kakao.maps.Size(30, 50);
+var iconOption		= {offset: new kakao.maps.Point(15, 50)};
+var markerNormal	= new kakao.maps.MarkerImage(iconNormal, iconSize, iconOption);
+var markerSelected	= new kakao.maps.MarkerImage(iconSelected, iconSize, iconOption);
+
+
+// 마커 하나를 지도위에 표시합니다 
+//addMarker(new kakao.maps.LatLng(33.450701, 126.570667));
+
+// 마커를 생성하고 지도위에 표시하는 함수입니다
+function addMarker(position) {
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: position,
+        image: markerNormal
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+//    marker.setMap(kakaomap);
+    
+    // 생성된 마커를 배열에 추가합니다
+    markers.push(marker);
+}
+
+// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+function setMarkers(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
+
+// 배열에 추가된 마커를 지도에 표시하는 함수입니다
+function showMarkers() {
+    setMarkers(kakaomap);
+}
+
+// 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
+function hideMarkers() {
+    setMarkers(null);
+    markers				= [];
+    selectedMarkerIndex	= -1;
+}
+
+// 배열에 추가된 마커 이미지를 변경하는 함수입니다
+function setSelectedMarker(index) {
+	if(selectedMarkerIndex != -1) {
+		markers[selectedMarkerIndex].setImage(markerNormal);
+		markers[selectedMarkerIndex].setZIndex(0);
+	}
+	
+	selectedMarkerIndex	= index;
+	markers[selectedMarkerIndex].setImage(markerSelected);
+	markers[selectedMarkerIndex].setZIndex(999);
+}
+
+// 
 
 /*
 function getInfo() {
