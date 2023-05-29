@@ -1,10 +1,8 @@
 package statistics;
 
-import java.sql.Timestamp;
-
 public class StatisticsAdIncomeDTO {
 
-	private int s;			// 사업자 등록 번호
+	private int s;		
 	private int ad_request_level;
 	public int getS() {
 		return s;

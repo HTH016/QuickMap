@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 
 public class StatisticsAdDTO {
 
-	private int ad_request_id;				// 신청 번호									
+	private int ad_request_id;												
 	private Timestamp ad_request_start;
-	private Timestamp ad_request_end ;			// 사업자 등록 번호
-	private int ad_request_level;		// 요청일
+	private Timestamp ad_request_end ;			
+	private int ad_request_level;		
 	public int getAd_request_id() {
 		return ad_request_id;
 	}

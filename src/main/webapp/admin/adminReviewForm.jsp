@@ -1,21 +1,26 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="setting_admin.jsp" %>
 
 
+<br>    
+<h2>${page_admin}</h2>
+<br>  
 
-<h2> 관리자 페이지 </h2>
-
-<input class="inputbutton" type="button" value="회원 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_user}"
 				onclick="location='adminuserlistform.do'">
-<input class="inputbutton" type="button" value="업장 등록 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_office}"
 				onclick="location='adminregisterofficeform.do'">
-<input class="inputbutton" type="button" value="업장 등급 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_grade}"
 				onclick="location='adminrequestgradeform.do'">
-<input class="inputbutton" type="button" value="광고 신청 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_ad}"
 				onclick="location='adminrequestadform.do'">
-<input class="inputbutton" type="button" value="통계"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_statistics}"
 				onclick="location='statisticsadminform.do'">
+				
+<input type="button" style="width:90pt; height:30pt; float:right" value="${btn_to_main}"
+				onclick="location='main.do'">
 
 
 <table border="1" style="margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto;">

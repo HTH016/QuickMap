@@ -4,15 +4,15 @@ import java.sql.Timestamp;
 
 public class AdminRegisterOfficeDTO {
 
-	private int regist_request_id;				// 신청 번호			
-	private String user_id;						// 회원 아이디
-	private String office_id;					// 업장 아이디
-	private String office_regist_num ;			// 사업자 등록 번호
-	private String office_regist_num_img;			// 사업자 등록 사진
-	private Timestamp office_regist_submit;		// 요청일
-	private Timestamp office_regist_confirm;		// 승인일
-	private int grade_id;					// 회원 등급 아이디 
-	private String office_name;
+	private int regist_request_id;							
+	private String user_id;							
+	private String office_id;						
+	private String office_regist_num ;				
+	private String office_regist_num_img;			
+	private Timestamp office_regist_submit;			
+	private Timestamp office_regist_confirm;		
+	private int grade_id;							
+	private String office_name;						
 	public int getRegist_request_id() {
 		return regist_request_id;
 	}

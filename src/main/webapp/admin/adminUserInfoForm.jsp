@@ -6,52 +6,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ include file="setting_admin.jsp" %>
 
+    
+<br>    
+<h2>${page_admin}</h2>
+<br>  
 
-<h2>관리자 페이지</h2>
-
-<input class="inputbutton" type="button" value="회원 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_user}"
 				onclick="location='adminuserlistform.do'">
-<input class="inputbutton" type="button" value="업장 등록 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_office}"
 				onclick="location='adminregisterofficeform.do'">
-<input class="inputbutton" type="button" value="업장 등급 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_grade}"
 				onclick="location='adminrequestgradeform.do'">
-<input class="inputbutton" type="button" value="광고 신청 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_ad}"
 				onclick="location='adminrequestadform.do'">
-<input class="inputbutton" type="button" value="통계"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_statistics}"
 				onclick="location='statisticsadminform.do'">
+				
+<input type="button" style="width:90pt; height:30pt; float:right" value="${btn_to_main}"
+				onclick="location='main.do'">
 
-<h3> 회원 정보 수정 </h3>
-
+<h3>
+${page_admin_user_info}
+</h3>	
 	
-		
 	<form method="post" action="adminuserinfopro.do" name="userinfoform">
-		<table>
-			
+		<table border="1">	
 			<tr>
-				<th> 아이디 </th>
+				<th> ${str_id} </th>
 				<td> <input type="text" name="user_id" value="${dto.user_id}" readonly> </td>
 			</tr>
 			<tr>
-				<th> 닉네임 </th>
+				<th> ${str_nick} </th>
 				<td><input type="text" name="user_nick" value="${dto.user_nick}" readonly> </td>
 			</tr>
 			<tr>
-				<th> 비밀번호 </th>
+				<th> ${str_passwd} </th>
 				<td>
 					<input type="password" name="user_passwd" value="${dto.user_passwd}"readonly>
 				</td>
 			</tr>
 			<tr>
-				<th> 이름 </th>
+				<th> ${str_name} </th>
 				<td> <input type="text" name="user_name" value="${dto.user_name}" readonly> </td>
 			</tr>
 			<tr>
-				<th> 전화번호 </th>
-				<td>
-
-					
-							
+				<th> ${str_tel} </th>
+				<td>			
 					<c:if test="${dto.user_tel eq null}">
 						<input type="text" name="tel1" maxlength=3 style="width:30px" readonly>
 						- <input type="text" name="tel2" maxlength=4 style="width:40px" readonly>
@@ -62,12 +64,11 @@
 						<input type="text" name="tel1" maxlength=3 style="width:30px" value="${t[0]}" readonly>
 						- <input type="text" name="tel2" maxlength=4 style="width:40px" value="${t[1]}" readonly>
 						- <input type="text" name="tel3" maxlength=4 style="width:40px" value="${t[2]}" readonly>
-					</c:if>				
-					
+					</c:if>						
 				</td>
 			</tr>
 			<tr>
-				<th> 이메일 </th>
+				<th> ${str_email} </th>
 				<td>					
 						
 					<c:if test="${dto.user_email eq null}">
@@ -80,38 +81,34 @@
 						value="${e[0]}" style="width:100px" readonly>
 						@ <input type="text" name="email2" maxlength=25
 						value="${e[1]}" style="width:100px" readonly>
-				</c:if>
-						
+				</c:if>					
 				</td>
 			</tr>
 			<tr>
-				<th> 가입일자 </th>
-				
+				<th> ${str_user_reg} </th>			
 				<td>
 					<input type="text" name="user_reg" value="${dto.user_reg}" readonly>
 				</td>
 			</tr>	
 			<tr>
-				<th> 회원등급 </th>
+				<th> ${str_user_grade} </th>
 				<td>
-					<select name="usersort">
+					<select name="usergradesort">
 						<option value="7" selected>${dto.grade_name}</option>
-						<option value="0">탈퇴</option>
-						<option value="1">활동정지</option>
-						<option value="2">일반회원</option>
-						<option value="3">등록회원</option>
-						
+						<option value="0">${option_user_delete}</option>
+						<option value="1">${option_user_freeze}</option>
+						<option value="2">${option_user_general}</option>
+						<option value="3">${option_user_regist}</option>				
 					</select>
 				</td>
 			</tr>			
 		</table>
-		
-		<input class="inputbutton" type="submit" value="회원 등급 수정">
-		<input class="inputbutton" type="reset" value="목록"
+		<br>
+		<input class="inputbutton" type="submit" value="${btn_user_modify}">
+		<input class="inputbutton" type="reset" value="${btn_to_list}"
 						onclick="location='adminuserlistform.do'">
-		<input class="inputbutton" type="button" value="리뷰 내역 보기"
-						onclick="location='adminreviewlistform.do?user_id=${user_id}'">		
-				
+		<input class="inputbutton" type="button" value="${btn_to_review}"
+						onclick="location='adminreviewlistform.do?user_id=${user_id}'">			
 	</form>		
 
 

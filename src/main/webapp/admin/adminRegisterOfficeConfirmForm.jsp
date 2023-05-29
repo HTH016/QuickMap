@@ -5,35 +5,41 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="setting_admin.jsp" %>
     
+ <br>
+ <h2>${page_admin}</h2>
+ <br>
 
-
-<h2>관리자 페이지</h2>
-
-<input class="inputbutton" type="button" value="회원 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_user}"
 				onclick="location='adminuserlistform.do'">
-<input class="inputbutton" type="button" value="업장 등록 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_office}"
 				onclick="location='adminregisterofficeform.do'">
-<input class="inputbutton" type="button" value="업장 등급 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_grade}"
 				onclick="location='adminrequestgradeform.do'">
-<input class="inputbutton" type="button" value="광고 신청 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_ad}"
 				onclick="location='adminrequestadform.do'">
-<input class="inputbutton" type="button" value="통계"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_statistics}"
 				onclick="location='statisticsadminform.do'">
+				
+<input type="button" style="width:90pt; height:30pt; float:right" value="${btn_to_main}"
+				onclick="location='main.do'">
 
 
-<h3> 업장 등록 확인 </h3>
+<h3 style="text-align:center">
+${btn_admin_office}
+</h3>	
 
-		<table>
+		<table  border="1">
 			
 			<tr>
-				<th> 아이디 </th>
+				<th> ${str_id} </th>
 					<td> 
 						${dto.user_id}
 					</td>
 			</tr>
 			<tr>
-				<th> 업장명 </th>
+				<th> ${str_office_name} </th>
 					<td> 
 						${dto.office_name}
 					</td>
@@ -45,13 +51,15 @@
 					</td>
 			</tr>		-->
 			<tr>
-				<th> 사업자 등록증 </th>
+				<th> ${str_office_regist} </th>
 					<td>
-						${dto.office_regist_num_img}
+						<!--  <img src="/JSP/save/systemName"> -->
+						<img src="${dto.office_regist_num_img}">
 					</td>
 			</tr>
 						
 		</table>
+	<br>
 	<form method="post" action="adminregisterofficeconfirmpro.do" name="inputform">
 		<input type="hidden" name="regist_request_id" value="${regist_request_id}">	
 		

@@ -5,12 +5,12 @@ import java.sql.Timestamp;
 public class AdminUserDTO {
 	
 	
-	private String user_id;						// 회원 아이디
-	private int grade_id;					// 업장 아이디
-	private String user_nick ;			// 사업자 등록 번호
-	private String user_name;			// 사업자 등록 사진
-	private String user_passwd;		// 요청일
-	private Timestamp user_reg;		// 승인일
+	private String user_id;						
+	private int grade_id;					
+	private String user_nick ;			
+	private String user_name;			
+	private String user_passwd;		
+	private Timestamp user_reg;		
 	private String user_tel;
 	private String user_email;
 	private String grade_name;

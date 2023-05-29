@@ -4,69 +4,68 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-    
+<%@ include file="setting_admin.jsp" %>
 
- 
- <br><br>
- <h2>관리자 페이지</h2>
- <br>
- 
-<input class="inputbutton" type="button" value="회원 관리"
+<br>    
+<h2>${page_admin}</h2>
+<br>  
+
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_user}"
 				onclick="location='adminuserlistform.do'">
-<input class="inputbutton" type="button" value="업장 등록 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_office}"
 				onclick="location='adminregisterofficeform.do'">
-<input class="inputbutton" type="button" value="업장 등급 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_grade}"
 				onclick="location='adminrequestgradeform.do'">
-<input class="inputbutton" type="button" value="광고 신청 관리"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_ad}"
 				onclick="location='adminrequestadform.do'">
-<input class="inputbutton" type="button" value="통계"
+<input type="button" style="width:90pt; height:20pt" value="${btn_admin_statistics}"
 				onclick="location='statisticsadminform.do'">
+				
+<input type="button" style="width:90pt; height:30pt; float:right" value="${btn_to_main}"
+				onclick="location='main.do'">
+				
+<h3 style="text-align:center">
+${page_admin_user}
+</h3>		
  
 <form method="post" action="adminuserlistoptionsortform.do" name="usersortby">
-	<select name="usersort">
-		<option value="1" selected>가입일자(최신순)</option>
-		<option value="2">가입일자(오래된순)</option>
-		<option value="3">일반회원</option>
-		<option value="4">등록회원</option>
+	<select name="usersort" style="text-align:right">
+		<option value="1" selected>${option_reg_new}</option>
+		<option value="2">${option_reg_old}</option>
+		<option value="3">${option_user_general}</option>
+		<option value="4">${option_user_regist}</option>
 	</select>
-		<input class="button" type="submit" value="정렬">
+		<input class="button" type="submit" value="${btn_user_sort}">
 </form>
 
 <form method="post" action="adminuserlistoptionselectform.do" name="userselectby">
  <select name="userselect">
-  	<option value="5" selected>아이디</option>
-  	<option value="6">닉네임</option>
+  	<option value="5" selected>${option_id}</option>
+  	<option value="6">${option_nick}</option>
   	
 </select>
   	<input class="input" type="text" name="usersearchword">
-	<input class="button" type="submit" value="검색">
+	<input class="button" type="submit" value="${btn_user_search}">
 </form>	
 
-
-
-
-<table style="margin-left: auto; margin-right: auto;">
+<table style="margin-left: auto; margin-right: auto;" border="1" width="70%">
 	
 	<tr>
-		<th style="width:7%"> 아이디 </th>
-		<th style="width:40%"> 닉네임 </th>
-		<th style="width:7%"> 가입일자 </th>
-		<th style="width:9%"> 등급 </th>
-
+		<th style="width:10%"> ${str_id} </th>
+		<th style="width:10%"> ${str_nick} </th>
+		<th style="width:7%"> ${str_user_reg} </th>
+		<th style="width:3%"> ${str_user_grade} </th>
 	</tr>
 	
 	<c:if test="${count eq 0}">
-	
-	
 		<tr>
 			<td style="text-align:center" colspan="4">
-				등록된 회원이 없습니다.
+				${msg_no_user}
 			</td>
 		</tr>
 	</c:if>
 	
-	<c:if test="${count ne 0 }">  ${count}
-		
+	<c:if test="${count ne 0 }">  
 		<c:forEach var="dto" items="${dtos}">
 			<tr>
 				<td style="text-align:center">

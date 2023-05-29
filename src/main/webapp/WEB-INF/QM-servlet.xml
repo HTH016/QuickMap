@@ -17,6 +17,7 @@
 	<context:component-scan base-package="handler.member"/>
 	<context:component-scan base-package="handler.admin"/>
 	<context:component-scan base-package="handler.map"/>
+	<context:component-scan base-package="handler.statistics"/>
 
 </beans>
 

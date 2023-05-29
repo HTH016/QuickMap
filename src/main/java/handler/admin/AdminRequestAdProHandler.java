@@ -1,5 +1,6 @@
 package handler.admin;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +14,8 @@ import handler.CommandHandler;
 @Controller
 public class AdminRequestAdProHandler implements CommandHandler {
 	
-	private AdminDAO adminDAO = new AdminDAO();
+	@Resource(name="adminDao")
+	private AdminDAO adminDao;
 	
 	@RequestMapping("/adminrequestadpro")
 	@Override
@@ -25,15 +27,11 @@ public class AdminRequestAdProHandler implements CommandHandler {
 		int result = 1;
 		for (int i = 0 ; i < getCheckedId.length ; i++) {
 			checkedId[i] = Integer.parseInt(getCheckedId[i]);
-			resultArr[i] = adminDAO.registAd( checkedId[i] );
+			resultArr[i] = adminDao.registAd( checkedId[i] );
 			result *= resultArr[i];
 		}
 
-		
-
 		request.setAttribute( "result", result );
-		
-		
 		
 		return new ModelAndView("admin/adminRequestAdPro");
 	}

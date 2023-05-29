@@ -6,6 +6,8 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import admin.AdminDAO;
+import admin.AdminDBBean;
 import favorite.FavoriteDBBean;
 import favorite.FavoriteDao;
 import map.MapDao;
@@ -16,6 +18,8 @@ import office.OfficeDAO;
 import office.OfficeDBBean;
 import review.ReviewDAO;
 import review.ReviewDBBean;
+import statistics.StatisticsDAO;
+import statistics.StatisticsDBBean;
 
 @Configuration
 public class JavaBeans {
@@ -42,9 +46,20 @@ public class JavaBeans {
 	public OfficeDAO officeDao() {
 		return new OfficeDBBean();
 	}
+	
+	@Bean
+	public AdminDAO adminDao() {
+		return new AdminDBBean();
+	}
+	
+	@Bean
+	public StatisticsDAO statisticsDao() {
+		return new StatisticsDBBean();
+	}
+	
 	@Bean
 	public ViewResolver	getViewResolver() {
-		UrlBasedViewResolver	viewResolver	= new UrlBasedViewResolver();
+		UrlBasedViewResolver 	viewResolver 	= new UrlBasedViewResolver();
 		
 		viewResolver.setViewClass(JstlView.class);
 		viewResolver.setPrefix("/");

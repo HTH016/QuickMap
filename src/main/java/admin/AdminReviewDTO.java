@@ -4,14 +4,14 @@ import java.sql.Timestamp;
 
 public class AdminReviewDTO {
 
-	private int review_id;						// 회원 아이디
-	private String user_id;					// 업장 아이디
-	private int office_id ;			// 사업자 등록 번호
-	private String review_data;			// 사업자 등록 사진
-	private Double review_star;		// 요청일
+	private int review_id;						
+	private String user_id;					
+	private int office_id ;			
+	private String review_data;		
+	private Double review_star;		
 	private Timestamp review_reg;
 	private String user_nick;
-	private String review_shorten;			// 승인일
+	private String review_shorten;			
 	private String office_name;
 	
 	

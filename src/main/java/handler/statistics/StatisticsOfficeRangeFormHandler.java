@@ -20,12 +20,12 @@ import statistics.StatisticsFavoriteDTO;
 import statistics.StatisticsReviewDTO;
 
 @Controller
-public class StatisticsOfficeFormHandler implements CommandHandler {
+public class StatisticsOfficeRangeFormHandler implements CommandHandler {
 	
 	@Resource(name="statisticsDao")
 	private StatisticsDAO statisticsDao;
 	
-	@RequestMapping("/statisticsofficeform")
+	@RequestMapping("/statisticsofficerangeform")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -33,17 +33,12 @@ public class StatisticsOfficeFormHandler implements CommandHandler {
 		int office_id = 67;
 		String str_id = Integer.toString(office_id);
 		
-		String detailStartDate = "2023-01-01";
-		String detailEndDate = "2023-01-31";
-		String favoriteStartDate = "2023-01-01";
-		String favoriteEndDate = "2023-01-15";
-		String reviewStartDate = "2023-01-01";
-		String reviewEndDate = "2023-01-15";
-	
-	
-
-
-
+		String detailStartDate = request.getParameter( "officestart" );
+		String detailEndDate = request.getParameter( "officeend" );
+		String favoriteStartDate = request.getParameter( "officestart" );
+		String favoriteEndDate = request.getParameter( "officeend" );
+		String reviewStartDate = request.getParameter( "officestart" );
+		String reviewEndDate = request.getParameter( "officeend" );
 	
 		Map<String, String> mapDetail = new HashMap< String, String>();
 		mapDetail.put( "start", detailStartDate );

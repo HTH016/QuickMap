@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file="setting.jsp" %>
+<%@ include file="setting_admin.jsp" %>
 <script src="${project}script_qm_admin.js"></script>
 
 <c:if test="${(result eq 0)}">
@@ -13,5 +13,5 @@
 	<meta http-equiv="refresh" content="0; url=adminreviewlistform.do">
 </c:if>
 <c:if test="${(result eq 1)}">
-	<c:redirect url="url=adminreviewlistform.do"/>
+	<c:redirect url="adminreviewlistform.do"/>
 </c:if>	

@@ -2,6 +2,7 @@ package handler.admin;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,27 +17,19 @@ import handler.CommandHandler;
 @Controller
 public class AdminRequestGradeFormHandler implements CommandHandler {
 	
-	private AdminDAO adminDAO = new AdminDAO();
+	@Resource(name="adminDao")
+	private AdminDAO adminDao;
 	
 	@RequestMapping("/adminrequestgradeform")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		/* 페이지 생략 */
-		
-		int count = adminDAO.getRequestGradeCount();
-		// 승인 전 업장 카운트
-		
+		int count = adminDao.getRequestGradeCount();	
 		request.setAttribute( "count", count );
-		// 카운트 보내기
 		
 		if( count > 0 ) {
-			List<AdminRequestGradeDTO> dtos = adminDAO.getRequestGradeList( count );
-		//dto에 selectList
-			
-			request.setAttribute( "dtos", dtos ); 
-		// dtos 보내기
-			
+			List<AdminRequestGradeDTO> dtos = adminDao.getRequestGradeList( count );	
+			request.setAttribute( "dtos", dtos ); 	
 		}
 		
 		return new ModelAndView("admin/adminRequestGradeForm");

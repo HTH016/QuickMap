@@ -19,25 +19,25 @@ import statistics.StatisticsAdminSearchWordDTO;
 import statistics.StatisticsDAO;
 
 @Controller
-public class StatisticsAdminFormHandler implements CommandHandler {
+public class StatisticsAdminSearchFormHandler implements CommandHandler {
 	
 	@Resource(name="statisticsDao")
 	private StatisticsDAO statisticsDao;
 	
-	@RequestMapping("/statisticsadminform")
+	@RequestMapping("/statisticsadminsearchform")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 	int AD_LEVEL[] = {1, 10, 100, 1000, 10000};
 	int adIncome = 0;
 	
+	
 	String adSearchStartDate = "2023-01-01";
 	String adSearchEndDate = "2023-12-31";
-	String searchWordStartDate = "2023-01-01";
-	String searchWordEndDate = "2023-12-31";
+	String searchWordStartDate = request.getParameter( "searchstart" );
+	String searchWordEndDate = request.getParameter( "searchend" );
 	
 	DecimalFormat decFormat = new DecimalFormat("###,###");
-
 	
 	/*
 	  if( count > 0 ) {

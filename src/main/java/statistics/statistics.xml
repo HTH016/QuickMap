@@ -72,7 +72,7 @@
         -->
 
 		 SELECT TO_CHAR(b.dt, 'YYYY-MM-DD') AS detail_date
-     , NVL(SUM(a.cnt), 0) cnt
+     , NVL(SUM(a.cnt), 0) count
   FROM ( SELECT TO_CHAR(detail_date, 'YYYY-MM-DD') AS detail_date
               , COUNT(*) cnt
            FROM qm_statistics_detail
@@ -103,13 +103,13 @@
         -->
 
 		 SELECT TO_CHAR(b.dt, 'YYYY-MM-DD') AS favorite_reg
-     , NVL(SUM(a.cnt), 0) cnt
+     , NVL(SUM(a.cnt), 0) count
   FROM ( SELECT TO_CHAR(favorite_reg, 'YYYY-MM-DD') AS favorite_reg
               , COUNT(*) cnt
            FROM qm_favorite
           WHERE favorite_reg BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD')
                              AND TO_DATE(#{end}, 'YYYY-MM-DD') 
-                             and office_id = #{office_id, jdbcType=VARCHAR}
+                             and office_id = to_number(#{office_id, jdbcType=VARCHAR}, '99999')
           GROUP BY favorite_reg
         ) a
       , ( SELECT TO_DATE(#{start},'YYYY-MM-DD') + LEVEL - 1 AS dt
@@ -122,6 +122,8 @@
   ORDER BY b.dt
 	</select>
 	
+
+	
 	<select id="statisticsReview" resultType="statistics.StatisticsReviewDTO" parameterType="java.util.Map">
 		<!--  
 		select to_char( review_reg, 'YYYY-MM-DD') review_reg, count(*) count from qm_review
@@ -133,7 +135,7 @@
 		-->
 
 		 SELECT TO_CHAR(b.dt, 'YYYY-MM-DD') AS review_reg
-     , NVL(SUM(a.cnt), 0) cnt
+     , NVL(SUM(a.cnt), 0) count
   FROM ( SELECT TO_CHAR(review_reg, 'YYYY-MM-DD') AS review_reg
               , COUNT(*) cnt
            FROM qm_review

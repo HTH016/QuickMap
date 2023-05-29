@@ -4,12 +4,12 @@ import java.sql.Timestamp;
 
 public class AdminRequestGradeDTO {
 
-	private int grade_request_id;				// 신청 번호									// 회원 아이디
-	private int office_id;					// 업장 아이디
+	private int grade_request_id;				
+	private int office_id;					
 	private String office_name;
-	private String office_grade_id ;			// 사업자 등록 번호
-	private Timestamp grade_request_submit;		// 요청일
-	private Timestamp grade_request_confirm;		// 승인일
+	private String office_grade_id ;		
+	private Timestamp grade_request_submit;		
+	private Timestamp grade_request_confirm;		
 	public int getGrade_request_id() {
 		return grade_request_id;
 	}
