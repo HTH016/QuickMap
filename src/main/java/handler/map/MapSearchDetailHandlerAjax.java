@@ -254,12 +254,12 @@ public class MapSearchDetailHandlerAjax {
 		if(userId == null) {
 			paramRev.put("officeId", officeId);
 			
-			reviews	= reviewDao.getReviewByOffice(paramRev, false);
+			reviews	= reviewDao.getOfficeReviewList(paramRev, false);
 		} else {
 			paramRev.put("userId", userId);
 			paramRev.put("officeId", officeId);
 
-			reviews	= reviewDao.getReviewByOffice(paramRev, true);
+			reviews	= reviewDao.getOfficeReviewList(paramRev, true);
 		}
 		
 		for(ReviewDataBean review : reviews) {

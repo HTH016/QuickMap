@@ -14,6 +14,9 @@
 	<select id="getMember" parameterType="String" resultType="member.MemberDataBean">
 		select * from qm_user where user_id=#{user_id}
 	</select>
+	<select id="getMemberNick" parameterType="String" resultType="String">
+		select user_nick from qm_user where user_id=#{user_id}
+	</select>
 	<insert id="insertMember" parameterType="member.MemberDataBean">
 		insert into qm_user
 			(user_id, user_passwd, user_name, user_nick, user_tel, user_email, user_reg, grade_id) 

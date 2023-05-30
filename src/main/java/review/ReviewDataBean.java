@@ -3,13 +3,13 @@ package review;
 import java.sql.Timestamp;
 
 public class ReviewDataBean {
-	private String office_name;
-	private String review_data;
 	private int review_id;
-	private Timestamp review_reg;
-	private int review_star;
-	private String user_id;
 	private int office_id;
+	private String user_id;
+	private Timestamp review_reg;
+	private String review_data;
+	private double review_star;
+	private String office_name;
 	private String user_nick;
 	
 	public String getUser_nick() {
@@ -48,10 +48,10 @@ public class ReviewDataBean {
 	public void setReview_reg(Timestamp review_reg) {
 		this.review_reg = review_reg;
 	}
-	public int getReview_star() {
+	public double getReview_star() {
 		return review_star;
 	}
-	public void setReview_star(int review_star) {
+	public void setReview_star(double review_star) {
 		this.review_star = review_star;
 	}
 	public String getUser_id() {

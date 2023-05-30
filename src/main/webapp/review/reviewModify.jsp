@@ -22,7 +22,7 @@
 			<th colspan=2>
 				<input type="submit" value="${btn_modify}">
 				<input type="reset" value="${btn_cancel}">
-				<input type="button" value="${btn_modifycancel}" onclick="location='reviewlist.do'">
+				<input type="button" value="${btn_modify_cancel}" onclick="location='reviewlist.do'">
 			</th>
 		</tr>
 	</table>

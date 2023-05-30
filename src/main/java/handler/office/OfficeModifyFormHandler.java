@@ -25,7 +25,7 @@ public class OfficeModifyFormHandler implements CommandHandler {
 		String user_id = (String) request.getSession().getAttribute("memId");
 		
 		if(user_id != null) {
-			OfficeDataBean dto = officeDao.getOffice(user_id);
+			OfficeDataBean dto = officeDao.getOfficeInfo(user_id);
 			request.setAttribute("dto", dto);
 			
 			return new ModelAndView("office/officeModifyForm");

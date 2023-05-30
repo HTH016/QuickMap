@@ -24,7 +24,7 @@ public class OfficeAdRequestHandler implements CommandHandler {
 		
 		String user_id = (String) request.getSession().getAttribute("memId");
 		
-		OfficeDataBean dto = officeDao.getOffice(user_id);
+		OfficeDataBean dto = officeDao.getOfficeInfo(user_id);
 		request.setAttribute("dto", dto);
 		
 		return new ModelAndView("office/officeAdRequest");

@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import handler.CommandHandler;
+import member.MemberDao;
+import office.OfficeDAO;
 import review.ReviewDAO;
-import review.ReviewDataBean;
 
 @Controller
 public class ReviewWriteHandler implements CommandHandler {
@@ -18,17 +19,24 @@ public class ReviewWriteHandler implements CommandHandler {
 	@Resource
 	private ReviewDAO reviewDao;
 	
+	@Resource
+	private OfficeDAO officeDao;
+	
+	@Resource
+	private MemberDao memberDao;
+	
 	@RequestMapping("/reviewwrite")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-//		int office_id = Integer.parseInt(request.getParameter("office_id"));
-		int office_id = 26;
+		String	userId		= request.getParameter("userId"); 
+		int		officeId	= Integer.parseInt(request.getParameter("officeId"));
 		
-		ReviewDataBean dto = reviewDao.getOffice(office_id);
-		request.setAttribute("dto", dto);
+		request.setAttribute("officeId", officeId);
+//		request.setAttribute("userId", officeId);
+		request.setAttribute("officeName", officeDao.getOfficeName(officeId));
+		request.setAttribute("userNick", memberDao.getMemberNick(userId));
 		
-
 		return new ModelAndView("review/reviewWrite");
 	}
 

@@ -29,7 +29,7 @@ public class ReviewModifyProHandler implements CommandHandler {
 		dto.setReview_star(Integer.parseInt(request.getParameter("review_star")));
 		dto.setReview_data(request.getParameter("review_data"));
 		
-		int result = reviewDao.modifyData(dto);
+		int result = reviewDao.modifyReview(dto);
 		
 		request.setAttribute("result", result);
 		

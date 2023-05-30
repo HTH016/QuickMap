@@ -39,11 +39,11 @@ public class ReviewListByOfficeHandler implements CommandHandler {
 		
 		
 		// 로그인 X
-		List<ReviewDataBean> review = reviewDao.getReviewByOffice(param, false);
+		List<ReviewDataBean> review = reviewDao.getOfficeReviewList(param, false);
 		request.setAttribute("review", review);
 		
 		// 로그인 O
-		List<ReviewDataBean> reviewLogin = reviewDao.getReviewByOffice(param, true);
+		List<ReviewDataBean> reviewLogin = reviewDao.getOfficeReviewList(param, true);
 		request.setAttribute("review", reviewLogin);
 		
 		

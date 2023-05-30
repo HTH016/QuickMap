@@ -5,14 +5,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Office">
-	<select id="getOffice" parameterType="String" resultType="office.OfficeDataBean">
+	<select id="getOfficeInfoByUserId" parameterType="String" resultType="office.OfficeDataBean">
 		select * from qm_office where user_id=#{user_id}
 	</select>
-	<select id="getOfficeById" parameterType="int" resultType="office.OfficeRegisterDataBean">
+	<select id="getOfficeInfoByOfficeId" parameterType="int" resultType="office.OfficeDataBean">
+		select * from qm_office where office_id=#{office_id}
+	</select>
+	<select id="getOfficeReg" parameterType="int" resultType="office.OfficeRegisterDataBean">
 		select * from qm_office where office_id=#{office_id}
 	</select>
 	<select id="getOfficeAd" parameterType="String" resultType="office.OfficeAdRequestDataBean">
 		select * from qm_office where user_id=#{user_id}
+	</select>
+	<select id="getOfficeName" parameterType="int" resultType="String">
+		select office_name from qm_office where office_id=#{office_id}
 	</select>
 	<update id="modifyOffice" parameterType="office.OfficeDataBean">
 		update qm_office set service_id=#{service_id}, office_tel=#{office_tel},
@@ -37,6 +43,11 @@
 		values(#{office_id}, #{ad_request_start}, #{ad_request_end}, #{ad_request_level}, #{ad_request_submit})
 	</insert>
 	<insert id="gradeRequest" parameterType="office.OfficeDataBean">
+		insert into qm_office_grade_request
+		(office_id, grade_id, grade_request_submit)
+		values (#{office_id}, #{grade_id}, #{grade_request_submit})
+	</insert>
+	<insert id="updateReviewInfo" parameterType="map">
 		insert into qm_office_grade_request
 		(office_id, grade_id, grade_request_submit)
 		values (#{office_id}, #{grade_id}, #{grade_request_submit})

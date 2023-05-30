@@ -10,38 +10,38 @@ import mybatis.SqlMapClient;
 public class ReviewDBBean implements ReviewDAO {
 	private SqlSession session = SqlMapClient.getSession();
 	
-	public int deleteData(int review_id) {
-		return session.delete("Review.deleteData", review_id);
+	public int deleteReview(int review_id) {
+		return session.delete("Review.deleteReview", review_id);
 	}
 	
 	public int getReviewCount() {
-		return session.selectOne("Review.getReviewCount");
+		return session.selectOne("Review.getReviewCountAll");
 	}
 	
 	// map : userId, officeId
 	public int getReviewCount(Map<String, Object> param) {
-		return session.selectOne("Review.getReviewCountByIds", param);
+		return session.selectOne("Review.getReviewCountById", param);
 	}
 	
-	public ReviewDataBean getData(int review_id) {
-		return session.selectOne("Review.getData", review_id);
+	public ReviewDataBean getReview(int review_id) {
+		return session.selectOne("Review.getReview", review_id);
 	}
 	
-	public ReviewDataBean getOffice(int office_id) {
-		return session.selectOne("Review.getOffice", office_id);
+	public ReviewDataBean getOfficeReview(int office_id) {
+		return session.selectOne("Review.getOfficeReview", office_id);
 	}
 	// 내가 쓴 리뷰 확인 (user_id당 리뷰 리스트)
-	public List<ReviewDataBean> getReview(String user_id) {
-		return session.selectList("Review.getReview", user_id);
+	public List<ReviewDataBean> getMyReviewList(String user_id) {
+		return session.selectList("Review.getMyReviewList", user_id);
 	}
 	
 	// 특정 업장 리뷰 확인 (office_id당 리뷰 리스트)
 	// user_id O / user_id X
-	public List<ReviewDataBean> getReviewByOffice(Map<String, Object> param, boolean hasUserId) {
-		if(! hasUserId) {
-			return session.selectList("Review.getReviewByOfficeNoLogin", param);
+	public List<ReviewDataBean> getOfficeReviewList(Map<String, Object> param, boolean hasUserId) {
+		if(hasUserId) {
+			return session.selectList("Review.getOfficeReviewList", param);
 		} else {
-			return session.selectList("Review.getReviewByOffice", param);
+			return session.selectList("Review.getOfficeReviewListNoLogin", param);
 		}
 	}
 	
@@ -49,8 +49,8 @@ public class ReviewDBBean implements ReviewDAO {
 		return session.insert("Review.insertReview", dto);
 	}
 	
-	public int modifyData(ReviewDataBean dto) {
-		return session.update("Review.modifyData", dto);
+	public int modifyReview(ReviewDataBean dto) {
+		return session.update("Review.modifyReview", dto);
 	}
 	
 }

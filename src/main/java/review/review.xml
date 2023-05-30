@@ -5,55 +5,55 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Review">
-	<select id="getReview" parameterType="String" resultType="review.ReviewDataBean">
+	<delete id="deleteReview" parameterType="int">
+		delete from qm_review where review_id=#{review_id}
+	</delete>
+	<select id="getReviewCountAll" resultType="int">
+		select count(*) from qm_review
+	</select>
+	<select id="getReviewCountById" resultType="int">
+		select count(*) from qm_review where user_id=#{userId} and office_id=#{officeId}
+	</select>
+	<select id="getReview" parameterType="int" resultType="review.ReviewDataBean">
+		select o.office_name, r.review_star, r.review_data, r.review_id
+		from qm_office o, qm_review r
+		where o.office_id = r.office_id
+		and r.review_id = #{review_id}
+	</select>
+	<select id="getOfficeReview" parameterType="int" resultType="review.ReviewDataBean">
+		select o.office_name, r.review_star, r.review_data, r.review_id
+		from qm_office o, qm_review r
+		where o.user_id = r.user_id
+		and r.office_id = #{office_id}
+	</select>
+	<select id="getMyReviewList" parameterType="String" resultType="review.ReviewDataBean">
 		select o.office_name, r.review_star, r.review_data, r.review_reg, r.review_id
 		from qm_office o, qm_review r
 		where o.office_id = r.office_id
 		and r.user_id = #{user_id}
 		order by r.review_reg desc
 	</select>
-	<select id="getReviewByOffice" parameterType="Map" resultType="review.ReviewDataBean">
+	<select id="getOfficeReviewList" parameterType="Map" resultType="review.ReviewDataBean">
 		select review_id, office_id, r.user_id, review_reg, review_data, review_star, user_nick
 		from qm_review r, qm_user u
 		where   r.user_id = u.user_id
 			and office_id = #{officeId}
 		order by (case when user_id = #{userId, jdbcType=VARCHAR} then 0 else 1 end), review_reg desc
 	</select>
-	<select id="getReviewByOfficeNoLogin" parameterType="Map" resultType="review.ReviewDataBean">
+	<select id="getOfficeReviewListNoLogin" parameterType="Map" resultType="review.ReviewDataBean">
 		select review_id, office_id, r.user_id, review_reg, review_data, review_star, user_nick
 		from qm_review r, qm_user u
 		where   r.user_id = u.user_id
 			and office_id = #{officeId}
 		order by review_reg desc
 	</select>
-	<select id="getReviewCount" resultType="int">
-		select count(*) from qm_review
-	</select>
-	<select id="getReviewCountByIds" resultType="int">
-		select count(*) from qm_review where user_id=#{userId} and office_id=#{officeId}
-	</select>
-	<select id="getData" parameterType="int" resultType="review.ReviewDataBean">
-		select o.office_name, r.review_star, r.review_data, r.review_id
-		from qm_office o, qm_review r
-		where o.office_id = r.office_id
-		and r.review_id = #{review_id}
-	</select>
-	<update id="modifyData" parameterType="review.ReviewDataBean">
-		update qm_review set review_star=#{review_star}, review_data=#{review_data} where review_id=#{review_id}
-	</update>
-	<delete id="deleteData" parameterType="int">
-		delete from qm_review where review_id=#{review_id}
-	</delete>
-	<select id="getOffice" parameterType="int" resultType="review.ReviewDataBean">
-		select o.office_name, r.review_star, r.review_data, r.review_id
-		from qm_office o, qm_review r
-		where o.user_id = r.user_id
-		and r.office_id = #{office_id}
-	</select>
 	<insert id="insertReview" parameterType="review.ReviewDataBean">
 		insert into qm_review
 		(office_id, user_id, review_reg, review_data, review_star)
 		values(#{office_id}, #{user_id}, #{review_reg}, #{review_data}, #{review_star})		
 	</insert>
+	<update id="modifyReview" parameterType="review.ReviewDataBean">
+		update qm_review set review_star=#{review_star}, review_data=#{review_data} where review_id=#{review_id}
+	</update>
 </mapper>
 

@@ -22,7 +22,7 @@ public class ReviewDeleteHandler implements CommandHandler {
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		int review_id = Integer.parseInt(request.getParameter("review_id"));
-		int result = reviewDao.deleteData(review_id);
+		int result = reviewDao.deleteReview(review_id);
 		
 		request.setAttribute("result", result);
 		request.setAttribute("review_id", review_id);

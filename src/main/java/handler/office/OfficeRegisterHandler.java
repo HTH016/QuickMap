@@ -24,7 +24,7 @@ public class OfficeRegisterHandler implements CommandHandler {
 		
 //		int office_id = (int) request.getSession().getAttribute(null);
 		
-		OfficeRegisterDataBean dto = officeDao.getOfficeById(26);
+		OfficeRegisterDataBean dto = officeDao.getOfficeReg(26);
 		request.setAttribute("dto", dto);
 		
 		

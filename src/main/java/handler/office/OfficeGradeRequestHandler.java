@@ -26,7 +26,7 @@ public class OfficeGradeRequestHandler implements CommandHandler {
 
 		String user_id = (String) request.getSession().getAttribute("memId");
 		
-		OfficeDataBean dto = officeDao.getOffice(user_id);
+		OfficeDataBean dto = officeDao.getOfficeInfo(user_id);
 		request.setAttribute("dto", dto);
 		
 		int office_id = dto.getOffice_id();

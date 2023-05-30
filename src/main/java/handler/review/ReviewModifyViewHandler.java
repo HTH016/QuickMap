@@ -23,7 +23,7 @@ public class ReviewModifyViewHandler implements CommandHandler {
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		int review_id = Integer.parseInt(request.getParameter("review_id"));
-		ReviewDataBean dto = reviewDao.getData(review_id);
+		ReviewDataBean dto = reviewDao.getReview(review_id);
 		request.setAttribute("dto", dto);
 //		request.setAttribute("review_id", review_id);
 		

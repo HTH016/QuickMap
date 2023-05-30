@@ -27,7 +27,7 @@ public class ReviewListHandler implements CommandHandler {
 		List<ReviewDataBean> dtos = null;
 		
 		if(reviewDao.getReviewCount() > 0) {
-			dtos = reviewDao.getReview((String) request.getSession().getAttribute("memId"));
+			dtos = reviewDao.getMyReviewList((String) request.getSession().getAttribute("memId"));
 		}
 		
 		request.setAttribute("dtos", dtos);

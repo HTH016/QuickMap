@@ -40,6 +40,10 @@ public class MemberDBBean implements MemberDao {
 		return session.selectOne("User.getMember", user_id);
 	}
 	
+	public String getMemberNick(String user_id) {
+		return session.selectOne("User.getMemberNick", user_id);
+	}
+	
 	public int insertMember(MemberDataBean dto) {
 		return session.insert("User.insertMember", dto);
 	}
@@ -47,8 +51,6 @@ public class MemberDBBean implements MemberDao {
 	public int modifyMember(MemberDataBean dto) {
 		return session.update("User.modifyMember", dto);
 	}
-	
-	
 	
 	
 }
