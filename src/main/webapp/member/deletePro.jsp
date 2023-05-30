@@ -6,7 +6,7 @@
 
 <script src="${project}member.js"></script>
 
-<h2>회원탈퇴</h2>
+<h2>${page_delete}</h2>
 
 <c:if test="${resultCheck eq 0}">
 	<script type="text/javascript">
@@ -22,6 +22,6 @@
 	</c:if>
 	<c:if test="${result eq 1}">
 		${sessionScope.memId = null}
-		<c:redirect url="지도"/>
+		<c:redirect url="main.do"/>
 	</c:if>
 </c:if>

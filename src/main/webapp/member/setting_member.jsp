@@ -19,10 +19,11 @@
 
 <c:set var="msg_main" value= "로그인 하시고 퀵맵의 모든 서비스를 이용하세요"/>
 <c:set var="msg_input" value = "회원정보를 입력해 주세요"/>
-<c:set var="msg_use_o" value="는 사용할 수 있습니다"/>
-<c:set var="msg_use_x" value="는 사용할 수 없습니다"/>
+<c:set var="msg_use_o" value="은(는) 사용할 수 있습니다"/>
+<c:set var="msg_use_x" value="은(는) 사용할 수 없습니다"/>
 <c:set var="msg_passwd" value = "비밀번호를 한번 더 입력해주세요"/>
 <c:set var="msg_modify" value = "수정할 정보를 입력하세요"/>
+<c:set var="msg_passwd" value = "비밀번호를 입력하세요"/>
 	
 <c:set var="str_user_id" value = "아이디"/>
 <c:set var="str_user_passwd" value = "비밀번호"/>
@@ -45,3 +46,15 @@
 <c:set var="btn_delete_cancel" value="탈퇴 취소"/>
 <c:set var="btn_modify" value="수정"/>
 <c:set var="btn_modify_cancel" value="수정 취소"/>
+<c:set var="btn_office_modify" value="업장수정"/>
+<c:set var="btn_ad_requset" value="광고신청"/>
+<c:set var="btn_premium" value="프리미엄"/>
+<c:set var="btn_admin" value="관리자"/>
+<c:set var="btn_favorite" value="즐겨찾기"/>
+<c:set var="btn_review" value="이용후기"/>
+
+
+
+
+
+

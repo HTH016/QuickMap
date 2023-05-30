@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="setting_review.jsp"%>
-<h2> 리뷰 수정 </h2>
+<h2> ${page_review_modify} </h2>
 
 <form method="post" action="reviewmodifypro.do" name="reviewmodify" onsubmit="return modifycheck()">
 	<input type="hidden" name="review_id" value="${dto.review_id}">

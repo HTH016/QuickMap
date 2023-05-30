@@ -30,8 +30,9 @@ public class OfficeModifyProHandler implements CommandHandler {
 		
 		OfficeDataBean dto = new OfficeDataBean();
 		
-		// ȫ������ ���ε�
+		// 홍보사진 업로드
 		request.setCharacterEncoding("UTF-8");
+		
 		ServletContext context = request.getServletContext();
 		String dirPath	= "/image_reg";
 		String realPath = context.getRealPath(dirPath);
@@ -46,10 +47,13 @@ public class OfficeModifyProHandler implements CommandHandler {
 				encType, 
 				new DefaultFileRenamePolicy()
 		);
+		
+		// 홍보사진 경로 : 예외처리 file1, file2, file3 중에 ""이 있는 경우
 		ArrayList<String> arrNames = new ArrayList<>();
 		String systemName1 = multi.getFilesystemName("office_image1");
 		String systemName2 = multi.getFilesystemName("office_image2");
 		String systemName3 = multi.getFilesystemName("office_image3");
+		
 		if(systemName1 != null ) {
 			arrNames.add(systemName1);
 		}
@@ -59,14 +63,18 @@ public class OfficeModifyProHandler implements CommandHandler {
 		if(systemName3 != null) {
 			arrNames.add(systemName3);
 		}
+		
 		String filePath = "";
 
 		for(String name : arrNames) {
- 			filePath += dirPath + "/" + name + ";" ;	
+ 			filePath += dirPath + "/" + name + ";" ;
+ 			
  		}
+		
 		if(!filePath.isEmpty()) {
 			filePath = filePath.substring(0, filePath.length()-1);
 		}
+			
 		System.out.println("filePath : " + filePath);
 		dto.setOffice_image(filePath);	
 			
@@ -80,6 +88,7 @@ public class OfficeModifyProHandler implements CommandHandler {
 		
 		dto.setService_id(Integer.parseInt(multi.getParameter("service_id")));
 		dto.setOffice_tel(multi.getParameter("office_tel"));
+
 		dto.setOffice_business_hours_noti(multi.getParameter("office_business_hours_noti"));
 		dto.setOffice_start_mon(multi.getParameter("office_start_mon"));
 		dto.setOffice_end_mon(multi.getParameter("office_end_mon"));

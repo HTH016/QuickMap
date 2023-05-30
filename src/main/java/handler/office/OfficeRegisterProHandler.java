@@ -31,7 +31,8 @@ public class OfficeRegisterProHandler implements CommandHandler {
 		
 		request.setCharacterEncoding("utf-8");
 		
-//		String user_id = (String) request.getSession().getAttribute("memId");		
+//		String user_id = (String) request.getSession().getAttribute("memId");
+//		int office_id = 0;
 		
 		OfficeRegisterDataBean dto = new OfficeRegisterDataBean();
 		dto.setUser_id("aaa");

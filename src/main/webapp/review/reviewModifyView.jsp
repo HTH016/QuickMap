@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="setting_review.jsp"%>
-<h2> 리뷰 확인 </h2>
+<h2> ${page_review_view} </h2>
 
 <form method="post" action="reviewdelete.do" onsubmit="return deletedata()">
 	<input type="hidden" name="review_id" value="${dto.review_id}">
@@ -20,9 +20,9 @@
 		</tr>
 		<tr>
 			<th colspan=2>
-				<input type="button" value="수정"
+				<input type="button" value="${btn_modify}"
 				onclick="location='reviewmodify.do?review_id=${dto.review_id}'">
-				<input type="submit" value="삭제">
+				<input type="submit" value="${btn_delete}">
 			</th>
 		</tr>
 	</table>

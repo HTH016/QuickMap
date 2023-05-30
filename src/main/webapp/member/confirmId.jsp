@@ -17,7 +17,7 @@
 		</tr>
 		<tr>
 			<th>
-				<input type="button" value="확인"
+				<input type="button" value="${btn_ok}"
 					onclick="setid('${user_id}')">
 			</th>
 		</tr>
@@ -35,8 +35,8 @@
 			</tr>
 			<tr>
 				<th colspan=2>
-					<input type="submit" value="확인">
-					<input type="button" value="확인 취소"
+					<input type="submit" value="${btn_ok}">
+					<input type="button" value="${btn_cancel}"
 						onclick="self.close()">
 				</th>
 			</tr>

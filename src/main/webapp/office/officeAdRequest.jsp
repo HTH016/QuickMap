@@ -4,34 +4,34 @@
 <%@ include file="setting_office.jsp"%>
 <script src="${project}office.js"></script>
 
-<h2> 광고 신청 </h2>
+<h2> ${page_ad_request} </h2>
 <c:if test="${sessionScope.memId == null}">
-	<input type="button" value="로그인" onclick="location='memberloginform.do'">
+	<input type="button" value="${btn_login}" onclick="location='memberloginform.do'">
 </c:if>
 <c:if test="${sessionScope.memId != null}">
 <form method="post" name="officeadrequest" action="officeadrequestpro.do" onsubmit="return adrequestcheck()">
 	<table>
 		<tr>
-			<th> 업장 id </th>
+			<th> ${str_office_id} </th>
 			<td> ${dto.office_id} </td>
 		</tr>
 		<tr>
-			<th> 광고 시작일 </th>
+			<th> ${str_ad_start} </th>
 			<td> <input type="date" name="ad_request_start"> </td>
 		</tr>
 		<tr>
-			<th> 광고 종료일 </th>
+			<th> ${str_ad_end}</th>
 			<td> <input type="date" name="ad_request_end"> </td>
 		</tr>
 		<tr>
-			<th> 광고 레벨 </th>
+			<th> ${str_ad_level} </th>
 			<td> <input type="text" name="ad_request_level"> </td>
 		</tr>
 		<tr>
 			<th colspan=2>
-				<input type="submit" value="신청">
-				<input type="reset" value="취소">
-				<input type="button" value="신청 취소" onclick="location='membermodifyview.do'">
+				<input type="submit" value="${btn_request}">
+				<input type="reset" value="${btn_cancel}">
+				<input type="button" value="${btn_request_cancel}" onclick="location='membermodifyview.do'">
 			</th>
 		</tr>
 	</table>

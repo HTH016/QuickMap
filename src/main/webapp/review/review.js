@@ -28,6 +28,7 @@ function modifycheck() {
 	}
 }
 
+// 리뷰작성
 function writecheck() {
 	if(! reviewwrite.review_star.value) {
 		alert(starerror);

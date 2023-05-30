@@ -151,14 +151,14 @@ function inputcheck() {
 	}
 	if(inputform.email1.value) {
 		if( inputform.email2.value == "0" ) {
-			// 직접 입력이면 이거해
+			// 직접 입력
 			if(inputform.email1.value.indexOf("@")== -1) {				// 존재하지 않으면 -1
 				alert(emailerror);
 				inputform.email1.focus();
 				return false;
 			}
 		} else {
-			// 직접 입력이 아니면 이거해
+			// 직접 입력 X
 			if(inputform.email1.value.indexOf("@") != -1) {			
 				alert(emailerror);
 				inputform.email1.focus();
@@ -184,13 +184,6 @@ function nextemail1() {
 		inputform.email1.focus();
 	}
 }
-
-
-
-
-
-
-
 
 
 

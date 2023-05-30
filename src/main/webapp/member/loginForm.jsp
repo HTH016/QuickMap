@@ -23,9 +23,9 @@
 		</tr>
 		<tr>
 			<th colspan=2>
-				<input type="submit" value="로그인">
-				<input type="reset" value="취소">
-				<input type="button" value="회원가입" onclick="location='memberinputform.do'">
+				<input type="submit" value="${btn_login}">
+				<input type="reset" value="${btn_cancel}">
+				<input type="button" value="${btn_member}" onclick="location='memberinputform.do'">
 			</th>
 		</tr>
 	</table>

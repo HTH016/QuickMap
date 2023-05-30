@@ -7,111 +7,115 @@
 <script type="text/javascript" src="/quickmap/jquery-3.6.4.js"></script>
 <script src="${project}member.js"></script>
 
-<h2>회원정보수정</h2>
+<h2>${page_modify}</h2>
 
 <c:if test="${sessionScope.memId == null}">
-	<input type="button" value="확인" onclick="location='memberloginform.do'">
+	<input type="button" value="${btn_login}" onclick="location='memberloginform.do'">
 </c:if>
 <c:if test="${sessionScope.memId != null}">
 	<form method="post" action="membermodifypro.do" name="modifyform" onsubmit="return modifycheck()">
-	<table>
-		<tr>
-				<th colspan=2> 회원정보수정 </th>
-		</tr>
-		<tr>
-			<th> ID </th>
-			<td> &nbsp;${dto.user_id} </td>
-		</tr>
-		<tr>
-			<th rowspan=2> PW </th>
-			<td> <input type="password" name="user_passwd" maxlength=30
-				autofocus value="${dto.user_passwd}">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<input type="password" name="user_repasswd" maxlength=30
-				value="${dto.user_passwd}">
-			</td>
-		</tr>
-		<tr>
-			<th> 이름 </th>
-			<td> &nbsp; ${dto.user_name} </td>
-		</tr>
-		<tr>
-			<th> 닉네임 </th>
-			<td> &nbsp; ${dto.user_nick} </td>
+		<table>
+			<tr>
+				<th colspan=2> ${page_modify} </th>
+			</tr>
+			<tr>
+				<th> ${str_user_id} </th>
+				<td> &nbsp;${dto.user_id} </td>
+			</tr>
+			<tr>
+				<th rowspan=2> ${str_user_passwd} </th>
+				<td> <input type="password" name="user_passwd" maxlength=30
+					autofocus value="${dto.user_passwd}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="password" name="user_repasswd" maxlength=30
+					value="${dto.user_passwd}">
+				</td>
+			</tr>
+			<tr>
+				<th> ${str_user_name} </th>
+				<td> &nbsp; ${dto.user_name} </td>
+			</tr>
+			<tr>
+				<th> ${str_user_nick} </th>
+				<td> &nbsp; ${dto.user_nick} </td>
 				<td>
 					<input type="text" name="nick" maxLength="30" autofocus
 							value="${dto.getUser_nick()}">
-					<input type="button" value="중복확인"
+					<input type="button" value="${btn_confirm}"
 							onclick="confirmnick('modifyform')">
 				</td>
-		</tr>
-		<tr>
-			<th> 전화번호 </th>
-			<td>
-				<c:if test="${dto.user_tel eq null}">
-					<input type="text" name="tel1" maxlength=3 style="width:30px">
-					- <input type="text" name="tel2" maxlength=4 style="width:40px">
-					- <input type="text" name="tel3" maxlength=4 style="width:40px">
-				</c:if>
-				<c:if test="${dto.user_tel ne null}">
-					<c:set var="t" value="${fn:split(dto.user_tel, '-')}"/>
-					<input type="text" name="tel1" maxlength=3 style="width:30px" value="${t[0]}">
-					- <input type="text" name="tel2" maxlength=4 style="width:40px" value="${t[1]}">
-					- <input type="text" name="tel3" maxlength=4 style="width:40px" value="${t[2]}">
-				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<th> 이메일 </th>
-			<td>
-				<c:if test="${dto.user_email eq null}">
-					<input type="text" name="email1" maxlength=25 style="width:100px">
-					@ <input type="text" name="email2" maxlength=25 style="width:100px">
-				</c:if>
-				<c:if test="${dto.user_email ne null}">
-					<c:set var="e" value="${fn:split(dto.user_email, '@')}"/>
-					<input type="text" name="email1" maxlength=25
-						value="${e[0]}" style="width:100px">
-					@ <input type="text" name="email2" maxlength=25
-						value="${e[1]}" style="width:100px">
-				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<th> 가입일자 </th>
-			
-			<td>
+			</tr>
+			<tr>
+				<th> ${str_user_tel} </th>
+				<td>
+					<c:if test="${dto.user_tel eq null}">
+						<input type="text" name="tel1" maxlength=3 style="width:30px">
+						- <input type="text" name="tel2" maxlength=4 style="width:40px">
+						- <input type="text" name="tel3" maxlength=4 style="width:40px">
+					</c:if>
+					<c:if test="${dto.user_tel ne null}">
+						<c:set var="t" value="${fn:split(dto.user_tel, '-')}"/>
+						<input type="text" name="tel1" maxlength=3 style="width:30px" value="${t[0]}">
+						- <input type="text" name="tel2" maxlength=4 style="width:40px" value="${t[1]}">
+						- <input type="text" name="tel3" maxlength=4 style="width:40px" value="${t[2]}">
+					</c:if>
+				</td>
+			</tr>
+			<tr>
+				<th> ${str_user_email} </th>
+				<td>
+					<c:if test="${dto.user_email eq null}">
+						<input type="text" name="email1" maxlength=25 style="width:100px">
+						@ <input type="text" name="email2" maxlength=25 style="width:100px">
+					</c:if>
+					<c:if test="${dto.user_email ne null}">
+						<c:set var="e" value="${fn:split(dto.user_email, '@')}"/>
+						<input type="text" name="email1" maxlength=25
+							value="${e[0]}" style="width:100px">
+						@ <input type="text" name="email2" maxlength=25
+							value="${e[1]}" style="width:100px">
+					</c:if>
+				</td>
+			</tr>
+			<tr>
+				<th> ${str_user_reg_date} </th>
+				
+				<td>
 					&nbsp; <fmt:formatDate value="${dto.user_reg}" type="both" pattern="yyyy-MM-dd HH:mm:ss"/>
-			</td>
-		</tr>
-		<tr>
-			<th> 회원등급 </th>
-			<td>
+				</td>
+			</tr>
+			<tr>
+				<th> ${str_user_grade_id} </th>
+				<td>
 					<c:if test="${dto.grade_id eq 2}">
 						&nbsp; ${dto.grade_id}
-				</c:if>
+					</c:if>
 					<c:if test="${dto.grade_id eq 3}">
 						&nbsp; ${dto.grade_id}
-						<input type="button" value="업장수정" onclick="location='officemodifyform.do'">
-						<input type="button" value="광고신청" onclick="location='officeadrequest.do'">
-						<input type="button" value="프리미엄" onclick="premium()">
-				</c:if>
+						<input type="button" value="${btn_office_modify}" onclick="location='officemodifyform.do'">
+						<input type="button" value="${btn_ad_requset}" onclick="location='officeadrequest.do'">
+						<input type="button" value="${btn_premium}" onclick="premium()">
+					</c:if>
+					<c:if test="${dto.grade_id eq 9}">
+						&nbsp; ${dto.grade_id}
+						<input type="button" value="${btn_admin}" onclick="location='adminuserlistform.do'">
+					</c:if>
 				</td>
 			</tr>
 			<tr>
 				<th colspan=2>
-					<input type="submit" value="수정">
-					<input type="reset" value="취소">
-					<input type="button" value="즐겨찾기" onclick="location='favoritelist.do'">
-					<input type="button" value="이용후기" onclick="location='reviewlist.do'">
-					<input type="button" value="수정취소" onclick="location='main.do'">
+					<input type="submit" value="${btn_modify}">
+					<input type="reset" value="${btn_cancel}">
+					<input type="button" value="${btn_favorite}" onclick="location='favoritelist.do'">
+					<input type="button" value="${btn_review}" onclick="location='reviewlist.do'">
+					<input type="button" value="${btn_modify_cancel}" onclick="location='main.do'">
 				</th>
 			</tr>
 		</table>
-</form>
+	</form>
 </c:if>
 <script type="text/javascript">
 	function premium() {
@@ -123,3 +127,4 @@
 		}
 	}
 </script>
+

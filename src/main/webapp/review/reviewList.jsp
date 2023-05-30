@@ -22,7 +22,7 @@
 	<c:if test="${reviewDao.getReviewCount() eq 0}">
 		<tr>
 			<td style="text-align:center" colspan=5>
-			작성한 리뷰가 존재하지 않습니다
+			${msg_review_x}
 			</td>
 		</tr>
 	</c:if>

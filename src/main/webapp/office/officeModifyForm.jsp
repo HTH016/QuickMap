@@ -9,7 +9,7 @@
 <h2>${page_office_modify}</h2>
 
 <c:if test="${sessionScope.memId == null}">
-	<input type="button" value="로그인" onclick="location='memberloginform.do'">
+	<input type="button" value="${btn_login}" onclick="location='memberloginform.do'">
 </c:if>
 <c:if test="${sessionScope.memId != null}">
 <form method="post" action="officemodifypro.do" name="officemodify"
@@ -158,9 +158,9 @@
 		</tr>
 		<tr>
 			<th colspan=4>
-				<input type="submit" value="수정">
-				<input type="reset" value="취소">
-				<input type="button" value="수정취소" onclick="location='membermodifyview.do'">
+				<input type="submit" value="${btn_modify}">
+				<input type="reset" value="${btn_cancel}">
+				<input type="button" value="${btn_modify_cancel}" onclick="location='membermodifyview.do'">
 			</th>
 		</tr>
 	</table>

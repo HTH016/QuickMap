@@ -21,16 +21,14 @@
 		<th style="width:5%"> ${str_office_star}(${str_office_review_num}) </th>
 		<th style="width:15%"> ${str_favorite_reg} </th>
 	</tr>
-	<!-- 
 	<c:if test="${favoriteDao.getCount eq 0}">
 		<tr>
 			<td style="text-align:center" colspan=5>
-			즐겨찾기한 목록이 존재하지 않습니다
+			${msg_favorite_x}
 			</td>
 		</tr>
 	</c:if>
-	<c:if test="${favoriteDao.getCount ne 0}"></c:if>--> 
-
+	<c:if test="${favoriteDao.getCount ne 0}"></c:if>
 	<c:forEach var="dto" items="${dtos}">
 		<tr>
 			<td style="text-align:center"> 

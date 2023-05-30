@@ -18,7 +18,7 @@
 			<th> ${str_user_id} </th>
 			<td>
 				<input type="text" name="user_id" maxlength=30 autofocus>
-				<input type="button" value="중복확인" onclick="confirmid()">
+				<input type="button" value="${btn_confirm}" onclick="confirmid()">
 			</td>
 		</tr>
 		<tr>
@@ -36,7 +36,7 @@
 			<th> ${str_user_nick} </th>
 			<td>
 				<input type="text" name="user_nick" maxlength=50>
-				<input type="button" value="중복확인" onclick="confirmnick('inputform')">	
+				<input type="button" value="${btn_confirm}" onclick="confirmnick('inputform')">	
 			</td>
 		</tr>
 		<tr>
@@ -67,9 +67,9 @@
 		</tr>
 		<tr>
 			<th colspan=2>
-				<input type="submit" value="가입">
-				<input type="reset" value="취소">
-				<input type="button" value="가입취소"
+				<input type="submit" value="${btn_input}">
+				<input type="reset" value="${btn_cancel}">
+				<input type="button" value="${btn_input_cancel}"
 				onclick="location='main.do'">
 			</th>
 		</tr>
