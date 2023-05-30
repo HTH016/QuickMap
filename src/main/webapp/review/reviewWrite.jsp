@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td> ${str_review_star} </td>
-				<td> <input type="text" name="review_star" maxlength=20> </td>
+				<td> <input type="number" name="review_star" max=5 min=1 step=0.1> </td>
 			</tr>
 			<tr>
 				<td> ${str_review_data} </td>
