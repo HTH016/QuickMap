@@ -31,7 +31,7 @@ public class OfficeGradeRequestHandler implements CommandHandler {
 		OfficeGradeRequestDataBean requestInfo = new OfficeGradeRequestDataBean();
 		
 		requestInfo.setOffice_id(officeInfo.getOffice_id());
-		requestInfo.setGrade_id(0);
+		requestInfo.setGrade_id(1);
 		requestInfo.setGrade_request_submit(new Timestamp(System.currentTimeMillis()));
 		
 		int result = officeDao.gradeRequest(requestInfo);

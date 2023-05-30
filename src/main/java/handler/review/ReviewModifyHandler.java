@@ -33,15 +33,22 @@ public class ReviewModifyHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String	nextPage	= request.getParameter("nextPage");
-		String	userId		= request.getParameter("userId");
-		String	strOfficeId	= request.getParameter("officeId");
-		String	strReviewId	= request.getParameter("reviewId");
-		int		officeId	= -1;
-		int		reviewId	= -1;
+		String	nextPage		= request.getParameter("nextPage");
+		String	userId			= request.getParameter("userId");
+		String	strOfficeId		= request.getParameter("officeId");
+		String	strReviewId		= request.getParameter("reviewId");
+		String	strUserNick		= null;
+		String	strOfficeName	= null;
+		int		officeId		= -1;
+		int		reviewId		= -1;
+		
+		if(userId != null) {
+			strUserNick	= memberDao.getMemberNick(userId);
+		}
 		
 		if(strOfficeId != null) {
-			officeId	= Integer.parseInt(strOfficeId);
+			officeId		= Integer.parseInt(strOfficeId);
+			strOfficeName	= officeDao.getOfficeName(officeId);
 		}
 		
 		if(strReviewId != null) {
@@ -51,8 +58,8 @@ public class ReviewModifyHandler implements CommandHandler {
 		request.setAttribute("nextPage", nextPage);
 //		request.setAttribute("userId", officeId);
 		request.setAttribute("officeId", officeId);
-		request.setAttribute("officeName", officeDao.getOfficeName(officeId));
-		request.setAttribute("userNick", memberDao.getMemberNick(userId));
+		request.setAttribute("officeName", strOfficeName);
+		request.setAttribute("userNick", strUserNick);
 		
 		ReviewDataBean	dto	= null;
 		
