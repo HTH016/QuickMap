@@ -48,9 +48,9 @@
 		values (#{office_id}, #{grade_id}, #{grade_request_submit})
 	</insert>
 	<insert id="updateReviewInfo" parameterType="map">
-		insert into qm_office_grade_request
-		(office_id, grade_id, grade_request_submit)
-		values (#{office_id}, #{grade_id}, #{grade_request_submit})
+		update qm_office
+		set office_review_num=#{reviewNum}, office_star=#{starPoint}
+		where office_id=#{officeId}
 	</insert>
 </mapper>
 

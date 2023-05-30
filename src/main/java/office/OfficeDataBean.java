@@ -1,6 +1,5 @@
 package office;
 
-import java.sql.Timestamp;
 public class OfficeDataBean {
 	private	int		office_id;
 	private	String	user_id;

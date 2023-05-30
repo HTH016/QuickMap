@@ -53,8 +53,8 @@ public class ReviewWriteProHandler implements CommandHandler {
 		
 		OfficeDataBean	office	= officeDAO.getOfficeInfo(officeId);
 		
-		int reviewNum	= office.getOffice_review_num()+1;
-		double	tempStar	= (starPoint + office.getOffice_star()) / reviewNum;
+		int		reviewNum	= office.getOffice_review_num()+1;
+		double	tempStar	= Math.round(((starPoint + office.getOffice_star()) / reviewNum) * 10.0) / 10.0;
 		
 		Map<String, Object>	param	= new HashMap<>();
 		
