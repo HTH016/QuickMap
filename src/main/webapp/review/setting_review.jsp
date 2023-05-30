@@ -29,5 +29,6 @@
 <c:set var="btn_modify_cancel" value="수정취소"/>
 <c:set var="btn_write" value="작성"/>
 <c:set var="btn_write_cancel" value="작성취소"/>
+<c:set var="btn_login" value="로그인"/>
 
 
