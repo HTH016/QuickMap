@@ -55,12 +55,6 @@ public class ReviewModifyHandler implements CommandHandler {
 			reviewId	= Integer.parseInt(strReviewId);
 		}
 		
-		request.setAttribute("nextPage", nextPage);
-//		request.setAttribute("userId", officeId);
-		request.setAttribute("officeId", officeId);
-		request.setAttribute("officeName", strOfficeName);
-		request.setAttribute("userNick", strUserNick);
-		
 		ReviewDataBean	dto	= null;
 		
 		if(strReviewId == null) {
@@ -71,9 +65,15 @@ public class ReviewModifyHandler implements CommandHandler {
 
 			dto = reviewDao.getReview(param);
 		} else {
-			dto = reviewDao.getReview(reviewId);
+			dto			= reviewDao.getReview(reviewId);
+			officeId	= dto.getOffice_id();
 		}
 		
+		request.setAttribute("nextPage", nextPage);
+//		request.setAttribute("userId", officeId);
+		request.setAttribute("officeId", officeId);
+		request.setAttribute("officeName", strOfficeName);
+		request.setAttribute("userNick", strUserNick);
 		request.setAttribute("dto", dto);
 		
 		return new ModelAndView("review/reviewModify");
