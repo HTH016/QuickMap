@@ -117,22 +117,22 @@ public class MapSearchHandlerAjax {
 				if(dto.getOffice_keyword() != null) {
 					String[] arrKeyword	= dto.getOffice_keyword().split(";");
 					
-					if(arrKeyword[0] != null) {
+					if(arrKeyword.length > 0 && arrKeyword[0] != null) {
 						strSearchResult	+= "					<div>\n";
 						strSearchResult	+= "						<h5 class=\"office_keyword\">" + arrKeyword[0] + "</h5>\n";
 						
-						if(arrKeyword[1] != null) {
+						if(arrKeyword.length > 1 && arrKeyword[1] != null) {
 							strSearchResult	+= "						<h5 class=\"office_keyword\">" + arrKeyword[1] + "</h5>\n";
 						}
 						
 						strSearchResult	+= "					</div>\n";
 					}
 
-					if(arrKeyword[2] != null) {
+					if(arrKeyword.length > 2 && arrKeyword[2] != null) {
 						strSearchResult	+= "					<div>\n";
 						strSearchResult	+= "						<h5 class=\"office_keyword\">" + arrKeyword[2] + "</h5>\n";
 						
-						if(arrKeyword[3] != null) {
+						if(arrKeyword.length > 3 && arrKeyword[3] != null) {
 							strSearchResult	+= "						<h5 class=\"office_keyword\">" + arrKeyword[3] + "</h5>\n";
 						}
 						

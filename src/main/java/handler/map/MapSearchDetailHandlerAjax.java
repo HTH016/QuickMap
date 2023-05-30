@@ -246,7 +246,7 @@ public class MapSearchDetailHandlerAjax {
 		}
 
 		strSearchResult	+= "			</div>\n";
-		strSearchResult	+= "			<div class=\"office_detail_review_item\">\n";
+		strSearchResult	+= "			<div class=\"office_detail_review_item_list\">\n";
 
 		Map<String, Object>		paramRev	= new HashMap<>();
 		List<ReviewDataBean>	reviews		= null;
@@ -263,6 +263,7 @@ public class MapSearchDetailHandlerAjax {
 		}
 		
 		for(ReviewDataBean review : reviews) {
+			strSearchResult	+= "			<div class=\"office_detail_review_item\">\n";
 			strSearchResult	+= "				<div class=\"office_detail_review_content\">\n";
 			strSearchResult	+= "					" + review.getReview_data() + "\n";
 			strSearchResult	+= "				</div>\n";
@@ -294,6 +295,7 @@ public class MapSearchDetailHandlerAjax {
 			strSearchResult	+= "						" + sdf.format(review.getReview_reg()) + "\n";
 			strSearchResult	+= "					</div>\n";
 			strSearchResult	+= "				</div>\n";
+			strSearchResult	+= "			</div>\n";
 		}
 		
 		strSearchResult	+= "			</div>\n";

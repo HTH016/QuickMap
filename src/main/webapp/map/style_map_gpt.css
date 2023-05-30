@@ -57,8 +57,16 @@ body {
 	cursor: pointer;
 }
 
+#user_part {
+	height: 100px;
+	overflow: hidden;
+}
+
 .user_do_logout {
 	display: inline-block;
+	vertical-align: top;
+	height: 100px;
+	box-sizing: border-box;
 }
 
 .user_image {
@@ -74,26 +82,30 @@ body {
 
 .user_info {
 	display: inline-block;
+	vertical-align: top;
+	margin-left: 10px;
+	height: 100px;
+	box-sizing: border-box;
 }
 
 .user_info_nick {
-	width: 185px;
-	height: 35px;
-	text-align: center;
-	background: #f9ca24;
-	color: #fff;
-	padding: 5px;
-	border-radius: 5px;
-	margin-top: 10px;
-}
-
-.user_info_id {
 	width: 185px;
 	height: 30px;
 	text-align: center;
 	background: #f9ca24;
 	color: #fff;
-	padding: 5px;
+	padding: 0 5px;
+	border-radius: 5px;
+	margin-top: 7px;
+}
+
+.user_info_id {
+	width: 185px;
+	height: 20px;
+	text-align: center;
+	background: #f9ca24;
+	color: #fff;
+	padding: 0 5px;
 	border-radius: 5px;
 	margin-top: 5px;
 }
@@ -103,7 +115,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	width: 185px;
-	margin-top: 10px;
+	margin-top: 7px;
 }
 
 .user_info_button > input {
@@ -123,7 +135,8 @@ body {
 	width: 320px;
 	top: 100px;
 	left: 0;
-	padding-top: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	z-index: 3;
 	display: flex;
 	justify-content: space-between;
@@ -132,7 +145,7 @@ body {
 .search_class {
 	background: #f39c12;
 	height: 30px;
-	margin-left: 5px;
+	margin-left: 10px;
 	align-self: center;
 	padding: 5px;
 	border-radius: 3px;
@@ -153,7 +166,7 @@ body {
 	width: 30px;
 	height: 30px;
 	background: #2ecc71;
-	margin-right: 5px;
+	margin-right: 10px;
 	padding: 5px;
 	border-radius: 50%;
 	cursor: pointer;
@@ -346,11 +359,8 @@ body {
 }
 
 .office_detail_review_item {
-	background: #f1f1f1;
+	background: #f2f2f2;
 	overflow-y: auto;
-}
-
-.office_detail_review_item * {
 	font-size: 13px;
 }
 
