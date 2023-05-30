@@ -271,7 +271,21 @@ public class MapSearchDetailHandlerAjax {
 			strSearchResult	+= "						<b>" + review.getUser_nick() + "</b>\n";
 			strSearchResult	+= "					</div>\n";
 			strSearchResult	+= "					<div class=\"office_detail_user_star\">\n";
-			strSearchResult	+= "						★★★★★\n";
+			
+			double	nStar	= review.getReview_star();
+			
+			if(nStar > 4) {
+				strSearchResult	+= "						★★★★★\n";
+			} else if(nStar > 3) {
+				strSearchResult	+= "						★★★★☆\n";
+			} else if(nStar > 2) {
+				strSearchResult	+= "						★★★☆☆\n";
+			} else if(nStar > 1) {
+				strSearchResult	+= "						★★☆☆☆\n";
+			} else {
+				strSearchResult	+= "						★☆☆☆☆\n";
+			}
+			
 			strSearchResult	+= "					</div>\n";
 			strSearchResult	+= "					<div class=\"office_detail_review_date\">\n";
 			
