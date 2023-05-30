@@ -8,6 +8,7 @@ var telerror = "전화번호를 입력하세요";
 var emailerror = "이메일주소를 확인하세요";
 var confirmiderror = "아이디 중복확인이 필요합니다";
 var confirmnickerror = "닉네임 중복확인이 필요합니다";
+var gradeerror = "탈퇴한 회원입니다";
 
 var inputerror = "회원가입에 실패했습니다 \n 잠시 후 다시 시도하세요";
 var idxerror = "입력하신 아이디가 없습니다 \n 다시 확인하세요";
@@ -199,6 +200,7 @@ function logincheck() {
 		loginform.user_passwd.focus();
 		return false;
 	}
+
 }
 
 

@@ -90,7 +90,7 @@
 			<tr>
 				<th> ${str_user_grade_id} </th>
 				<td>
-					<c:if test="${dto.grade_id eq 2}">
+					<c:if test="${dto.grade_id eq 2 and dto.grade_id eq 1}">
 						&nbsp; ${dto.grade_id}
 					</c:if>
 					<c:if test="${dto.grade_id eq 3}">
@@ -113,6 +113,7 @@
 					<input type="button" value="${btn_favorite}" onclick="location='favoritelist.do'">
 					<input type="button" value="${btn_review}" onclick="location='reviewlist.do'">
 					<input type="button" value="${btn_modify_cancel}" onclick="location='main.do'">
+					<input type="button" value="${btn_delete}" onclick="location='memberdeleteform.do'">
 				</th>
 			</tr>
 		</table>

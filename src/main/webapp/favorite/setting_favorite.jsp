@@ -21,6 +21,6 @@
 
 <c:set var="btn_cancel" value="취소"/>
 <c:set var="btn_ok" value="확인"/>
-<c:set var="btn_main" value="메인"/>
+<c:set var="btn_main" value="돌아가기"/>
 
 

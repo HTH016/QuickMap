@@ -7,7 +7,6 @@
 
 
 <h2> ${page_login} </h2>
-
 <form method="post" action="memberloginpro.do" name=loginform onsubmit="return logincheck()">
 	<table>
 		<tr>

@@ -12,7 +12,7 @@
 			<th colspan=2> ${msg_passwd} </th>
 		</tr>
 		<tr>
-			<th>비밀번호</th>
+			<th>${str_user_passwd}</th>
 			<td><input type="password" name="user_passwd" maxlength=30 autofocus></td>
 		</tr>
 		<tr>

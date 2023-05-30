@@ -15,7 +15,7 @@
 <table>
 	<tr>
 		<th style="text-align:right" colspan=4>
-			<input type="button" value="${btn_main}" onclick="location='main.do'">
+			<input type="button" value="${btn_main}" onclick="location='membermodifyview.do'">
 		</th>
 	</tr> 	 
 	<tr>
