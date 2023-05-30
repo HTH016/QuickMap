@@ -96,6 +96,7 @@
 					<c:if test="${dto.grade_id eq 3}">
 						&nbsp; ${dto.grade_id}
 						<input type="button" value="${btn_office_modify}" onclick="location='officemodifyform.do'">
+						<input type="button" value="${btn_office_review}" onclick="location='reviewlistbyoffice.do'">
 						<input type="button" value="${btn_ad_requset}" onclick="location='officeadrequest.do'">
 						<input type="button" value="${btn_premium}" onclick="premium()">
 					</c:if>

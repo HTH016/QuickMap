@@ -135,7 +135,7 @@ public class MapSearchDetailHandlerAjax {
 
 		if(userId != null) {
 			strSearchResult	+= "		<div class=\"office_detail_reg\">\n";
-			strSearchResult	+= "			<a href=\"officeregister.do\">비즈니스의 소유주인가요?<br> 소유주 등록하고 혜택을 받아보세요</a>\n";
+			strSearchResult	+= "			<a href=\"officeregister.do?officeId=" + dto.getOffice_id() + "\">비즈니스의 소유주인가요?<br> 소유주 등록하고 혜택을 받아보세요</a>\n";
 			strSearchResult	+= "		</div>\n";
 			strSearchResult	+= "		<hr>\n";
 		}

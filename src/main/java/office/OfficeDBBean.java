@@ -29,7 +29,7 @@ public class OfficeDBBean implements OfficeDAO {
 		return session.selectOne("Office.getOfficeName", office_id);
 	}
 	
-	public int gradeRequest(OfficeDataBean dto) {
+	public int gradeRequest(OfficeGradeRequestDataBean dto) {
 		return session.insert("Office.gradeRequest", dto);
 	}
 	

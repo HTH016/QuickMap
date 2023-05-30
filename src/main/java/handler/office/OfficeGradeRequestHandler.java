@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import handler.CommandHandler;
 import office.OfficeDAO;
 import office.OfficeDataBean;
+import office.OfficeGradeRequestDataBean;
 
 @Controller
 public class OfficeGradeRequestHandler implements CommandHandler {
@@ -26,18 +27,15 @@ public class OfficeGradeRequestHandler implements CommandHandler {
 
 		String user_id = (String) request.getSession().getAttribute("memId");
 		
-		OfficeDataBean dto = officeDao.getOfficeInfo(user_id);
-		request.setAttribute("dto", dto);
+		OfficeDataBean officeInfo = officeDao.getOfficeInfo(user_id);
+		OfficeGradeRequestDataBean requestInfo = new OfficeGradeRequestDataBean();
 		
-		int office_id = dto.getOffice_id();
-		dto.setOffice_id(office_id);
+		requestInfo.setOffice_id(officeInfo.getOffice_id());
+		requestInfo.setGrade_id(4);
+		requestInfo.setGrade_request_submit(new Timestamp(System.currentTimeMillis()));
 		
-		int grade_id = dto.getGrade_id();
-		dto.setGrade_id(grade_id);
-		
-		dto.setGrade_request_submit(new Timestamp(System.currentTimeMillis()));
-		
-		int result = officeDao.gradeRequest(dto);
+		int result = officeDao.gradeRequest(requestInfo);
+
 		request.setAttribute("result", result);
 		
 		

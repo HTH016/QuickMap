@@ -26,16 +26,16 @@ public class ReviewListByOfficeHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-//		int office_id = Integer.parseInt(request.getParameter("office_id"));
-//		String user_id = (String) request.getSession().getAttribute("memId");
+		int office_id = Integer.parseInt(request.getParameter("officeId"));
+		String user_id = (String) request.getSession().getAttribute("memId");
 		
 		
 		Map<String, Object> param = new HashMap<>();
-//		param.put("office_id", office_id);
-//		param.put("user_id", user_id);
+		param.put("office_id", office_id);
+		param.put("user_id", user_id);
 		
-		param.put("office_id", 26);
-		param.put("user_id", "bbb");
+//		param.put("office_id", 26);
+//		param.put("user_id", "bbb");
 		
 		
 		// 로그인 X

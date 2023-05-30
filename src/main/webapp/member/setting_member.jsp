@@ -47,6 +47,7 @@
 <c:set var="btn_modify" value="수정"/>
 <c:set var="btn_modify_cancel" value="수정 취소"/>
 <c:set var="btn_office_modify" value="업장수정"/>
+<c:set var="btn_office_review" value="업장후기확인"/>
 <c:set var="btn_ad_requset" value="광고신청"/>
 <c:set var="btn_premium" value="프리미엄"/>
 <c:set var="btn_admin" value="관리자"/>

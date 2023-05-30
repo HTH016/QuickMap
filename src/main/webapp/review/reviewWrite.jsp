@@ -9,7 +9,7 @@
 <h2> ${page_reviewwrite}</h2>
 
 <c:if test="${sessionScope.memId == null}">
-	<input type="button" value="확인" onclick="location='main.do'">
+	<input type="button" value="${btn_login}" onclick="location='main.do'">
 </c:if>
 
 <c:if test="${sessionScope.memId != null}">

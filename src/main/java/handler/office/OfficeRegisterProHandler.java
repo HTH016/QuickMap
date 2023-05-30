@@ -31,14 +31,14 @@ public class OfficeRegisterProHandler implements CommandHandler {
 		
 		request.setCharacterEncoding("utf-8");
 		
-//		String user_id = (String) request.getSession().getAttribute("memId");
-//		int office_id = 0;
+		String user_id = (String) request.getSession().getAttribute("memId");
+		int office_id = Integer.parseInt(request.getParameter("officeId"));
 		
 		OfficeRegisterDataBean dto = new OfficeRegisterDataBean();
-		dto.setUser_id("aaa");
-//		dto.setOffice_id(0)
-		dto.setOffice_id(26);
-//		
+		dto.setUser_id(user_id);
+		dto.setOffice_id(office_id);
+		
+	
 		// 사진경로 
 		request.setCharacterEncoding("UTF-8");
 		

@@ -8,7 +8,7 @@ public interface OfficeDAO {
 	public OfficeRegisterDataBean getOfficeReg(int office_id);
 	public OfficeAdRequestDataBean getOfficeAd(String user_id);
 	public String getOfficeName(int office_id);
-	public int gradeRequest(OfficeDataBean dto);
+	public int gradeRequest(OfficeGradeRequestDataBean dto);
 	public int modifyOffice(OfficeDataBean dto);
 	public int registerOffice(OfficeRegisterDataBean dto);
 	public int requestAd(OfficeAdRequestDataBean dto);

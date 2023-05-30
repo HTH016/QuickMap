@@ -42,7 +42,7 @@
 		(office_id, ad_request_start, ad_request_end, ad_request_level, ad_request_submit)
 		values(#{office_id}, #{ad_request_start}, #{ad_request_end}, #{ad_request_level}, #{ad_request_submit})
 	</insert>
-	<insert id="gradeRequest" parameterType="office.OfficeDataBean">
+	<insert id="gradeRequest" parameterType="office.OfficeGradeRequestDataBean">
 		insert into qm_office_grade_request
 		(office_id, grade_id, grade_request_submit)
 		values (#{office_id}, #{grade_id}, #{grade_request_submit})
