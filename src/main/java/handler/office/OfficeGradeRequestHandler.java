@@ -17,7 +17,7 @@ import office.OfficeGradeRequestDataBean;
 
 @Controller
 public class OfficeGradeRequestHandler implements CommandHandler {
-	
+
 	@Resource(name="officeDao")
 	private OfficeDAO officeDao;
 	

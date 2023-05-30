@@ -25,7 +25,7 @@
 		</tr>
 		<tr>
 			<th> ${str_ad_level} </th>
-			<td> <input type="text" name="ad_request_level"> </td>
+			<td> <input type="number" name="ad_request_level" max=7 min=1> </td>
 		</tr>
 		<tr>
 			<th colspan=2>
