@@ -23,7 +23,7 @@ $(function() {
 			if(hasReview == 0) {
 				window.location.href = "reviewwrite.do?userId=" + userId + "&officeId=" + officeId;
 			} else {
-				window.location.href = "reviewmodify.do?userId=" + userId + "&officeId=" + officeId;
+				window.location.href = "reviewmodify.do?userId=" + userId + "&officeId=" + officeId + "&nextPage=main";
 			}
 		}
 	);

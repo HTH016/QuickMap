@@ -6,7 +6,7 @@
 <%@ include file="setting_review.jsp"%>
 <h2> ${page_review_view} </h2>
 
-<form method="post" action="reviewdelete.do" onsubmit="return deletedata()">
+<form method="post" action="reviewdelete.do" onsubmit="return deleteReview()">
 	<input type="hidden" name="review_id" value="${dto.review_id}">
 	<table>
 		<tr>
@@ -21,7 +21,7 @@
 		<tr>
 			<th colspan=2>
 				<input type="button" value="${btn_modify}"
-				onclick="location='reviewmodify.do?review_id=${dto.review_id}'">
+					onclick="location='reviewmodify.do?reviewId=${dto.review_id}&nextPage=reviewlist'">
 				<input type="submit" value="${btn_delete}">
 			</th>
 		</tr>
@@ -29,7 +29,7 @@
 </form>
 
 <script type="text/javascript">
-	function deletedata() {
+	function deleteReview() {
 		if(confirm("정말 삭제하시겠습니까?") == true) {
 			return true;
 		} else {

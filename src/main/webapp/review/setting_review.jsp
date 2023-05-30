@@ -15,6 +15,7 @@
 <c:set var="page_reviewoffice" value="리뷰"/>
 
 <c:set var="msg_review_x" value="작성한 리뷰가 존재하지 않습니다"/>
+<c:set var="msg_login_x" value="로그인 후 리뷰를 작성할 수 있습니다"/>
 
 <c:set var="str_review_id" value="리뷰 번호"/>
 <c:set var="str_office_name" value="업장명"/>
@@ -30,5 +31,7 @@
 <c:set var="btn_write" value="작성"/>
 <c:set var="btn_write_cancel" value="작성취소"/>
 <c:set var="btn_login" value="로그인"/>
+<c:set var="btn_main" value="돌아가기"/>
+
 
 

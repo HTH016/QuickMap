@@ -11,20 +11,25 @@
 	<select id="getReviewCountAll" resultType="int">
 		select count(*) from qm_review
 	</select>
-	<select id="getReviewCountById" resultType="int">
+	<select id="getReviewCountByOfficeId" resultType="int">
+		select count(*) from qm_review where office_id=#{officeId}
+	</select>
+	<select id="getReviewCountByOfficeUser" resultType="int">
 		select count(*) from qm_review where user_id=#{userId} and office_id=#{officeId}
 	</select>
-	<select id="getReview" parameterType="int" resultType="review.ReviewDataBean">
+	<select id="getAvgStarPointByOfficeId" resultType="double">
+		select avg(review_star) from qm_review where office_id=#{officeId}
+	</select>
+	<select id="getReviewByReviewId" parameterType="int" resultType="review.ReviewDataBean">
 		select o.office_name, r.review_star, r.review_data, r.review_id
 		from qm_office o, qm_review r
 		where o.office_id = r.office_id
 		and r.review_id = #{review_id}
 	</select>
-	<select id="getOfficeReview" parameterType="int" resultType="review.ReviewDataBean">
-		select o.office_name, r.review_star, r.review_data, r.review_id
-		from qm_office o, qm_review r
-		where o.user_id = r.user_id
-		and r.office_id = #{office_id}
+	<select id="getReviewById" resultType="review.ReviewDataBean">
+		select office_id, review_star, review_data, review_id
+		from qm_review
+		where user_id=#{userId} and office_id=#{officeId}
 	</select>
 	<select id="getMyReviewList" parameterType="String" resultType="review.ReviewDataBean">
 		select o.office_name, r.review_star, r.review_data, r.review_reg, r.review_id

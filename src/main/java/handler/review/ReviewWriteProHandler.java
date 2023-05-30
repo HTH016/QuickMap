@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import handler.CommandHandler;
 import office.OfficeDAO;
-import office.OfficeDataBean;
 import review.ReviewDAO;
 import review.ReviewDataBean;
 
@@ -37,9 +36,8 @@ public class ReviewWriteProHandler implements CommandHandler {
 //		String	userId		= "bbb";
 		int		officeId	= Integer.parseInt(request.getParameter("officeId"));
 		String	userId		= (String) request.getSession().getAttribute("memId");
-		
 		String	reviewData	= request.getParameter("review_data");
-		double	starPoint	= Integer.parseInt(request.getParameter("review_star"));
+		double	starPoint	= Double.parseDouble(request.getParameter("review_star"));
 
 		ReviewDataBean dto = new ReviewDataBean();
 
@@ -49,21 +47,29 @@ public class ReviewWriteProHandler implements CommandHandler {
 		dto.setReview_data(reviewData);
 		dto.setReview_star(starPoint);
 		
+		System.out.println(Thread.currentThread().getStackTrace()[1] + ">> officeId  : " + officeId);
+		System.out.println(Thread.currentThread().getStackTrace()[1] + ">> userId    : " + userId);
+		System.out.println(Thread.currentThread().getStackTrace()[1] + ">> starPoint : " + starPoint);
+
 		int result = reviewDao.insertReview(dto);
 		
-		OfficeDataBean	office	= officeDAO.getOfficeInfo(officeId);
+		System.out.println(Thread.currentThread().getStackTrace()[1] + ">> result : " + result);
 		
-		int		reviewNum	= office.getOffice_review_num()+1;
-		double	tempStar	= Math.round(((starPoint + office.getOffice_star()) / reviewNum) * 10.0) / 10.0;
+		int		reviewNum		= reviewDao.getReviewCount(officeId);
+		double	avgStarPoint	= Math.round(reviewDao.getAvgStarPoint(officeId) * 10.0) / 10.0;
 		
 		Map<String, Object>	param	= new HashMap<>();
 		
 		param.put("officeId", officeId);
-		param.put("starPoint", tempStar);
+		param.put("starPoint", avgStarPoint);
 		param.put("reviewNum", reviewNum);
 		
-		officeDAO.updateReviewInfo(param);
+		System.out.println(Thread.currentThread().getStackTrace()[1] + ">> starPoint : " + avgStarPoint);
+
+		result	= officeDAO.updateReviewInfo(param);
 		
+		System.out.println(Thread.currentThread().getStackTrace()[1] + ">> result : " + result);
+
 		request.setAttribute("result", result);
 
 		return new ModelAndView("review/reviewWritePro");

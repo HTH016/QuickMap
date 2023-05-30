@@ -18,17 +18,25 @@ public class ReviewDBBean implements ReviewDAO {
 		return session.selectOne("Review.getReviewCountAll");
 	}
 	
+	public int getReviewCount(int officeId) {
+		return session.selectOne("Review.getReviewCountByOfficeId", officeId);
+	}
+	
 	// map : userId, officeId
 	public int getReviewCount(Map<String, Object> param) {
-		return session.selectOne("Review.getReviewCountById", param);
+		return session.selectOne("Review.getReviewCountByOfficeUser", param);
+	}
+	
+	public double getAvgStarPoint(int officeId) {
+		return session.selectOne("Review.getAvgStarPointByOfficeId", officeId);
 	}
 	
 	public ReviewDataBean getReview(int review_id) {
-		return session.selectOne("Review.getReview", review_id);
+		return session.selectOne("Review.getReviewByReviewId", review_id);
 	}
 	
-	public ReviewDataBean getOfficeReview(int office_id) {
-		return session.selectOne("Review.getOfficeReview", office_id);
+	public ReviewDataBean getReview(Map<String, Object> param) {
+		return session.selectOne("Review.getReviewById", param);
 	}
 	// 내가 쓴 리뷰 확인 (user_id당 리뷰 리스트)
 	public List<ReviewDataBean> getMyReviewList(String user_id) {

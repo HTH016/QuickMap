@@ -1,6 +1,3 @@
-<%@page import="review.ReviewDataBean"%>
-<%@page import="review.ReviewDBBean"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -9,7 +6,9 @@
 <h2> ${page_reviewwrite}</h2>
 
 <c:if test="${sessionScope.memId == null}">
-	<input type="button" value="${btn_login}" onclick="location='main.do'">
+	<h3>${msg_login_x}</h3>
+	<br>
+	<input type="button" value="${btn_main}" onclick="location='main.do'">
 </c:if>
 
 <c:if test="${sessionScope.memId != null}">
