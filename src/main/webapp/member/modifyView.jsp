@@ -90,7 +90,7 @@
 			<tr>
 				<th> ${str_user_grade_id} </th>
 				<td>
-					<c:if test="${dto.grade_id eq 2 and dto.grade_id eq 1}">
+					<c:if test="${dto.grade_id eq 2 or dto.grade_id eq 1}">
 						&nbsp; ${dto.grade_id}
 					</c:if>
 					<c:if test="${dto.grade_id eq 3}">
