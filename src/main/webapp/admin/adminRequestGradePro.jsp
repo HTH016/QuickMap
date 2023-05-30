@@ -10,8 +10,8 @@
 		alert( adminrequestgradeerror );
 		-->
 	</script>
-	<meta http-equiv="refresh" content="0; url=adminreviewlistform.do">
+	<meta http-equiv="refresh" content="0; url=adminrequestgradeform.do">
 </c:if>
 <c:if test="${(result eq 1)}">
-	<c:redirect url="adminreviewlistform.do"/>
+	<c:redirect url="adminrequestgradeform.do"/>
 </c:if>	

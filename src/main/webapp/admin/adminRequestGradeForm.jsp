@@ -26,7 +26,7 @@
 				onclick="location='main.do'">
  
 <h3 style="text-align:center">
-${page_admin_office}
+${page_admin_grade}
 </h3>
  
 
