@@ -34,8 +34,8 @@
 	</update>
 	<insert id="registerOffice" parameterType="office.OfficeRegisterDataBean">
 		insert into qm_office_regist_request
-		(user_id, office_id, office_regist_num_img, office_regist_submit)
-		values(#{user_id, jdbcType=VARCHAR}, #{office_id}, #{office_regist_num_img, jdbcType=VARCHAR}, #{office_regist_submit})
+		(user_id, office_id, office_regist_num, office_regist_num_img, office_regist_submit)
+		values(#{user_id, jdbcType=VARCHAR}, #{office_id}, #{office_regist_num}, #{office_regist_num_img, jdbcType=VARCHAR}, #{office_regist_submit})
 	</insert>
 	<insert id="requestAd" parameterType="office.OfficeAdRequestDataBean">
 		insert into qm_ad_request

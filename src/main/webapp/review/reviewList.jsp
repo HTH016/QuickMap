@@ -12,7 +12,12 @@
 	<input type="button" value="확인" onclick="location='memberloginform.do'">
 </c:if>
 <c:if test="${sessionScope.memId != null}">
-<table>	 	 
+<table>
+	<tr>
+		<th style="text-align:right" colspan=4>
+			<input type="button" value="${btn_main}" onclick="location='main.do'">
+		</th>
+	</tr> 	 
 	<tr>
 		<th style="width:7%"> ${str_review_id} </th>
 		<th style="width:15%"> ${str_office_name} </th>
@@ -21,7 +26,7 @@
 	</tr> 
 	<c:if test="${reviewDao.getReviewCount() eq 0}">
 		<tr>
-			<td style="text-align:center" colspan=5>
+			<td style="text-align:center" colspan=4>
 			${msg_review_x}
 			</td>
 		</tr>

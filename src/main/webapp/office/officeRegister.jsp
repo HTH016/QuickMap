@@ -8,6 +8,7 @@
 
 <form method="post" action="officeregisterpro.do" name="officeregister"
 	onsubmit="return registercheck()" enctype="multipart/form-data">
+	<input type="hidden" name="office_id" value="${dto.office_id}">
 	<table>
 		<tr>
 			<th> ${str_office_name} </th>

@@ -15,6 +15,11 @@
 <c:if test="${sessionScope.memId != null}">
 <table>
 	<tr>
+		<th style="text-align:right" colspan=5>
+			<input type="button" value="${btn_main}" onclick="location='main.do'">
+		</th>
+	</tr>	
+	<tr>
 		<th style="width:7%"> ${str_favorite_id} </th>
 		<th style="width:15%"> ${str_office_name} </th>
 		<th style="width:40%"> ${str_office_address} </th>

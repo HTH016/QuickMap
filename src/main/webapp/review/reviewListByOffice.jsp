@@ -7,7 +7,12 @@
 <%@ include file="setting_review.jsp"%>
 
 <h2> ${page_reviewoffice}</h2>
-<table>	 	 
+<table>
+	<tr>
+		<th style="text-align:right" colspan=4>
+			<input type="button" value="${btn_main}" onclick="location='main.do'">
+		</th>
+	</tr>	 
 	<tr>
 		<th style="width:7%"> ${str_review_id} </th>
 		<th style="width:10%"> ${str_user_id} </th>

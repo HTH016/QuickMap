@@ -28,16 +28,8 @@ public class OfficeRegisterProHandler implements CommandHandler {
 	@RequestMapping("/officeregisterpro")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		request.setCharacterEncoding("utf-8");
-		
-		String user_id = (String) request.getSession().getAttribute("memId");
-		int office_id = Integer.parseInt(request.getParameter("officeId"));
-		
+			
 		OfficeRegisterDataBean dto = new OfficeRegisterDataBean();
-		dto.setUser_id(user_id);
-		dto.setOffice_id(office_id);
-		
 	
 		// 사진경로 
 		request.setCharacterEncoding("UTF-8");
@@ -73,7 +65,14 @@ public class OfficeRegisterProHandler implements CommandHandler {
 		System.out.println("systemName1 : " + systemName1);
 		System.out.println("filePath : " + filePath);
 		
+		String user_id = (String) request.getSession().getAttribute("memId");
+		int office_id = Integer.parseInt(multi.getParameter("office_id"));
+		
+		dto.setUser_id(user_id);
+		dto.setOffice_id(office_id);
+		
 		// db
+		dto.setOffice_regist_num(multi.getParameter("office_regist_num"));
 		dto.setOffice_regist_num_img(filePath);	
 		dto.setOffice_regist_submit(new Timestamp(System.currentTimeMillis()));
 		

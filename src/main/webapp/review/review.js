@@ -40,6 +40,7 @@ function writecheck() {
 		reviewwrite.review_data.focus();
 		return false;
 	}
+	
 }
 
 

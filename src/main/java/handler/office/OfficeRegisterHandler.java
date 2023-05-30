@@ -22,10 +22,9 @@ public class OfficeRegisterHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		int office_id = (int) request.getSession().getAttribute("officeId");
-		
-//		OfficeRegisterDataBean dto = officeDao.getOfficeReg(26);
+		int office_id = Integer.parseInt(request.getParameter("officeId"));
 		OfficeRegisterDataBean dto = officeDao.getOfficeReg(office_id);
+		
 		request.setAttribute("dto", dto);
 		
 		

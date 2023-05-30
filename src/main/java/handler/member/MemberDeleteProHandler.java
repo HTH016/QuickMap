@@ -22,7 +22,7 @@ public class MemberDeleteProHandler implements CommandHandler {
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String user_id = (String) request.getSession().getAttribute("memId");
-		String user_passwd = (String) request.getSession().getAttribute("user_passwd");
+		String user_passwd = request.getParameter("user_passwd");
 		
 		int resultCheck = memberDao.check(user_id, user_passwd);
 		request.setAttribute("resultCheck", resultCheck);
