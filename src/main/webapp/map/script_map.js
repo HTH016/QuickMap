@@ -180,11 +180,17 @@ $(function() {
 	);	// 검색 버튼 클릭
 });
 
-$(window).resize(
-	function() {
-		setLayoutSize();
-	}
-);
+var windowHeight	= $(window).height();
+var	windowWidth		= $(window).width();
+
+$(window).on('resize', function() {
+	windowHeight	= $(window).height();
+	windowWidth		= $(window).width();
+
+	console.log(windowHeight);
+	
+	setLayoutSize();
+});
 
 
 ////////// functions //////////
@@ -222,17 +228,17 @@ function erroralert(msg) {
 
 ////////// layout functions //////////
 function setLayoutSize() {
-	var	windowWidth		= $(window).width();
+//	var	windowWidth		= $(window).width();
 	var	searchAreaWidth	= $("#user_part").width();	// 320;
 	var	mapWidth		= windowWidth - searchAreaWidth; 
 	
-	var	windowHeight	= $(window).height();
+//	var	windowHeight	= $(window).height();
 	var	userHeight		= $("#user_part").height();
 	var	searchHeight	= $("#search").height();
 	var	searchResHeight	= windowHeight - userHeight - searchHeight; 
 	var	mapHeight		= windowHeight;
 
-	if($(".office_detail_review_item").length) {
+	if($(".office_detail_review_item_list").length) {
 		setDetailLayoutSize();
 	}
 	
@@ -249,10 +255,10 @@ function setLayoutSize() {
 
 function setDetailLayoutSize() {
 	var	windowHeight	= $(window).height();
-	var reviewOffset	= $(".office_detail_review_item").offset();
+	var reviewOffset	= $(".office_detail_review_item_list").offset();
 	var reviewHeight	= windowHeight - reviewOffset.top - 1;
 	
-	$(".office_detail_review_item").css({'height': reviewHeight+'px'});
+	$(".office_detail_review_item_list").css({'height': reviewHeight+'px'});
 }
 
 function loadLayout() {

@@ -295,7 +295,7 @@ public class MapSearchDetailHandlerAjax {
 			strSearchResult	+= "						" + sdf.format(review.getReview_reg()) + "\n";
 			strSearchResult	+= "					</div>\n";
 			strSearchResult	+= "				</div>\n";
-			strSearchResult	+= "			</div>\n";
+			strSearchResult	+= "				</div>\n";
 		}
 		
 		strSearchResult	+= "			</div>\n";
