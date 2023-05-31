@@ -11,6 +11,7 @@
 	<script type="text/javascript">
 		erroralert(gradeerror);
 	</script>
+	<meta http-equiv="refresh" content="0; url=main.do">
 </c:if>
 <c:if test="${grade_id ne 0}">
 	<c:if test="${result eq -1}">

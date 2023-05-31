@@ -54,14 +54,26 @@ public class OfficeModifyProHandler implements CommandHandler {
 		String systemName2 = multi.getFilesystemName("office_image2");
 		String systemName3 = multi.getFilesystemName("office_image3");
 		
+		String pathImg1		= multi.getParameter("image1");
+		String pathImg2		= multi.getParameter("image2");
+		String pathImg3		= multi.getParameter("image3");
+		
 		if(systemName1 != null ) {
 			arrNames.add(systemName1);
+		} else if(pathImg1 != null) {
+			arrNames.add(pathImg1.split("/")[2]);
 		}
+		
 		if(systemName2 != null) {
 			arrNames.add(systemName2);
+		} else if(pathImg2 != null) {
+			arrNames.add(pathImg2.split("/")[2]);
 		}
+		
 		if(systemName3 != null) {
 			arrNames.add(systemName3);
+		} else if(pathImg3 != null) {
+			arrNames.add(pathImg3.split("/")[2]);
 		}
 		
 		String filePath = "";

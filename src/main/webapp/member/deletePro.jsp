@@ -18,7 +18,7 @@
 		<script type="text/javascript">
 			alert(deleteerror);
 		</script>
-		<meta http-equiv="refresh" content="0; url=지도">
+		<meta http-equiv="refresh" content="0; url=main.do">
 	</c:if>
 	<c:if test="${result eq 1}">
 		${sessionScope.memId = null}
