@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -104,7 +105,10 @@ public class MapSearchHandlerAjax {
 			officeList.addAll(dtosAd);
 			officeList.addAll(dtosNormal);
 			
-			int i = 0;
+			int		i		= 0;
+			long	seed	= System.currentTimeMillis();
+			Random	rand	= new Random(seed);
+
 
 			for(MapOfficeDetailDTO dto : officeList) {
 				strSearchResult	+= "<div id=\"" + dto.getOffice_id() + "\" class=\"office_search_result_box\">\n";
@@ -123,6 +127,34 @@ public class MapSearchHandlerAjax {
 				strSearchResult	+= "	</div>\n";
 				strSearchResult	+= "	<div>\n";
 				strSearchResult	+= "		<div class=\"image_office\">\n";
+
+				String		officeImages	= dto.getOffice_image();
+				String[]	arrImage		= null;
+				
+				if(officeImages != null) {
+					arrImage	= officeImages.split(";");
+					
+					int		 nImage		= arrImage.length;
+
+					if(nImage > 0) {
+						strSearchResult	+= "			<img src=\"/quickmap" + arrImage[rand.nextInt(nImage)] + "\">\n";
+					} else {
+						arrImage	= new String[3];
+						arrImage[0]	= "/images/hos_00.jpg";
+						arrImage[1]	= "/images/hos_01.jpg";
+						arrImage[2]	= "/images/hos_02.jpg";
+
+						strSearchResult	+= "			<img src=\"/quickmap" + arrImage[rand.nextInt(arrImage.length)] + "\">\n";
+					}
+				} else {
+					arrImage	= new String[3];
+					arrImage[0]	= "/images/hos_00.jpg";
+					arrImage[1]	= "/images/hos_01.jpg";
+					arrImage[2]	= "/images/hos_02.jpg";
+
+					strSearchResult	+= "			<img src=\"/quickmap" + arrImage[rand.nextInt(arrImage.length)] + "\">\n";
+				}
+				
 				strSearchResult	+= "		</div>\n";
 				strSearchResult	+= "		<div class=\"office_info_box\">\n";
 				strSearchResult	+= "			<div class=\"office_keyword_box\">\n";

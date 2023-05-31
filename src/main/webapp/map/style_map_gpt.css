@@ -422,10 +422,13 @@ body {
 }
 
 .image_office {
-	width: 60px;
-	height: 60px;
 	display: inline-block;
 }
+
+.image_office > img {
+	width: 60px;
+	height: 60px;
+	}
 
 .office_info_box {
 	display: inline-block;
