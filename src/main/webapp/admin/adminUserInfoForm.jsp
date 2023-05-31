@@ -4,10 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8"%>  
 <%@ include file="setting_admin.jsp" %>
-
     
 <br>    
 <h2>${page_admin}</h2>
@@ -22,8 +20,7 @@
 <input type="button" style="width:90pt; height:20pt" value="${btn_admin_ad}"
 				onclick="location='adminrequestadform.do'">
 <input type="button" style="width:90pt; height:20pt" value="${btn_admin_statistics}"
-				onclick="location='statisticsadminform.do'">
-				
+				onclick="location='statisticsadminform.do'">			
 <input type="button" style="width:90pt; height:30pt; float:right" value="${btn_to_main}"
 				onclick="location='main.do'">
 
@@ -69,8 +66,7 @@ ${page_admin_user_info}
 			</tr>
 			<tr>
 				<th> ${str_email} </th>
-				<td>					
-						
+				<td>						
 					<c:if test="${dto.user_email eq null}">
 						<input type="text" name="email1" maxlength=25 style="width:100px" readonly>
 						@ <input type="text" name="email2" maxlength=25 style="width:100px" readonly>
@@ -81,7 +77,7 @@ ${page_admin_user_info}
 						value="${e[0]}" style="width:100px" readonly>
 						@ <input type="text" name="email2" maxlength=25
 						value="${e[1]}" style="width:100px" readonly>
-				</c:if>					
+					</c:if>					
 				</td>
 			</tr>
 			<tr>

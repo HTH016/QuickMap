@@ -164,38 +164,6 @@
  		where ad_request_confirm is not null
  		and office_id = #{office_id}
 	</select>
-	
-	
-	
-	
-	<!--  
-	<select id="statisticsDetail" resultType="statistics.StatisticsOfficeDetailDTO" parameterType="int">
-		select detail_id, user_id, office_id, detail_date
-		from qm_statistics_detail
-		where office_id = #{office_id}
 
-	</select>
-	
-	<select id="statisticsFavorite" resultType="statistics.StatisticsOfficeFavoriteDTO" parameterType="int">
-		select favorite_id, user_id, office_id, favorite_reg
-		from qm_favorite
-		where office_id = #{office_id}
-
-	</select>
-	
-	<select id="statisticsReview" resultType="statistics.StatisticsOfficeReviewDTO" parameterType="int">
-		select review_id, office_id, user_id, review_reg
-		from qm_review
-		where office_id = #{office_id}
-
-	</select>
-	
-	<select id="statisticsOfficeAdHistory" resultType="statistics.StatisticsAdDTO" parameterType="int">
-		select ad_request_id, ad_request_start, ad_request_end, ad_request_level
- 		from qm_ad_request
- 		where ad_request_confirm is not null
- 		and office_id = #{office_id}
-	</select>
-	-->
 </mapper>
 

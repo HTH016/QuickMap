@@ -14,7 +14,6 @@ import handler.CommandHandler;
 
 @Controller
 public class AdminUserInfoFormHandler implements CommandHandler {
-
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -31,5 +30,4 @@ public class AdminUserInfoFormHandler implements CommandHandler {
 
 		return new ModelAndView("admin/adminUserInfoForm");
 	}
-
 }

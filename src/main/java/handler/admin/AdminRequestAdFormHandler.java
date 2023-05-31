@@ -15,8 +15,7 @@ import admin.AdminRequestAdDTO;
 import handler.CommandHandler;
 
 @Controller
-public class AdminRequestAdFormHandler implements CommandHandler {
-	
+public class AdminRequestAdFormHandler implements CommandHandler {	
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -30,9 +29,7 @@ public class AdminRequestAdFormHandler implements CommandHandler {
 		if( count > 0 ) {
 			List<AdminRequestAdDTO> dtos = adminDao.getRequestAdList( count );
 			request.setAttribute( "dtos", dtos ); 
-		}
-		
+		}		
 		return new ModelAndView("admin/adminRequestAdForm");
 	}
-
 }

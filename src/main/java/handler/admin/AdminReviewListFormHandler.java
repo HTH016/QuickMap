@@ -16,7 +16,6 @@ import handler.CommandHandler;
 
 @Controller
 public class AdminReviewListFormHandler implements CommandHandler {
-	
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -34,9 +33,7 @@ public class AdminReviewListFormHandler implements CommandHandler {
 		request.setAttribute( "dtos", dtos ); 
 		request.setAttribute( "user_id", user_id ); 
 
-		}
-		
+		}	
 		return new ModelAndView("admin/adminReviewListForm");
 	}
-
 }

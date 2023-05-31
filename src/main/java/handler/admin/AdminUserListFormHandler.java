@@ -15,8 +15,7 @@ import admin.AdminUserDTO;
 import handler.CommandHandler;
 
 @Controller
-public class AdminUserListFormHandler implements CommandHandler {
-	
+public class AdminUserListFormHandler implements CommandHandler {	
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -32,9 +31,7 @@ public class AdminUserListFormHandler implements CommandHandler {
 		if( count > 0 ) {
 			List<AdminUserDTO> dtos = adminDao.getUserList();		
 			request.setAttribute( "dtos", dtos ); 			
-		}
-		
+		}	
 		return new ModelAndView("admin/adminUserListForm");
 	}
-
 }

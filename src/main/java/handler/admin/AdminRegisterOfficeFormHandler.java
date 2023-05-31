@@ -17,10 +17,8 @@ import handler.CommandHandler;
 
 @Controller
 public class AdminRegisterOfficeFormHandler implements CommandHandler {
-	
 	@Resource(name="adminDao")
-	private AdminDAO adminDao;
-	
+	private AdminDAO adminDao;	
 	
 	@RequestMapping("/adminregisterofficeform")
 	@Override
@@ -35,5 +33,4 @@ public class AdminRegisterOfficeFormHandler implements CommandHandler {
 		}
 		return new ModelAndView("admin/adminRegisterOfficeForm");
 	}
-
 }

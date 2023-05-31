@@ -7,9 +7,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="setting_admin.jsp" %>
     
- <br>
- <h2>${page_admin}</h2>
- <br>
+<br>
+<h2>${page_admin}</h2>
+<br>
 
 <input type="button" style="width:90pt; height:20pt" value="${btn_admin_user}"
 				onclick="location='adminuserlistform.do'">
@@ -24,63 +24,42 @@
 				
 <input type="button" style="width:90pt; height:30pt; float:right" value="${btn_to_main}"
 				onclick="location='main.do'">
-
-
 <h3 style="text-align:center">
 ${btn_admin_office}
 </h3>	
-
-		<table  border="1">
-			
-			<tr>
-				<th> ${str_id} </th>
-					<td> 
-						${dto.user_id}
-					</td>
-			</tr>
-			<tr>
-				<th> ${str_office_name} </th>
-					<td> 
-						${dto.office_name}
-					</td>
-			</tr>
-		 	<tr>
-			<!-- 	<th> 사업자 등록 번호 </th>
-					<td>
-						${dto.office_regist_num}
-					</td>
-			</tr>  -->		
-			<tr>
-				<th> ${str_office_regist} </th>
-					<td>
-						<!--  <img src="/JSP/save/systemName"> -->
-						<img src="/quickmap${dto.office_regist_num_img}" style="width:600px; height:900px;">
-					</td>
-			</tr>
-						
-		</table>
-	<br>
+	<table  border="1">	
+		<tr>
+			<th> ${str_id} </th>
+			<td> 
+				${dto.user_id}
+			</td>
+		</tr>
+		<tr>
+			<th> ${str_office_name} </th>
+			<td> 
+				${dto.office_name}
+			</td>
+		</tr>
+	 	<tr>
+		<!-- 	<th> 사업자 등록 번호 </th>
+				<td>
+					${dto.office_regist_num}
+				</td>
+		</tr>  -->		
+		<tr>
+			<th> ${str_office_regist} </th>
+			<td>
+				<img src="/quickmap${dto.office_regist_num_img}" style="width:600px; height:900px;">
+			</td>
+		</tr>			
+	</table>
+<br>
 	<form method="post" action="adminregisterofficeconfirmpro.do" name="inputform">
 		<input type="hidden" name="regist_request_id" value="${regist_request_id}">	
-		
-		<input class="inputbutton" type="submit" value="업장 등록 승인"
+		<input class="inputbutton" type="submit" value="${btn_office_regist_ok}"
 			onclick="location='adminregisterofficeconfirmpro.do'">
-		<input class="inputbutton" type="reset" value="목록"
+		<input class="inputbutton" type="reset" value="${btn_to_list}"
 			onclick="location='adminregisterofficeform.do'">
 	</form>
 			
 				
-	
-
-
-
-
-
-
-
-
-
-
-
-
-

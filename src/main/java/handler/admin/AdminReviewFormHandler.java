@@ -14,7 +14,6 @@ import handler.CommandHandler;
 
 @Controller
 public class AdminReviewFormHandler implements CommandHandler {
-	
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -29,5 +28,4 @@ public class AdminReviewFormHandler implements CommandHandler {
 
 		return new ModelAndView("admin/adminReviewForm");
 	}
-
 }

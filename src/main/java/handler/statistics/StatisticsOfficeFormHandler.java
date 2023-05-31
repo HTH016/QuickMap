@@ -50,7 +50,7 @@ public class StatisticsOfficeFormHandler implements CommandHandler {
 		mapDetail.put( "office_id", str_id );
 		List<StatisticsDetailDTO> dtosDetail = statisticsDao.getDetailByDay( mapDetail );
 		request.setAttribute( "dtosDetail", dtosDetail ); 
-	// 상세 정보 노출 (office_id, start_date, end_date)
+		// 상세 정보 노출 (office_id, start_date, end_date)
 	
 		Map<String, String> mapFavorite = new HashMap< String, String>();
 		mapFavorite.put( "start", favoriteStartDate );
@@ -58,7 +58,7 @@ public class StatisticsOfficeFormHandler implements CommandHandler {
 		mapFavorite.put( "office_id", str_id );
 		List<StatisticsFavoriteDTO> dtosFavorite = statisticsDao.getFavoriteByDay( mapFavorite );
 		request.setAttribute( "dtosFavorite", dtosFavorite ); 
-	// 즐겨찾기 (office_id, start_date, end_date)
+		// 즐겨찾기 (office_id, start_date, end_date)
 
 		Map<String, String> mapReview = new HashMap< String, String>();
 		mapReview.put( "start", reviewStartDate );
@@ -66,14 +66,14 @@ public class StatisticsOfficeFormHandler implements CommandHandler {
 		mapReview.put( "office_id", str_id );
 		List<StatisticsReviewDTO> dtosReview = statisticsDao.getReviewByDay( mapReview );
 		request.setAttribute( "dtosReview", dtosReview ); 
-	// 리뷰 (office_id, start_date, end_date)
-	/*
+		// 리뷰 (office_id, start_date, end_date)
+		/*
 		List<StatisticsAdDTO> dtosAd = statisticsDao.getAdHistory(305);
 		request.setAttribute( "dtosAd", dtosAd ); 
-	// 광고 등록 내역 (office_id, start_date, end_date, ad_level)
-	*/
-	return new ModelAndView("statistics/statisticsOfficeForm");
-}
+		// 광고 등록 내역 (office_id, start_date, end_date, ad_level)
+		 */
+		return new ModelAndView("statistics/statisticsOfficeForm");
+	}
 
 }
 

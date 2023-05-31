@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%@ include file="setting_admin.jsp" %>
 
  <br>
@@ -19,8 +18,7 @@
 <input type="button" style="width:90pt; height:20pt" value="${btn_admin_ad}"
 				onclick="location='adminrequestadform.do'">
 <input type="button" style="width:90pt; height:20pt" value="${btn_admin_statistics}"
-				onclick="location='statisticsadminform.do'">
-				
+				onclick="location='statisticsadminform.do'">				
 <input type="button" style="width:90pt; height:30pt; float:right" value="${btn_to_main}"
 				onclick="location='main.do'">
 				
@@ -29,15 +27,12 @@
  </h3>
  
 <table style="margin-left: auto; margin-right: auto;" border="1" width="70%">
-	
 	<tr>
 		<th style="width:20%"> ${str_office_name} </th>
 		<th style="width:30%"> ${str_review} </th>
 		<th style="width:7%"> ${str_star} </th>
 		<th style="width:9%"> ${str_reg_date} </th>
-
 	</tr>
-	
 	<c:if test="${count eq 0}">
 		<tr>
 			<td style="text-align:center" colspan="4">
@@ -45,9 +40,7 @@
 			</td>
 		</tr>
 	</c:if>
-	
 	<c:if test="${count ne 0 }">
-		
 		<c:forEach var="dto" items="${dtos}">
 			<tr>
 				<td style="text-align:center">
@@ -69,8 +62,7 @@
 	</c:if>
 </table>
 
-<br><br><br><br><br><br><br>
-
+<br><br><br><br><br>
 
 
 

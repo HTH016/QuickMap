@@ -13,7 +13,6 @@ import handler.CommandHandler;
 
 @Controller
 public class AdminReviewProHandler implements CommandHandler {
-	
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -31,5 +30,4 @@ public class AdminReviewProHandler implements CommandHandler {
 		
 		return new ModelAndView("admin/adminReviewPro");
 	}
-
 }

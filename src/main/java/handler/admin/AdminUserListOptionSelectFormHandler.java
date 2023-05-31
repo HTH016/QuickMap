@@ -16,7 +16,6 @@ import handler.CommandHandler;
 
 @Controller
 public class AdminUserListOptionSelectFormHandler implements CommandHandler {
-	
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -39,8 +38,6 @@ public class AdminUserListOptionSelectFormHandler implements CommandHandler {
 			List<AdminUserDTO> dtos = adminDao.getUserListByOptionSelect( userSelect, userSearch );
 			request.setAttribute( "dtos", dtos ); 	
 		}
-		
 		return new ModelAndView("admin/adminUserListForm");
 	}
-
 }

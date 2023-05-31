@@ -16,7 +16,6 @@ import handler.CommandHandler;
 
 @Controller
 public class AdminUserListOptionSortFormHandler implements CommandHandler {
-	
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -34,11 +33,8 @@ public class AdminUserListOptionSortFormHandler implements CommandHandler {
 
 		if( count > 0 ) {
 			List<AdminUserDTO> dtos = adminDao.getUserListByOptionSort( userSort );
-			request.setAttribute( "dtos", dtos ); 
-			
-		}
-		
+			request.setAttribute( "dtos", dtos ); 		
+		}	
 		return new ModelAndView("admin/adminUserListForm");
 	}
-
 }

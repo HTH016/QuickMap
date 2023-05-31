@@ -13,10 +13,8 @@ import admin.AdminRegisterOfficeDTO;
 
 import handler.CommandHandler;
 
-
 @Controller
 public class AdminRegisterOfficeConfirmFormHandler implements CommandHandler {
-	
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -37,5 +35,4 @@ public class AdminRegisterOfficeConfirmFormHandler implements CommandHandler {
 
 		return new ModelAndView("admin/adminRegisterOfficeConfirmForm");
 	}
-
 }

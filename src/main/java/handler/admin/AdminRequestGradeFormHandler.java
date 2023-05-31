@@ -15,8 +15,7 @@ import admin.AdminRequestGradeDTO;
 import handler.CommandHandler;
 
 @Controller
-public class AdminRequestGradeFormHandler implements CommandHandler {
-	
+public class AdminRequestGradeFormHandler implements CommandHandler {	
 	@Resource(name="adminDao")
 	private AdminDAO adminDao;
 	
@@ -30,9 +29,7 @@ public class AdminRequestGradeFormHandler implements CommandHandler {
 		if( count > 0 ) {
 			List<AdminRequestGradeDTO> dtos = adminDao.getRequestGradeList( count );	
 			request.setAttribute( "dtos", dtos ); 	
-		}
-		
+		}		
 		return new ModelAndView("admin/adminRequestGradeForm");
 	}
-
 }
