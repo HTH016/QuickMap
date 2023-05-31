@@ -35,10 +35,6 @@
  		<td style="width:50%">${numGeneralUser}</td>
  	<tr>
   	<tr>
- 		<th>${str_num_regist_user}</th>
- 		<td>${numRegistUser}</td>
- 	<tr>
-  	<tr>
  		<th>${str_num_regist_office}</th>
  		<td>${numRegistOffice}</td>
  	<tr>
@@ -63,7 +59,7 @@
  
 <br><br>
 <h3>${str_ad_income}</h3>
- <br>
+<br>
  
 
 
@@ -100,40 +96,36 @@
 <h3>${str_search_rank}</h3>
  <br>
 
-
-<table style="margin-left: auto; margin-right: auto;">
-	
-	<tr>
-		<th style="width:20%"> ${str_word} </th>
-		<th style="width:20%"> ${str_rank} </th>
-		<th style="width:20%"> ${str_count} </th>
-		
-
-	</tr>
-
-		
-		<c:forEach var="dtoSearch" items="${dtosSearch}">
+<div>
+	<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+	<script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+	<div class="chart-area" style="display:inline-block; width:600px;">
+		<div id="container" align="center" style="width:100%; height:50%;"></div>
+	</div>
+	<div style="display:inline-block;">
+		<table>
 			<tr>
-				<td style="text-align:center">
-					${dtoSearch.rank} 
-				</td>
-				<td style="text-align:center">
-					${dtoSearch.search_word}
-				</td>
-				<td style="text-align:center">
-					${dtoSearch.count} 
-				</td>
+				<th style="width:20%"> ${str_rank} </th>
+				<th style="width:20%"> ${str_word} </th>
+				<th style="width:20%"> ${str_count} </th>
 			</tr>
-		</c:forEach>
-
-</table>
-
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
-<div class="chart-area">
-	<div id="container" align="center" style="width:40%; height:40%;"></div>
-</div>
-	
+				
+				<c:forEach var="dtoSearch" items="${dtosSearch}" begin="0" end="17" step="1">
+					<tr>
+						<td style="text-align:center">
+							${dtoSearch.rank} 
+						</td>
+						<td style="text-align:center">
+							${dtoSearch.search_word}
+						</td>
+						<td style="text-align:center">
+							${dtoSearch.count} 
+						</td>
+					</tr>
+				</c:forEach>
+		</table>
+	</div>
+</div>	
 <script>
 anychart.onDocumentReady(function () {
   

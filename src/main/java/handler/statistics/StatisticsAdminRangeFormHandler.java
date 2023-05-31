@@ -31,38 +31,22 @@ public class StatisticsAdminRangeFormHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		int AD_LEVEL[] = {1, 2, 4, 8, 16, 32, 64};
+		int AD_LEVEL_MONEY[] = {1, 2, 4, 8, 16, 32, 64};
 		int adIncome = 0;
 		
 		String startDate = request.getParameter( "rangestart" );
 		String endDate = request.getParameter( "rangeend" );
 
 		DecimalFormat decFormat = new DecimalFormat("###,###");
+		
+		int numGeneralUser = statisticsDao.countUserByGrade(2);			// grade=2 인 회원 수
 	
-		
-		/*
-		  if( count > 0 ) {
-				Map<String, Integer> map = new HashMap<String, Integer>();
-				map.put( "start", start );
-				map.put( "end", end );
-				List<BoardDataBean> dtos = boardDao.getArticles( map );
-				request.setAttribute( "dtos", dtos ); 
-			}	 
-		 */
-		
-		int numGeneralUser = statisticsDao.countUserByGrade(2);
-		// grade=2 인 회원 수
-		int numRegistUser = statisticsDao.countUserByGrade(3);
-		// grade=3 인 회원 수
-		int numRegistOffice = statisticsDao.countOfficeByGrade(0);
-		// grade=0 인 업장 수
-		int numPremiumOffice = statisticsDao.countOfficeByGrade(1);
-		// grade=1 인 업장 수 
-		int numAdOffice = statisticsDao.countOfficeByAd(1);
-		// ad=1 인 업장 수 
+		int numRegistOffice = statisticsDao.countOfficeByGrade(0);		// grade=0 인 업장 수
+		int numPremiumOffice = statisticsDao.countOfficeByGrade(1);		// grade=1 인 업장 수 
+	
+		int numAdOffice = statisticsDao.countOfficeByAd();				// ad=1 인 업장 수
 		
 		request.setAttribute( "numGeneralUser", numGeneralUser ); 
-		request.setAttribute( "numRegistUser", numRegistUser ); 
 		request.setAttribute( "numRegistOffice", numRegistOffice ); 
 		request.setAttribute( "numPremiumOffice", numPremiumOffice ); 
 		request.setAttribute( "numAdOffice", numAdOffice ); 	
@@ -73,7 +57,7 @@ public class StatisticsAdminRangeFormHandler implements CommandHandler {
 		List<StatisticsAdIncomeDTO> dtosAd = statisticsDao.getAdIncome( mapAd );
 		
 		for ( int i = 0 ; i < 5 ; i++) {
-			adIncome += AD_LEVEL[i] * dtosAd.get(i).getS();
+			adIncome += AD_LEVEL_MONEY[i] * dtosAd.get(i).getS();
 		}
 	
 		String strAdIncome = decFormat.format(adIncome);
@@ -120,7 +104,6 @@ public class StatisticsAdminRangeFormHandler implements CommandHandler {
 		List<StatisticsAdDTO> dtosAd = statisticsDao.getAdHistory(305);
 		request.setAttribute( "dtosAd", dtosAd ); */
 		// 광고 등록 내역 (office_id, start_date, end_date, ad_level)
-	
 		
 		return new ModelAndView("statistics/statisticsAdminForm");
 	}

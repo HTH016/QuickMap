@@ -11,8 +11,8 @@ public class StatisticsDBBean implements StatisticsDAO {
 
 	public static SqlSession session = SqlMapClient.getSession();
 	
-	public int countOfficeByAd( int ad ) {
-		return session.selectOne( "Statistics.statisticsOfficeAd", ad );
+	public int countOfficeByAd() {
+		return session.selectOne( "Statistics.statisticsOfficeAd" );
 	}
 	
 	public int countOfficeByGrade( int grade ) {
@@ -22,11 +22,7 @@ public class StatisticsDBBean implements StatisticsDAO {
 	public int countUserByGrade( int grade ) {
 		return session.selectOne( "Statistics.statisticsUserGrade", grade );
 	}
-	/*
-	public List<StatisticsAdDTO> getAdHistory( int office_id ) {
-		return session.selectList( "Statistics.statisticsOfficeAdHistory", office_id );
-	}
-	*/
+
 	public List<StatisticsAdIncomeDTO> getAdIncome( Map<String, String> map ) {
 		return session.selectList( "Statistics.statisticsAdIncome", map );
 	}

@@ -27,8 +27,7 @@
 <c:set var="str_review_statistics"		value="등록된 리뷰"/>
 <c:set var="str_ad_history"				value="광고 내역"/>
 <c:set var="str_num_general_user"		value="일반 회원"/>
-<c:set var="str_num_regist_user"		value="등록 회원"/>
-<c:set var="str_num_regist_office"		value="등록 업장"/>
+<c:set var="str_num_regist_office"		value="업장 회원"/>
 <c:set var="str_num_premium_office"		value="프리미엄 업장"/>
 <c:set var="str_num_ad_office"			value="광고 적용 업장"/>
 <c:set var="str_word"					value="검색 키워드"/>
