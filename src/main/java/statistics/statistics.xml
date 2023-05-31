@@ -61,7 +61,7 @@
 	
 	<select id="insertSearch"  parameterType="statistics.StatisticsSearchDTO" resultType="int">
 		insert into qm_statistics_search (user_id, search_word, search_class, search_date)
-		values (#{user_id}, #{search_word}, #{search_class}, sysdate)
+		values (#{user_id, jdbcType=VARCHAR}, #{search_word}, #{search_class}, sysdate)
 	</select>	
 	
 	
