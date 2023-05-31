@@ -9,11 +9,7 @@ import mybatis.SqlMapClient;
 
 public class StatisticsDBBean implements StatisticsDAO {
 
-
-public static SqlSession session = SqlMapClient.getSession();
-	
-	
-
+	public static SqlSession session = SqlMapClient.getSession();
 	
 	public int countOfficeByAd( int ad ) {
 		return session.selectOne( "Statistics.statisticsOfficeAd", ad );
@@ -49,6 +45,10 @@ public static SqlSession session = SqlMapClient.getSession();
 	
 	public List<StatisticsSearchDTO> getSearchRank( Map<String, String> map ) {
 		return session.selectList( "Statistics.statisticsSearchWord", map );
+	}
+	
+	public int insertSearch(StatisticsSearchDTO dto) {
+		return session.insert( "Statistics.insertSearch", dto );
 	}
 	
 	/*

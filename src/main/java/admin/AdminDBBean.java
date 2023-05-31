@@ -8,9 +8,7 @@ import mybatis.SqlMapClient;
 
 public class AdminDBBean implements AdminDAO{
 
-public static SqlSession session = SqlMapClient.getSession();
-	
-	
+	public static SqlSession session = SqlMapClient.getSession();
 	
 	public int adminDeleteReview( int review_id ) {
 		return session.delete( "Admin.adminDeleteReview", review_id );
@@ -38,7 +36,6 @@ public static SqlSession session = SqlMapClient.getSession();
 			return 1;
 		} 
 	}
-	
 	
 	public AdminRegisterOfficeDTO confirmRegistOffice( int regist_request_id ) {
 		return session.selectOne( "Admin.confirmRegistOffice", regist_request_id );

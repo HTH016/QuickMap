@@ -15,4 +15,6 @@ public interface StatisticsDAO {
 	public List<StatisticsReviewDTO> getReviewByDay( Map<String, String> map );
 	public List<StatisticsSearchDTO> getSearchRank( Map<String, String> map );
 	
+	public int insertSearch(StatisticsSearchDTO dto);
+	
 }

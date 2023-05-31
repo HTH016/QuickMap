@@ -15,19 +15,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import map.MapDao;
 import map.MapOfficeDetailDTO;
+import statistics.StatisticsDAO;
+import statistics.StatisticsSearchDTO;
 
 @Controller
 public class MapSearchHandlerAjax {
 	@Resource(name="mapDao")
 	private MapDao mapDao;
 
+	@Resource(name="statisticsDao")
+	private StatisticsDAO statisticsDao;
+
 	@RequestMapping("/map_search_ajax")
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
 
+		String		user_id			= (String) request.getSession().getAttribute("memId");
 		String		strSearchResult	= "";
 		String[]	arrayWords		= request.getParameter("searchWord").split("\\s");
+		int			officeClass		= Integer.parseInt(request.getParameter("officeClass"));
 
 		for(int i=0 ; i<arrayWords.length ; i++) {
 			String	word	= arrayWords[i];
@@ -39,6 +46,14 @@ public class MapSearchHandlerAjax {
 			}
 
 			System.out.println("wordlist : " + arrayWords[i]);
+			
+			StatisticsSearchDTO dto	= new StatisticsSearchDTO();
+			
+			dto.setUser_id(user_id);
+			dto.setSearch_word(word);
+			dto.setSearch_class(officeClass);
+			
+			statisticsDao.insertSearch(dto);
 		}
 		
 		List<String>	serviceIds		= mapDao.searchServiceIdList(arrayWords);
@@ -51,14 +66,12 @@ public class MapSearchHandlerAjax {
 			String strLongWest	= request.getParameter("longWest");
 			String strlongEast	= request.getParameter("longEast");
 			String strMapLevel	= request.getParameter("mapLevel");
-			String strOfficeClass	= request.getParameter("officeClass");
 			
 			double	latiSouth	= Double.parseDouble(strLatiSouth);
 			double	latiNorth	= Double.parseDouble(strLatiNorth);
 			double	longWest	= Double.parseDouble(strLongWest);
 			double	longEast	= Double.parseDouble(strlongEast);
 			int		mapLevel	= Integer.parseInt(strMapLevel);
-			int		officeClass	= Integer.parseInt(strOfficeClass);
 			
 			System.out.println("latiSouth  : " + latiSouth + " / latiNorth : " + latiNorth);
 			System.out.println("longWest   : " + longWest  + " / longEast  : " + longEast);

@@ -8,7 +8,6 @@ var searcherror = "검색에 실패했습니다 \n 잠시 후 다시 시도하�
 $(function() {
 	// initialize
 	setLayoutSize();
-	//loadLayout();
 	initializeMap('kakaomap');		// map을 표시할 element id : 'kakaomap'
 
 	// 리뷰 작성 클릭
@@ -259,12 +258,6 @@ function setDetailLayoutSize() {
 	var reviewHeight	= windowHeight - reviewOffset.top - 1;
 	
 	$(".office_detail_review_item_list").css({'height': reviewHeight+'px'});
-}
-
-function loadLayout() {
-	$("#user_part").load("map/map_user.jsp");
-	$("#search").load("map/map_search.jsp");
-	$("#searchResult").load("map/map_search_result.jsp");
 }
 
 
