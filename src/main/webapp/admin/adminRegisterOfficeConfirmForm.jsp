@@ -44,17 +44,17 @@ ${btn_admin_office}
 						${dto.office_name}
 					</td>
 			</tr>
-		<!--  	<tr>
-				<th> 사업자 등록 번호 </th>
+		 	<tr>
+			<!-- 	<th> 사업자 등록 번호 </th>
 					<td>
 						${dto.office_regist_num}
 					</td>
-			</tr>		-->
+			</tr>  -->		
 			<tr>
 				<th> ${str_office_regist} </th>
 					<td>
 						<!--  <img src="/JSP/save/systemName"> -->
-						<img src="/quickmap${dto.office_regist_num_img}">
+						<img src="/quickmap${dto.office_regist_num_img}" style="width:600px; height:900px;">
 					</td>
 			</tr>
 						
