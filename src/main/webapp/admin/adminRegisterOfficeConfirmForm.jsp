@@ -54,7 +54,7 @@ ${btn_admin_office}
 				<th> ${str_office_regist} </th>
 					<td>
 						<!--  <img src="/JSP/save/systemName"> -->
-						<img src="${dto.office_regist_num_img}">
+						<img src="/quickmap${dto.office_regist_num_img}">
 					</td>
 			</tr>
 						

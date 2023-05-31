@@ -70,7 +70,7 @@ public class MapSearchDetailHandlerAjax {
 			String[] arrImage	= images.split(";");
 			
 			for(int i=0 ; i<arrImage.length ; i++) {
-				strSearchResult	+= "			<img src=\"" + arrImage[i]+ "\">\n";
+				strSearchResult	+= "			<img src=\"/quickmap" + arrImage[i]+ "\">\n";
 			}
 
 			for(int i=0 ; i<3-arrImage.length ; i++) {
