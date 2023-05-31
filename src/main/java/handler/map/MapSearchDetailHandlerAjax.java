@@ -21,6 +21,8 @@ import map.MapDao;
 import map.MapOfficeDetailDTO;
 import review.ReviewDAO;
 import review.ReviewDataBean;
+import statistics.StatisticsDAO;
+import statistics.StatisticsDetailDTO;
 
 @Controller
 public class MapSearchDetailHandlerAjax {
@@ -33,6 +35,9 @@ public class MapSearchDetailHandlerAjax {
 	@Resource(name="reviewDao")
 	private ReviewDAO reviewDao;
 	
+	@Resource(name="statisticsDao")
+	private StatisticsDAO statisticsDao;
+	
 	@RequestMapping("/map_search_detail_ajax")
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -41,6 +46,13 @@ public class MapSearchDetailHandlerAjax {
 		int		officeId		= Integer.parseInt(request.getParameter("officeId"));
 		String	userId			= (String) request.getSession().getAttribute("memId");
 		MapOfficeDetailDTO	dto	= mapDao.getOfficeInfoByOfficeId(officeId);
+		
+		StatisticsDetailDTO detailDTO	= new StatisticsDetailDTO();
+		
+		detailDTO.setUser_id(userId);
+		detailDTO.setOffice_id(officeId);
+		
+		statisticsDao.insertStatisticsDetail(detailDTO);
 		
 		String	strSearchResult	= "";
 		

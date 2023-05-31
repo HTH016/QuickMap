@@ -54,7 +54,7 @@ public class MapSearchHandlerAjax {
 			dto.setSearch_word(word);
 			dto.setSearch_class(officeClass);
 			
-			statisticsDao.insertSearch(dto);
+			statisticsDao.insertStatisticsSearch(dto);
 		}
 		
 		List<String>	serviceIds		= mapDao.searchServiceIdList(arrayWords);

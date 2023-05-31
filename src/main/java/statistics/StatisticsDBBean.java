@@ -47,8 +47,12 @@ public class StatisticsDBBean implements StatisticsDAO {
 		return session.selectList( "Statistics.statisticsSearchWord", map );
 	}
 	
-	public int insertSearch(StatisticsSearchDTO dto) {
-		return session.insert( "Statistics.insertSearch", dto );
+	public int insertStatisticsSearch(StatisticsSearchDTO dto) {
+		return session.insert( "Statistics.insertStatisticsSearch", dto );
+	}
+	
+	public int insertStatisticsDetail(StatisticsDetailDTO dto) {
+		return session.insert( "Statistics.insertStatisticsDetail", dto );
 	}
 	
 	/*

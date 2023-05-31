@@ -71,11 +71,15 @@
  			)
 	</select>
 	
-	<select id="insertSearch"  parameterType="statistics.StatisticsSearchDTO" resultType="int">
+	<select id="insertStatisticsSearch"  parameterType="statistics.StatisticsSearchDTO" resultType="int">
 		insert into qm_statistics_search (user_id, search_word, search_class, search_date)
 		values (#{user_id, jdbcType=VARCHAR}, #{search_word}, #{search_class}, sysdate)
 	</select>	
 	
+	<select id="insertStatisticsDetail"  parameterType="statistics.StatisticsDetailDTO" resultType="int">
+		insert into qm_statistics_detail (user_id, office_id, detail_date)
+		values (#{user_id, jdbcType=VARCHAR}, #{office_id}, sysdate)
+	</select>	
 	
 	<select id="statisticsDetail" resultType="statistics.StatisticsDetailDTO" parameterType="java.util.Map">
 		<!--  
