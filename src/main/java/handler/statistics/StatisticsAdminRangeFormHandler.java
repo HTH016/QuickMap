@@ -1,8 +1,13 @@
 package handler.statistics;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -30,20 +35,29 @@ public class StatisticsAdminRangeFormHandler implements CommandHandler {
 	@RequestMapping("/statisticsadminrangeform")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		int AD_LEVEL_MONEY[] = {1, 2, 4, 8, 16, 32, 64};
-		int adIncome = 0;
+
+		Calendar calendar = Calendar.getInstance();
 		
 		String startDate = request.getParameter( "rangestart" );
-		String endDate = request.getParameter( "rangeend" );
-
-		DecimalFormat decFormat = new DecimalFormat("###,###");
+		String endDateBefore = request.getParameter( "rangeend" );
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+		try {
+			Date date = sdf.parse(endDateBefore);
+			calendar.setTime(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		calendar.add(Calendar.DATE , 1);
+		String	endDate	= new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
+		
+		System.out.println("startDate? : "  + startDate);
+		System.out.println("endDate?   : "  + endDateBefore);
+		System.out.println("endDate?   : "  + endDate);
 		
 		int numGeneralUser = statisticsDao.countUserByGrade(2);			// grade=2 인 회원 수
-	
 		int numRegistOffice = statisticsDao.countOfficeByGrade(0);		// grade=0 인 업장 수
 		int numPremiumOffice = statisticsDao.countOfficeByGrade(1);		// grade=1 인 업장 수 
-	
 		int numAdOffice = statisticsDao.countOfficeByAd();				// ad=1 인 업장 수
 		
 		request.setAttribute( "numGeneralUser", numGeneralUser ); 
@@ -54,14 +68,18 @@ public class StatisticsAdminRangeFormHandler implements CommandHandler {
 		Map<String, String> mapAd = new HashMap< String, String>();
 		mapAd.put( "end", endDate );
 		mapAd.put( "start", startDate );
+		
 		List<StatisticsAdIncomeDTO> dtosAd = statisticsDao.getAdIncome( mapAd );
+		
+		int AD_LEVEL_MONEY[] = {1, 2, 4, 8, 16, 32, 64};
+		int adIncome = 0;
 		
 		for ( int i = 0 ; i < 5 ; i++) {
 			adIncome += AD_LEVEL_MONEY[i] * dtosAd.get(i).getS();
 		}
 	
+		DecimalFormat decFormat = new DecimalFormat("###,###");
 		String strAdIncome = decFormat.format(adIncome);
-		
 		
 		request.setAttribute( "dtosAd", dtosAd ); 
 		request.setAttribute( "strAdIncome", strAdIncome ); 
@@ -71,10 +89,9 @@ public class StatisticsAdminRangeFormHandler implements CommandHandler {
 		map.put( "start", startDate );
 		map.put( "end", endDate );
 		List<StatisticsSearchDTO> dtosSearch = statisticsDao.getSearchRank( map );
-		request.setAttribute( "dtosSearch", dtosSearch ); 
 		
-		 //group by search_word, order by desc
-	
+		
+		request.setAttribute( "dtosSearch", dtosSearch ); 
 	
 		Map<String, String> mapDetail = new HashMap< String, String>();
 		mapDetail.put( "start", startDate );
@@ -99,11 +116,6 @@ public class StatisticsAdminRangeFormHandler implements CommandHandler {
 		List<StatisticsReviewDTO> dtosReview = statisticsDao.getReviewByDay( mapReview );
 		request.setAttribute( "dtosReview", dtosReview ); 
 		// 리뷰 (office_id, start_date, end_date)
-	
-		/*
-		List<StatisticsAdDTO> dtosAd = statisticsDao.getAdHistory(305);
-		request.setAttribute( "dtosAd", dtosAd ); */
-		// 광고 등록 내역 (office_id, start_date, end_date, ad_level)
 		
 		return new ModelAndView("statistics/statisticsAdminForm");
 	}

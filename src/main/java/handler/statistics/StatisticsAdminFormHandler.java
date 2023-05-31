@@ -96,6 +96,10 @@ public class StatisticsAdminFormHandler implements CommandHandler {
 		List<StatisticsDetailDTO> dtosDetail = statisticsDao.getDetailByDay( mapDetail );
 		request.setAttribute( "dtosDetail", dtosDetail ); 
 		// 상세 정보 노출 (office_id, start_date, end_date)
+		
+		for(StatisticsDetailDTO dto : dtosDetail) {
+			System.out.println("Detail : " + dto.getDetail_date());
+		}
 	
 		Map<String, String> mapFavorite = new HashMap< String, String>();
 		mapFavorite.put( "start", startDate );
@@ -104,6 +108,10 @@ public class StatisticsAdminFormHandler implements CommandHandler {
 		List<StatisticsFavoriteDTO> dtosFavorite = statisticsDao.getFavoriteByDay( mapFavorite );
 		request.setAttribute( "dtosFavorite", dtosFavorite ); 
 		// 즐겨찾기 (office_id, start_date, end_date)
+		
+		for(StatisticsFavoriteDTO dto : dtosFavorite) {
+			System.out.println("Favorite : " + dto.getFavorite_reg());
+		}
 	
 		Map<String, String> mapReview = new HashMap< String, String>();
 		mapReview.put( "start", startDate );
@@ -112,6 +120,10 @@ public class StatisticsAdminFormHandler implements CommandHandler {
 		List<StatisticsReviewDTO> dtosReview = statisticsDao.getReviewByDay( mapReview );
 		request.setAttribute( "dtosReview", dtosReview ); 
 		// 리뷰 (office_id, start_date, end_date)
+		
+		for(StatisticsReviewDTO dto : dtosReview) {
+			System.out.println("Review : " + dto.getReview_reg());
+		}
 	
 		return new ModelAndView("statistics/statisticsAdminForm");
 	}
