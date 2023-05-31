@@ -364,12 +364,13 @@ body {
 }
 
 .office_detail_review_item {
-	background: #d1d1d1;
+	background: #f1f1f1;
 	font-size: 13px;
+	margin-top: 10px;
 }
 
 .office_detail_review_content {
-	background: #f1f1f1;
+	background: #e1e1e1;
 	margin-top: 5px;
 	width: 350px;
 }

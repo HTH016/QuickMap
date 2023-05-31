@@ -47,7 +47,7 @@ public static SqlSession session = SqlMapClient.getSession();
 		return session.selectList( "Statistics.statisticsReview", map );
 	}
 	
-	public List<StatisticsAdminSearchWordDTO> getSearchRank( Map<String, String> map ) {
+	public List<StatisticsSearchDTO> getSearchRank( Map<String, String> map ) {
 		return session.selectList( "Statistics.statisticsSearchWord", map );
 	}
 	

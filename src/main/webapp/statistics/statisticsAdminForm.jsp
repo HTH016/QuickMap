@@ -117,13 +117,13 @@
 		<c:forEach var="dtoSearch" items="${dtosSearch}">
 			<tr>
 				<td style="text-align:center">
-					${dtoSearch.s}
+					${dtoSearch.rank} 
 				</td>
 				<td style="text-align:center">
-					${dtoSearch.r} 
+					${dtoSearch.search_word}
 				</td>
 				<td style="text-align:center">
-					${dtoSearch.c} 
+					${dtoSearch.count} 
 				</td>
 			</tr>
 		</c:forEach>
@@ -144,8 +144,8 @@ anychart.onDocumentReady(function () {
 	<c:forEach var="dtosSearch" items="${dtosSearch}" varStatus="status">
 	data.push(
 			{
-                "x": "${dtosSearch.s}",
-                "value": ${dtosSearch.c}
+                "x": "${dtosSearch.search_word}",
+                "value": ${dtosSearch.count}
             }
 	);
 	</c:forEach>

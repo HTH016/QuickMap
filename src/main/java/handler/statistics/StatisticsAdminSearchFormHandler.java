@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import handler.CommandHandler;
 import statistics.StatisticsAdIncomeDTO;
-import statistics.StatisticsAdminSearchWordDTO;
+import statistics.StatisticsSearchDTO;
 import statistics.StatisticsDAO;
 
 @Controller
@@ -85,7 +85,7 @@ public class StatisticsAdminSearchFormHandler implements CommandHandler {
 	Map<String, String> map = new HashMap< String, String>();
 	map.put( "start", searchWordStartDate );
 	map.put( "end", searchWordEndDate );
-	List<StatisticsAdminSearchWordDTO> dtosSearch = statisticsDao.getSearchRank( map );
+	List<StatisticsSearchDTO> dtosSearch = statisticsDao.getSearchRank( map );
 	request.setAttribute( "dtosSearch", dtosSearch ); 
 	
 	 //group by search_word, order by desc

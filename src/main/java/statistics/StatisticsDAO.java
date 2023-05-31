@@ -13,6 +13,6 @@ public interface StatisticsDAO {
 	public List<StatisticsDetailDTO> getDetailByDay( Map<String, String> map );
 	public List<StatisticsFavoriteDTO> getFavoriteByDay( Map<String, String> map );
 	public List<StatisticsReviewDTO> getReviewByDay( Map<String, String> map );
-	public List<StatisticsAdminSearchWordDTO> getSearchRank( Map<String, String> map );
+	public List<StatisticsSearchDTO> getSearchRank( Map<String, String> map );
 	
 }

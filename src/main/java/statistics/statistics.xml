@@ -49,13 +49,17 @@
 
 	
 	<select id="statisticsSearchWord" resultType="statistics.StatisticsAdminSearchWordDTO" parameterType="java.util.Map">
-		select s, rank() over( order by c desc ) r, c 
- 		from ( select s, c  from ( select search_word s,
- 		count(search_word) c
- 		from qm_statistics_search
-        where search_date &gt;= to_date(#{start},'YYYY-MM-DD')
-        and search_date &lt;= to_date(#{end},'YYYY-MM-DD') 
- 		group by search_word))
+		select search_word, rank() over( order by c desc ) rank, count 
+		from (
+			select search_word, count
+			from (
+				select search_word, count(search_word) count
+				from qm_statistics_search
+				where   search_date &gt;= to_date(#{start}, 'YYYY-MM-DD')
+        			and search_date &lt;= to_date(#{end}, 'YYYY-MM-DD') 
+ 				group by search_word
+ 				)
+ 			)
 	</select>
 	
 	
