@@ -80,7 +80,7 @@
 			FROM qm_statistics_detail
 			WHERE   detail_date BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD')
 				AND TO_DATE(#{end}, 'YYYY-MM-DD') 
-				and office_id = #{office_id, jdbcType=VARCHAR}
+				<!--  and office_id = #{office_id, jdbcType=VARCHAR} -->
 			GROUP BY detail_date
 			) a,
 			(
@@ -112,7 +112,7 @@
 			FROM qm_favorite
 			WHERE   favorite_reg BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD')
 				AND TO_DATE(#{end}, 'YYYY-MM-DD') 
-				and office_id = to_number(#{office_id, jdbcType=VARCHAR}, '99999')
+				<!--  and office_id = #{office_id, jdbcType=VARCHAR} -->
 			GROUP BY favorite_reg
 			) a,
 			(
@@ -145,7 +145,7 @@
            FROM qm_review
           WHERE review_reg BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD')
                              AND TO_DATE(#{end}, 'YYYY-MM-DD') 
-                             and office_id = #{office_id, jdbcType=VARCHAR}
+                             <!--  and office_id = #{office_id, jdbcType=VARCHAR} -->
           GROUP BY review_reg
         ) a
       , ( SELECT TO_DATE(#{start},'YYYY-MM-DD') + LEVEL - 1 AS dt
