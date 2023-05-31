@@ -62,9 +62,10 @@ public class StatisticsOfficeRangeFormHandler implements CommandHandler {
 		List<StatisticsReviewDTO> dtosReview = statisticsDao.getReviewByDay( mapReview );
 		request.setAttribute( "dtosReview", dtosReview ); 
 	// 리뷰 (office_id, start_date, end_date)
-	
+		/*
 		List<StatisticsAdDTO> dtosAd = statisticsDao.getAdHistory(305);
 		request.setAttribute( "dtosAd", dtosAd ); 
+		*/
 	// 광고 등록 내역 (office_id, start_date, end_date, ad_level)
 	
 	return new ModelAndView("statistics/statisticsOfficeForm");
