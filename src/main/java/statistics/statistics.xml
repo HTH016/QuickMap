@@ -7,30 +7,42 @@
 <mapper namespace="Statistics">
 	
 	<select id="statisticsUserGrade" resultType="int" parameterType="int"> 
+		<!--  
 		select c
 		from ( select grade_id g,
  		count(grade_id) c
  		from qm_user
  		group by grade_id)
  		where g = #{g}
+ 		-->
+ 		select qm_user_grade.grade_id, nvl(q.c, 0)
+        	from qm_user_grade, 
+        	( select grade_id, c
+				from (select grade_id ,	nvl(count(grade_id), 0) c
+ 					from qm_user
+ 			group by grade_id)) q 
+        	where qm_user_grade.grade_id = q.grade_id(+)
+        		and qm_user_grade.grade_id = #{qm_user_grade.grade_id}
 	</select>
 	
 	<select id="statisticsOfficeGrade" resultType="int" parameterType="int"> 
-		select c
-		from ( select grade_id g,
- 		count(grade_id) c
- 		from qm_office
- 		group by grade_id)
- 		where g = #{g}
+		select qm_office_grade.grade_id, nvl(q.c, 0)
+       		from qm_office_grade, 
+       		( select grade_id, c
+				from (select grade_id , nvl(count(grade_id), 0) c
+ 					from qm_office
+ 			group by grade_id)) q 
+        	where qm_office_grade.grade_id = q.grade_id(+)
+        		and qm_office_grade.grade_id = #{qm_office_grade.grade_id}
 	</select>
 	
 	<select id="statisticsOfficeAd" resultType="int" parameterType="int"> 
 		select c
- 		from ( select office_ad_state a,
- 		count(office_ad_state) c
- 		from qm_office
- 		group by office_ad_state)
- 		where a = #{a}
+ 		from ( 
+ 			select office_ad_state a, count(nvl(office_ad_state, 0)) c
+ 			from qm_office
+ 			group by office_ad_state)
+ 			where a = #{a}
 	</select>
 	
 	<select id="statisticsAdIncome" resultType="statistics.StatisticsAdIncomeDTO" parameterType="java.util.Map"> 
@@ -46,7 +58,7 @@
 	</select>
 	
 	<select id="statisticsSearchWord" resultType="statistics.StatisticsSearchDTO" parameterType="java.util.Map">
-		select search_word, rank() over( order by c desc ) rank, count 
+		select search_word, rank() over( order by count desc ) rank, count 
 		from (
 			select search_word, count
 			from (

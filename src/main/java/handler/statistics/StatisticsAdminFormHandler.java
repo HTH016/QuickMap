@@ -17,6 +17,9 @@ import handler.CommandHandler;
 import statistics.StatisticsAdIncomeDTO;
 import statistics.StatisticsSearchDTO;
 import statistics.StatisticsDAO;
+import statistics.StatisticsDetailDTO;
+import statistics.StatisticsFavoriteDTO;
+import statistics.StatisticsReviewDTO;
 
 @Controller
 public class StatisticsAdminFormHandler implements CommandHandler {
@@ -28,14 +31,16 @@ public class StatisticsAdminFormHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-	int AD_LEVEL[] = {1, 10, 100, 1000, 10000};
+	String DEFAULT_START_DATE = "2022-11-01";
+	String DEFAULT_END_DATE = "2023-03-01";
+		
+	int AD_LEVEL[] = {1, 2, 4, 8, 16, 32, 64};
 	int adIncome = 0;
 	
-	String adSearchStartDate = "2023-01-01";
-	String adSearchEndDate = "2023-12-31";
-	String searchWordStartDate = "2023-01-01";
-	String searchWordEndDate = "2023-12-31";
-	
+	String startDate = DEFAULT_START_DATE;
+	String endDate = DEFAULT_END_DATE;
+
+
 	DecimalFormat decFormat = new DecimalFormat("###,###");
 
 	
@@ -67,8 +72,8 @@ public class StatisticsAdminFormHandler implements CommandHandler {
 	request.setAttribute( "numAdOffice", numAdOffice ); 	
 	
 	Map<String, String> mapAd = new HashMap< String, String>();
-	mapAd.put( "end", adSearchEndDate );
-	mapAd.put( "start", adSearchStartDate );
+	mapAd.put( "end", endDate );
+	mapAd.put( "start", startDate );
 	List<StatisticsAdIncomeDTO> dtosAd = statisticsDao.getAdIncome( mapAd );
 	
 	for ( int i = 0 ; i < 5 ; i++) {
@@ -83,14 +88,42 @@ public class StatisticsAdminFormHandler implements CommandHandler {
 	
 	
 	Map<String, String> map = new HashMap< String, String>();
-	map.put( "start", searchWordStartDate );
-	map.put( "end", searchWordEndDate );
+	map.put( "start", startDate );
+	map.put( "end", endDate );
 	List<StatisticsSearchDTO> dtosSearch = statisticsDao.getSearchRank( map );
 	request.setAttribute( "dtosSearch", dtosSearch ); 
 	
 	 //group by search_word, order by desc
-	
-	
+
+
+	Map<String, String> mapDetail = new HashMap< String, String>();
+	mapDetail.put( "start", startDate );
+	mapDetail.put( "end", endDate );
+	//mapDetail.put( "office_id", str_id );
+	List<StatisticsDetailDTO> dtosDetail = statisticsDao.getDetailByDay( mapDetail );
+	request.setAttribute( "dtosDetail", dtosDetail ); 
+// 상세 정보 노출 (office_id, start_date, end_date)
+
+	Map<String, String> mapFavorite = new HashMap< String, String>();
+	mapFavorite.put( "start", startDate );
+	mapFavorite.put( "end", endDate );
+	//mapFavorite.put( "office_id", str_id );
+	List<StatisticsFavoriteDTO> dtosFavorite = statisticsDao.getFavoriteByDay( mapFavorite );
+	request.setAttribute( "dtosFavorite", dtosFavorite ); 
+// 즐겨찾기 (office_id, start_date, end_date)
+
+	Map<String, String> mapReview = new HashMap< String, String>();
+	mapReview.put( "start", startDate );
+	mapReview.put( "end", endDate );
+	//mapReview.put( "office_id", str_id );
+	List<StatisticsReviewDTO> dtosReview = statisticsDao.getReviewByDay( mapReview );
+	request.setAttribute( "dtosReview", dtosReview ); 
+// 리뷰 (office_id, start_date, end_date)
+
+	/*
+	List<StatisticsAdDTO> dtosAd = statisticsDao.getAdHistory(305);
+	request.setAttribute( "dtosAd", dtosAd ); */
+// 광고 등록 내역 (office_id, start_date, end_date, ad_level)
 
 	
 	

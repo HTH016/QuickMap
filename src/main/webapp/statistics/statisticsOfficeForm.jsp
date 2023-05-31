@@ -18,8 +18,8 @@
 
 ${msg_range}
 <form method="post" action="statisticsofficerangeform.do" name="officerange" onsubmit="return officerangecheck()">
-	<input type="date" name="officestart" min="2023-01-01" max="2023-12-31">
-	<input type="date" name="officeend" min="2023-01-01" max="2023-12-31">
+	<input type="date" name="officestart" min="2020-01-01" max="2023-12-31">
+	<input type="date" name="officeend" min="2020-01-01" max="2023-12-31">
 	<input type="submit" value="${btn_range}">
 </form>
 
@@ -261,7 +261,7 @@ const chartReview = new Chart(ctxReview, {
 </canvas>
 
 
-
+<!-- 
 
 <h3>${str_ad_history}</h3>
  <br>
@@ -287,6 +287,7 @@ const chartReview = new Chart(ctxReview, {
 			</c:forEach>
 	</table>
 
+-->
 <br><br><br><br><br><br><br>
     
     

@@ -6,31 +6,21 @@ function erroralert( msg ) {
 	history.back();
 }
 
-function incomerangecheck() {
-	if( ! incomerange.incomestart.value ) {
+function rangecheck() {
+	if( ! adminrange.rangestart.value ) {
 		alert( rangeerror );
 		return false;
-	} else if(  ! incomerange.incomeend.value ) {
-		alert( rangeerror );
-		return false;
-	}	
-}
-
-function searchrangecheck() {
-	if( ! searchrange.searchstart.value ) {
-		alert( rangeerror );
-		return false;
-	} else if(  ! searchrange.searchend.value ) {
+	} else if(  ! adminrange.rangeend.value ) {
 		alert( rangeerror );
 		return false;
 	}	
 }
 
-function officerangecheck() {
-	if( ! officerange.officestart.value ) {
+function rangecheck() {
+	if( ! officerange.rangestart.value ) {
 		alert( rangeerror );
 		return false;
-	} else if(  ! officerange.officeend.value ) {
+	} else if(  ! officerange.rangeend.value ) {
 		alert( rangeerror );
 		return false;
 	}	

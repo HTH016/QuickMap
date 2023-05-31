@@ -26,7 +26,7 @@
 <input type="button" style="width:90pt; height:30pt; float:right" value="${btn_to_main}"
 				onclick="location='main.do'">
  
-
+<br><br>
 <h3>${str_usage}</h3>
  
  <table border="1" style="text-align:center">
@@ -52,16 +52,20 @@
  	<tr>
  
  </table>
+ <br><br>
  
-
+ <form method="post" action="statisticsadminrangeform.do" name="adminrange" onsubmit="return rangecheck()">
+	<input type="date" name="rangestart" min="2020-01-01" max="2023-12-31">
+	<input type="date" name="rangeend" min="2020-01-01" max="2023-12-31">
+	<input type="submit" value="${btn_range}">
+</form>
+ 
+ 
+<br><br>
 <h3>${str_ad_income}</h3>
  <br>
  
-<form method="post" action="statisticsadminincomeform.do" name="incomerange" onsubmit="return incomerangecheck()">
-	<input type="date" name="incomestart" min="2023-01-01" max="2023-12-31">
-	<input type="date" name="incomeend" min="2023-01-01" max="2023-12-31">
-	<input type="submit" value="확인">
-</form>
+
 
 	<table>
 		
@@ -92,15 +96,9 @@
 	</table>
 
 
-
+<br><br>
 <h3>${str_search_rank}</h3>
  <br>
-
-<form method="post" action="statisticsadminsearchform.do" name="searchrange" onsubmit="return searchrangecheck()">
-	<input type="date" name="searchstart" min="2023-01-01" max="2023-12-31">
-	<input type="date" name="searchend" min="2023-01-01" max="2023-12-31">
-	<input type="submit" value="${btn_range}">
-</form>
 
 
 <table style="margin-left: auto; margin-right: auto;">
@@ -160,6 +158,255 @@ anychart.onDocumentReady(function () {
 </script>
 	
 
+<br><br><br><br><br>
+
+
+
+
+<h3>${str_detail_statistics}</h3>
+
+<br>
+
+<!--  
+<table style="margin-left: auto; margin-right: auto;">
+	
+	<tr>
+		<th style="width:30%"> detail_date </th>
+		<th style="width:30%"> count </th>
+
+
+	</tr>
+
+		
+		<c:forEach var="dtoDetail" items="${dtosDetail}">
+			<tr>
+				<td style="text-align:center">
+					${dtoDetail.detail_date}
+				</td>
+				<td style="text-align:center">
+					${dtoDetail.count} 
+				</td>
+
+			</tr>
+		</c:forEach>
+
+</table>
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+ <canvas id="chartDetail" width="800" height="500"></canvas>
+ 
+ <script>
+ 
+ let labelsDetail = [];
+	<c:forEach var="dtosDetail" items="${dtosDetail}" varStatus="status">
+	labelsDetail.push(
+			"${dtosDetail.detail_date}"
+	);
+	</c:forEach>
+ 
+ 
+	let dataDetail = [];
+	<c:forEach var="dtosDetail" items="${dtosDetail}" varStatus="status">
+	dataDetail.push(
+			${dtosDetail.count} 
+	);
+	</c:forEach>
+ 
+ 
+const ctxDetail = document.getElementById('chartDetail').getContext('2d');
+const chartDetail = new Chart(ctxDetail, {
+    type: 'line',
+    data: {
+        labels: labelsDetail,
+        datasets: [{
+            label: '# of Votes',
+            data: dataDetail,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+    	 responsive: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+<br><br><br><br>
+<h3>${str_favorite_statistics}</h3>
+ <br>
+ 
+
+ 
+<!--
+<table style="margin-left: auto; margin-right: auto;">
+	
+	<tr>
+		<th style="width:30%"> favorite_reg </th>
+		<th style="width:30%"> count </th>
+
+
+	</tr>
+
+		
+		<c:forEach var="dtoFavorite" items="${dtosFavorite}">
+			<tr>
+				<td style="text-align:center">
+					${dtoFavorite.favorite_reg}
+				</td>
+				<td style="text-align:center">
+					${dtoFavorite.count} 
+				</td>
+
+			</tr>
+		</c:forEach>
+
+</table>
+-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<canvas id="chartFavorite" width="800" height="500">
+ 
+ <script>
+ 
+ let labelsFavorite = [];
+ let dataFavorite = [];
+	<c:forEach var="dtosFavorite" items="${dtosFavorite}" varStatus="status">
+	labelsFavorite.push(
+			"${dtosFavorite.favorite_reg}"
+	);
+	dataFavorite.push(
+			${dtosFavorite.count} 
+	);
+	</c:forEach>
+ 
+const ctxFavorite = document.getElementById('chartFavorite').getContext('2d');
+const chartFavorite = new Chart(ctxFavorite, {
+    type: 'line',
+    data: {
+        labels: labelsFavorite,
+        datasets: [{
+            label: '# of Votes',
+            data: dataFavorite,
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+    	 responsive: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+</canvas>
+
+
+<br><br><br><br>
+<h3>${str_review_statistics}</h3>
+
+
+<br>
+
+<!-- 
+<table style="margin-left: auto; margin-right: auto;">
+	
+	<tr>
+		<th style="width:30%"> review_reg </th>
+		<th style="width:30%"> count </th>
+
+
+	</tr>
+
+		
+		<c:forEach var="dtoReview" items="${dtosReview}">
+			<tr>
+				<td style="text-align:center">
+					${dtoReview.review_reg}
+				</td>
+				<td style="text-align:center">
+					${dtoReview.count} 
+				</td>
+
+			</tr>
+		</c:forEach>
+
+</table>
+-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<canvas id="chartReview" width="800" height="500">
+ 
+ <script>
+ 
+ let labelsReview = [];
+	<c:forEach var="dtosReview" items="${dtosReview}" varStatus="status">
+	labelsReview.push(
+			"${dtosReview.review_reg}"
+	);
+	</c:forEach>
+ 
+ 
+	let dataReview = [];
+	<c:forEach var="dtosReview" items="${dtosReview}" varStatus="status">
+	dataReview.push(
+			${dtosReview.count} 
+	);
+	</c:forEach>
+ 
+ 
+const ctxReview = document.getElementById('chartReview').getContext('2d');
+const chartReview = new Chart(ctxReview, {
+    type: 'line',
+    data: {
+        labels: labelsReview,
+        datasets: [{
+            label: '# of Votes',
+            data: dataReview,
+            backgroundColor: [
+                'rgba(75, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+    	 responsive: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+</script>
+</canvas>
+
+
 <br><br><br><br><br><br><br>
+    
     
     
