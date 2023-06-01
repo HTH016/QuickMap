@@ -26,7 +26,7 @@
  ${user_id} ${str_review_writer} 
  </h3>
  
-<table style="margin-left: auto; margin-right: auto; border='1'; width='70%';">
+<table style="margin-left: auto; margin-right: auto;" border="1" width="70%">
 	<tr>
 		<th style="width:20%"> ${str_office_name} </th>
 		<th style="width:30%"> ${str_review} </th>

@@ -28,7 +28,7 @@ ${page_admin_ad}
 </h3>	
 
 	<form method="post" action="adminrequestadpro.do" name="requestad">
-		<table style="margin-left: auto; margin-right: auto; border='1'; width='70%';">
+		<table style="margin-left: auto; margin-right: auto;" border="1" width="70%">
 			<tr>
 				<th style="width:3%"> </th>
 				<th style="width:50%"> ${str_office_name} </th>

@@ -27,7 +27,7 @@ ${page_admin_grade}
 </h3>
  
 	<form method="post" action="adminrequestgradepro.do" name="requestgrade">
-		<table style="margin-left: auto; margin-right: auto; border='1'; width='70%';">
+		<table style="margin-left: auto; margin-right: auto;" border="1" width="70%">
 			<tr>
 				<th style="width:5%">  </th>
 				<th style="width:15%"> ${str_writer} </th>

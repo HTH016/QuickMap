@@ -43,7 +43,7 @@ ${page_admin_user}
 	  	<input class="input" type="text" name="usersearchword">
 		<input class="button" type="submit" value="${btn_user_search}">
 	</form>	
-	<table style="margin-left: auto; margin-right: auto; border='1'; width='70%';">
+	<table style="margin-left: auto; margin-right: auto;" border="1" width="70%">
 		<tr>
 			<th style="width:10%"> ${str_id} </th>
 			<th style="width:10%"> ${str_nick} </th>
