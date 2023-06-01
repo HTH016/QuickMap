@@ -26,7 +26,7 @@
 ${btn_admin_office}
 </h3>	
 
-	<table style="margin-left: auto; margin-right: auto;" border="1" width="70%">
+	<table style="margin-left: auto; margin-right: auto; border='1'; width='70%';">
 		<tr>
 			<th style="width:20%"> ${str_writer} </th>
 			<th style="width:50%"> ${str_office_name} </th>
