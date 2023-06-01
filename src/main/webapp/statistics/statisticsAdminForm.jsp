@@ -113,16 +113,15 @@
 </div>	
 <script>
 anychart.onDocumentReady(function () {
-  
-	
-	let data = [];
+
+	let		data	= [];
 	<c:forEach var="dtosSearch" items="${dtosSearch}" varStatus="status">
-	data.push(
-			{
-                "x": "${dtosSearch.search_word}",
-                "value": ${dtosSearch.count}
-            }
-	);
+		data.push(
+				{
+	                "x": "${dtosSearch.search_word}",
+	                "value": ${dtosSearch.count}
+	            }
+		);
 	</c:forEach>
 	
 	

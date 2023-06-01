@@ -38,6 +38,8 @@ public class MapSearchHandlerAjax {
 		int			officeClass		= Integer.parseInt(request.getParameter("officeClass"));
 
 		for(int i=0 ; i<arrayWords.length ; i++) {
+			arrayWords[i] = arrayWords[i].replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");
+
 			String	word	= arrayWords[i];
 			
 			if(word.length() == 1) {
