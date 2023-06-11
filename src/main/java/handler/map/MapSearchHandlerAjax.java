@@ -34,7 +34,8 @@ public class MapSearchHandlerAjax {
 
 		String		user_id			= (String) request.getSession().getAttribute("memId");
 		String		strSearchResult	= "";
-		String[]	arrayWords		= request.getParameter("searchWord").split("\\s");
+		String		strSearchWord	= request.getParameter("searchWord");
+		String[]	arrayWords		= strSearchWord.split("\\s");
 		int			officeClass		= Integer.parseInt(request.getParameter("officeClass"));
 
 		for(int i=0 ; i<arrayWords.length ; i++) {
@@ -110,8 +111,7 @@ public class MapSearchHandlerAjax {
 			int		i		= 0;
 			long	seed	= System.currentTimeMillis();
 			Random	rand	= new Random(seed);
-
-
+			
 			for(MapOfficeDetailDTO dto : officeList) {
 				strSearchResult	+= "<div id=\"" + dto.getOffice_id() + "\" class=\"office_search_result_box\">\n";
 				strSearchResult	+= "	<span class=\"marker_index\" hidden>" + (i++) + "</span>\n";
@@ -205,10 +205,17 @@ public class MapSearchHandlerAjax {
 				strSearchResult	+= "	</div>\n";
 				strSearchResult	+= "</div>\n";
 			}
-			
-			request.setAttribute("resulthtml", strSearchResult);
+		} else {
+			System.out.println(Thread.currentThread().getStackTrace()[1] + " >> 검색 결과가 없습니다");
+			strSearchResult	+= "<div class=\"office_search_result_box\">\n";
+			strSearchResult	+= "	<h5></h5>\n";
+			strSearchResult	+= "	<h5>\"" + strSearchWord + "\" 에 대한</h5>\n";
+			strSearchResult	+= "	<h5>검색 결과가 없습니다</h5>\n";
+			strSearchResult	+= "</div>\n";
 		}
 		
+		request.setAttribute("resulthtml", strSearchResult);
+
 		return new ModelAndView("map/map_search_result");
 	}
 
