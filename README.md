@@ -28,9 +28,7 @@
 ***
 
 ### 아키텍쳐
-<p align="center">
-  <img src=""  width="800" alt="description">
-</p>
+
 
 ***
 
