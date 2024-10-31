@@ -52,8 +52,8 @@
 ### 팀원 구성 및 역할
 <table>
     <tr>
-        <th style="width: 30%;">Category</th>
-        <th>Description</th>
+        <th style="width: 30%;">팀원</th>
+        <th>역할 분담</th>
     </tr>
   <tr>
         <td>박진우</td>
